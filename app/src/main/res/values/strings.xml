@@ -43,7 +43,7 @@
     <string name="no_entries_today">No entries for this day yet</string>
 
     <!-- Expandable FAB -->
-    <string name="fab_add_weight">Add weight</string>
+    <string name="fab_add_weight">Add growth</string>
     <string name="fab_add_entry">Add entry</string>
     <string name="cd_fab_close_menu">Close menu</string>
     <string name="cd_fab_add">Add</string>

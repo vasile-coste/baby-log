@@ -59,6 +59,12 @@ Run from the project root:
 ./gradlew test            # JVM unit tests
 ```
 
+or full command 
+
+```bash
+./gradlew lint test assembleDebug
+```
+
 The debug APK is written to:
 
 ```

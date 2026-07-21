@@ -43,7 +43,7 @@
     <string name="no_entries_today">Nicio înregistrare pentru această zi încă</string>
 
     <!-- Expandable FAB -->
-    <string name="fab_add_weight">Adaugă greutate</string>
+    <string name="fab_add_weight">Adaugă creștere</string>
     <string name="fab_add_entry">Adaugă înregistrare</string>
     <string name="cd_fab_close_menu">Închide meniul</string>
     <string name="cd_fab_add">Adaugă</string>

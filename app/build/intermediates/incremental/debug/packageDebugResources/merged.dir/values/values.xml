@@ -76,7 +76,7 @@
     <string name="export_section_title">Export</string>
     <string name="export_success">Exported successfully</string>
     <string name="fab_add_entry">Add entry</string>
-    <string name="fab_add_weight">Add weight</string>
+    <string name="fab_add_weight">Add growth</string>
     <string name="food_amount_label">Food amount (ml)</string>
     <string name="height_cm_label">Height (cm, optional)</string>
     <string name="import_description">Import a Baby Log JSON file. This creates a new baby profile with the imported data.</string>

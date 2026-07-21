@@ -80,7 +80,7 @@
     <string name="export_section_title">Export</string>
     <string name="export_success">Export reușit</string>
     <string name="fab_add_entry">Adaugă înregistrare</string>
-    <string name="fab_add_weight">Adaugă greutate</string>
+    <string name="fab_add_weight">Adaugă creștere</string>
     <string name="food_amount_label">Cantitate hrană (ml)</string>
     <string name="height_cm_label">Înălțime (cm, opțional)</string>
     <string name="import_description">Importă un fișier JSON Baby Log. Aceasta creează un profil nou de bebeluș cu datele importate.</string>

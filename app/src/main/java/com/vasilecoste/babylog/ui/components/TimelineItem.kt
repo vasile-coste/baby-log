@@ -57,7 +57,11 @@ fun TimelineItem(entry: Entry, onLongPress: () -> Unit, modifier: Modifier = Mod
                 Icon(Icons.Filled.LocalDrink, contentDescription = stringResource(R.string.cd_pee))
             }
             if (entry.puke) {
-                Icon(Icons.Filled.Sick, contentDescription = stringResource(R.string.cd_puke))
+                Icon(
+                    Icons.Filled.Sick,
+                    contentDescription = stringResource(R.string.cd_puke),
+                    tint = MaterialTheme.colorScheme.error,
+                )
             }
             if (entry.vitamin) {
                 Icon(Icons.Filled.Medication, contentDescription = stringResource(R.string.cd_vitamin))
