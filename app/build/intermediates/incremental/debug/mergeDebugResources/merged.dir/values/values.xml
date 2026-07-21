@@ -191,6 +191,22 @@
     <item name="wrapped_composition_tag" type="id"/>
     <integer name="m3c_window_layout_in_display_cutout_mode">1</integer>
     <integer name="status_bar_notification_info_maxnum">999</integer>
+    <plurals name="plural_days">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+    <plurals name="plural_entries">
+        <item quantity="one">%d entry</item>
+        <item quantity="other">%d entries</item>
+    </plurals>
+    <plurals name="plural_months">
+        <item quantity="one">%d month</item>
+        <item quantity="other">%d months</item>
+    </plurals>
+    <plurals name="plural_years">
+        <item quantity="one">%d year</item>
+        <item quantity="other">%d years</item>
+    </plurals>
     <string name="about_app_description">Baby Log helps you track your baby\'s feedings, diapers, vitamins, and growth — all stored locally on your device.</string>
     <string name="about_tech_stack">Built with Kotlin, Jetpack Compose, Material 3, Room, and Vico charts.</string>
     <string name="about_title">About</string>
@@ -257,6 +273,8 @@
     <string name="dropdown_menu">"Dropdown menu"</string>
     <string name="edit_entry_title">Edit entry</string>
     <string name="empty_state_message">Add your baby\'s profile to get started</string>
+    <string name="error_could_not_read_file">Could not read the selected file</string>
+    <string name="error_could_not_write_file">Could not write to the selected file</string>
     <string name="export_choose_baby_label">Baby to export</string>
     <string name="export_description">Export the selected baby\'s data to a JSON file.</string>
     <string name="export_error">Export failed: %1$s</string>
@@ -271,7 +289,7 @@
     <string name="import_error">Import failed: %1$s</string>
     <string name="import_export_title">Import / export data</string>
     <string name="import_section_title">Import</string>
-    <string name="import_success">Imported \"%1$s\" successfully (%2$d entries)</string>
+    <string name="import_success">Imported \"%1$s\" successfully (%2$s)</string>
     <string name="in_progress">In progress</string>
     <string name="indeterminate">Partially checked</string>
     <string name="label_no">No</string>
@@ -350,19 +368,19 @@
     <string name="no_entries_today">No entries for this day yet</string>
     <string name="not_selected">Not selected</string>
     <string name="profile_age_label">Age</string>
-    <string name="profile_age_months_only">%1$d months</string>
-    <string name="profile_age_years_months">%1$d years, %2$d months</string>
     <string name="profile_avg_food_7d">Avg. food (last 7 days): %1$s ml/day</string>
     <string name="profile_birth_date_label">Birth date: %1$s</string>
     <string name="profile_birth_date_not_set">Not set</string>
     <string name="profile_edit_birth_date">Edit birth date</string>
     <string name="profile_latest_height">Latest height: %1$s cm</string>
     <string name="profile_latest_weight">Latest weight: %1$s kg</string>
+    <string name="profile_max_food_7d">Max. food (last 7 days): %1$s ml/day</string>
+    <string name="profile_min_food_7d">Min. food (last 7 days): %1$s ml/day</string>
     <string name="profile_no_data">Not enough data yet</string>
     <string name="profile_set_birth_date">Set birth date</string>
     <string name="profile_title">Baby profile</string>
-    <string name="profile_total_days">Total: %1$d days</string>
-    <string name="profile_total_months">Total: %1$d months</string>
+    <string name="profile_total_days">Total: %1$s</string>
+    <string name="profile_total_months">Total: %1$s</string>
     <string name="quick_pees">Pees: %1$d</string>
     <string name="quick_poops">Poops: %1$d</string>
     <string name="quick_pukes">Pukes: %1$d</string>

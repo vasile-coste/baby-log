@@ -1,0 +1,7088 @@
+{
+  "baby": {
+    "name": "Matei-Stefan"
+  },
+  "weights": [
+    {
+      "date": "2026-05-03",
+      "weightKg": 3.82,
+      "heightCm": null
+    },
+    {
+      "date": "2026-05-06",
+      "weightKg": 4.0,
+      "heightCm": null
+    },
+    {
+      "date": "2026-05-13",
+      "weightKg": 4.3,
+      "heightCm": null
+    },
+    {
+      "date": "2026-05-15",
+      "weightKg": 4.33,
+      "heightCm": null
+    },
+    {
+      "date": "2026-05-20",
+      "weightKg": 4.38,
+      "heightCm": null
+    },
+    {
+      "date": "2026-05-24",
+      "weightKg": 4.4,
+      "heightCm": null
+    },
+    {
+      "date": "2026-05-27",
+      "weightKg": 4.55,
+      "heightCm": null
+    },
+    {
+      "date": "2026-06-01",
+      "weightKg": 4.65,
+      "heightCm": null
+    },
+    {
+      "date": "2026-06-03",
+      "weightKg": 4.74,
+      "heightCm": null
+    },
+    {
+      "date": "2026-06-07",
+      "weightKg": 4.96,
+      "heightCm": null
+    },
+    {
+      "date": "2026-06-10",
+      "weightKg": 4.94,
+      "heightCm": null
+    },
+    {
+      "date": "2026-06-14",
+      "weightKg": 5.12,
+      "heightCm": null
+    },
+    {
+      "date": "2026-06-18",
+      "weightKg": 5.28,
+      "heightCm": null
+    },
+    {
+      "date": "2026-06-23",
+      "weightKg": 5.4,
+      "heightCm": null
+    },
+    {
+      "date": "2026-06-26",
+      "weightKg": 5.43,
+      "heightCm": null
+    },
+    {
+      "date": "2026-06-29",
+      "weightKg": 5.5,
+      "heightCm": 60.0
+    },
+    {
+      "date": "2026-07-06",
+      "weightKg": 5.84,
+      "heightCm": null
+    },
+    {
+      "date": "2026-07-14",
+      "weightKg": 6.0,
+      "heightCm": null
+    },
+    {
+      "date": "2026-07-19",
+      "weightKg": 6.05,
+      "heightCm": null
+    }
+  ],
+  "dailySummaries": [
+    {
+      "date": "2026-05-01",
+      "poopCount": 3,
+      "peeCount": 5
+    },
+    {
+      "date": "2026-05-02",
+      "poopCount": 2,
+      "peeCount": 4
+    },
+    {
+      "date": "2026-05-03",
+      "poopCount": 5,
+      "peeCount": 7
+    },
+    {
+      "date": "2026-05-04",
+      "poopCount": 5,
+      "peeCount": 7
+    },
+    {
+      "date": "2026-05-05",
+      "poopCount": 5,
+      "peeCount": 7
+    },
+    {
+      "date": "2026-05-06",
+      "poopCount": 8,
+      "peeCount": 8
+    },
+    {
+      "date": "2026-05-07",
+      "poopCount": 3,
+      "peeCount": 8
+    },
+    {
+      "date": "2026-05-08",
+      "poopCount": 7,
+      "peeCount": 7
+    },
+    {
+      "date": "2026-05-09",
+      "poopCount": 3,
+      "peeCount": 5
+    },
+    {
+      "date": "2026-05-10",
+      "poopCount": 4,
+      "peeCount": 5
+    },
+    {
+      "date": "2026-05-11",
+      "poopCount": 2,
+      "peeCount": 5
+    },
+    {
+      "date": "2026-05-12",
+      "poopCount": 2,
+      "peeCount": 5
+    },
+    {
+      "date": "2026-05-13",
+      "poopCount": 2,
+      "peeCount": 5
+    },
+    {
+      "date": "2026-05-14",
+      "poopCount": 2,
+      "peeCount": 5
+    },
+    {
+      "date": "2026-05-15",
+      "poopCount": 0,
+      "peeCount": 6
+    },
+    {
+      "date": "2026-05-16",
+      "poopCount": 4,
+      "peeCount": 6
+    },
+    {
+      "date": "2026-05-17",
+      "poopCount": 3,
+      "peeCount": 5
+    },
+    {
+      "date": "2026-05-18",
+      "poopCount": 4,
+      "peeCount": 6
+    },
+    {
+      "date": "2026-05-19",
+      "poopCount": 7,
+      "peeCount": 7
+    },
+    {
+      "date": "2026-05-20",
+      "poopCount": 6,
+      "peeCount": 7
+    },
+    {
+      "date": "2026-05-21",
+      "poopCount": 3,
+      "peeCount": 6
+    },
+    {
+      "date": "2026-05-22",
+      "poopCount": 3,
+      "peeCount": 6
+    },
+    {
+      "date": "2026-05-29",
+      "poopCount": 1,
+      "peeCount": 1
+    }
+  ],
+  "entries": [
+    {
+      "date": "2026-05-01",
+      "time": "02:20",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-01",
+      "time": "05:45",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-01",
+      "time": "09:30",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-01",
+      "time": "12:30",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-01",
+      "time": "15:55",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-01",
+      "time": "19:15",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-01",
+      "time": "21:25",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-01",
+      "time": "23:50",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-02",
+      "time": "01:20",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-02",
+      "time": "03:18",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-02",
+      "time": "06:45",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-02",
+      "time": "08:30",
+      "foodMl": 10,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-02",
+      "time": "11:48",
+      "foodMl": 55,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-05-02",
+      "time": "13:38",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-02",
+      "time": "15:31",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-02",
+      "time": "17:23",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-02",
+      "time": "19:25",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-05-02",
+      "time": "20:53",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-02",
+      "time": "23:20",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-03",
+      "time": "01:05",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-03",
+      "time": "04:21",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-03",
+      "time": "06:02",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-03",
+      "time": "09:27",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-03",
+      "time": "12:20",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-03",
+      "time": "14:21",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-03",
+      "time": "17:15",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-03",
+      "time": "19:30",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-03",
+      "time": "22:50",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-04",
+      "time": "01:52",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-04",
+      "time": "05:00",
+      "foodMl": 75,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-04",
+      "time": "08:01",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-05-04",
+      "time": "13:30",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-04",
+      "time": "15:15",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-04",
+      "time": "19:00",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-04",
+      "time": "22:00",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-04",
+      "time": "23:50",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-05",
+      "time": "01:33",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-05",
+      "time": "03:42",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-05",
+      "time": "06:20",
+      "foodMl": 10,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-05",
+      "time": "07:45",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-05",
+      "time": "11:15",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-05",
+      "time": "14:06",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-05",
+      "time": "15:50",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-05",
+      "time": "16:50",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-05",
+      "time": "17:30",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-05",
+      "time": "20:30",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-05",
+      "time": "23:00",
+      "foodMl": 75,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-06",
+      "time": "02:38",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-06",
+      "time": "05:25",
+      "foodMl": 85,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-06",
+      "time": "08:12",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-06",
+      "time": "10:32",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-05-06",
+      "time": "13:20",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-06",
+      "time": "17:20",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-06",
+      "time": "20:54",
+      "foodMl": 95,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-06",
+      "time": "23:50",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-07",
+      "time": "03:00",
+      "foodMl": 75,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-07",
+      "time": "06:00",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-07",
+      "time": "08:45",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-05-07",
+      "time": "11:20",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-07",
+      "time": "13:00",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-07",
+      "time": "14:15",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-07",
+      "time": "17:17",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-07",
+      "time": "20:19",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-08",
+      "time": "00:29",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-08",
+      "time": "03:36",
+      "foodMl": 75,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-08",
+      "time": "07:20",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-08",
+      "time": "09:30",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-08",
+      "time": "12:00",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-08",
+      "time": "14:20",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-08",
+      "time": "15:25",
+      "foodMl": 20,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-08",
+      "time": "17:25",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-08",
+      "time": "18:00",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-08",
+      "time": "20:04",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-08",
+      "time": "21:00",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-08",
+      "time": "22:50",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-09",
+      "time": "02:10",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-09",
+      "time": "04:00",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-09",
+      "time": "07:23",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-09",
+      "time": "10:00",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-09",
+      "time": "12:40",
+      "foodMl": 20,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-09",
+      "time": "13:55",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-09",
+      "time": "16:00",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-09",
+      "time": "17:00",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-09",
+      "time": "21:00",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-10",
+      "time": "00:00",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-10",
+      "time": "03:38",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-10",
+      "time": "07:20",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-10",
+      "time": "11:00",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-10",
+      "time": "11:39",
+      "foodMl": 10,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-10",
+      "time": "13:01",
+      "foodMl": 75,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-10",
+      "time": "16:15",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-10",
+      "time": "19:10",
+      "foodMl": 85,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-10",
+      "time": "22:36",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-11",
+      "time": "03:34",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-11",
+      "time": "06:24",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-11",
+      "time": "08:00",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-11",
+      "time": "10:20",
+      "foodMl": 55,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-11",
+      "time": "11:40",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-11",
+      "time": "13:30",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-11",
+      "time": "16:34",
+      "foodMl": 85,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-11",
+      "time": "19:05",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-11",
+      "time": "21:10",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-11",
+      "time": "23:20",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-12",
+      "time": "00:10",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-12",
+      "time": "03:56",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-12",
+      "time": "06:33",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-12",
+      "time": "09:05",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-12",
+      "time": "11:00",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-12",
+      "time": "12:20",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-12",
+      "time": "14:05",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-12",
+      "time": "17:25",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-12",
+      "time": "20:25",
+      "foodMl": 55,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-12",
+      "time": "23:38",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-13",
+      "time": "03:11",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-13",
+      "time": "06:11",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-13",
+      "time": "08:40",
+      "foodMl": 55,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-13",
+      "time": "10:45",
+      "foodMl": 25,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-13",
+      "time": "12:30",
+      "foodMl": 65,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-13",
+      "time": "16:06",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-13",
+      "time": "19:10",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-13",
+      "time": "20:30",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-13",
+      "time": "21:30",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-14",
+      "time": "01:20",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-14",
+      "time": "04:30",
+      "foodMl": 130,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-14",
+      "time": "08:00",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-14",
+      "time": "10:30",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-14",
+      "time": "13:00",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-14",
+      "time": "16:45",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-14",
+      "time": "18:40",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-14",
+      "time": "21:23",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-15",
+      "time": "00:50",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-15",
+      "time": "04:00",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-15",
+      "time": "06:12",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-15",
+      "time": "07:30",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-15",
+      "time": "09:00",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-15",
+      "time": "12:00",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-15",
+      "time": "15:35",
+      "foodMl": 105,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-15",
+      "time": "19:30",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-15",
+      "time": "21:15",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-16",
+      "time": "01:05",
+      "foodMl": 95,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-16",
+      "time": "04:40",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-16",
+      "time": "08:35",
+      "foodMl": 130,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-16",
+      "time": "11:40",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-16",
+      "time": "12:32",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-16",
+      "time": "15:07",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-16",
+      "time": "17:10",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-16",
+      "time": "19:40",
+      "foodMl": 120,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-16",
+      "time": "23:04",
+      "foodMl": 120,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-17",
+      "time": "03:20",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-17",
+      "time": "06:23",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-17",
+      "time": "08:05",
+      "foodMl": 105,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-17",
+      "time": "11:38",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-17",
+      "time": "12:35",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-17",
+      "time": "14:31",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-17",
+      "time": "17:39",
+      "foodMl": 115,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-17",
+      "time": "19:40",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-17",
+      "time": "20:20",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-17",
+      "time": "23:17",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-18",
+      "time": "01:55",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-18",
+      "time": "04:35",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-18",
+      "time": "07:23",
+      "foodMl": 85,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-18",
+      "time": "09:30",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-18",
+      "time": "13:00",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-18",
+      "time": "17:28",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-18",
+      "time": "19:40",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-18",
+      "time": "20:25",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-18",
+      "time": "23:00",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-19",
+      "time": "02:10",
+      "foodMl": 95,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-19",
+      "time": "04:55",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-19",
+      "time": "08:52",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-19",
+      "time": "11:20",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-19",
+      "time": "13:00",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-19",
+      "time": "15:55",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-19",
+      "time": "17:23",
+      "foodMl": 20,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-19",
+      "time": "18:11",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-19",
+      "time": "20:00",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-05-20",
+      "time": "00:36",
+      "foodMl": 75,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-20",
+      "time": "04:10",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-20",
+      "time": "07:32",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-20",
+      "time": "11:00",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-20",
+      "time": "12:34",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-20",
+      "time": "14:00",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-20",
+      "time": "16:30",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-20",
+      "time": "19:00",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-20",
+      "time": "21:21",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-20",
+      "time": "21:50",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-21",
+      "time": "01:52",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-21",
+      "time": "05:28",
+      "foodMl": 120,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-21",
+      "time": "09:30",
+      "foodMl": 125,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-21",
+      "time": "12:40",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-21",
+      "time": "13:20",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-21",
+      "time": "14:35",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-21",
+      "time": "17:00",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-21",
+      "time": "20:26",
+      "foodMl": 120,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-21",
+      "time": "23:40",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-22",
+      "time": "03:10",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-22",
+      "time": "05:23",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-22",
+      "time": "07:05",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-22",
+      "time": "09:30",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-22",
+      "time": "11:20",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-22",
+      "time": "12:50",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-22",
+      "time": "14:50",
+      "foodMl": 45,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-22",
+      "time": "16:51",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-22",
+      "time": "18:47",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-22",
+      "time": "21:25",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-23",
+      "time": "01:40",
+      "foodMl": 110,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-23",
+      "time": "05:35",
+      "foodMl": 100,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-23",
+      "time": "08:56",
+      "foodMl": 100,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-23",
+      "time": "11:50",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-23",
+      "time": "15:00",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-23",
+      "time": "18:30",
+      "foodMl": 100,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-23",
+      "time": "22:47",
+      "foodMl": 100,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-24",
+      "time": "01:31",
+      "foodMl": 100,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-24",
+      "time": "04:39",
+      "foodMl": 120,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-24",
+      "time": "08:27",
+      "foodMl": 80,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-24",
+      "time": "11:10",
+      "foodMl": 100,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-24",
+      "time": "14:15",
+      "foodMl": 110,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-24",
+      "time": "16:11",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-24",
+      "time": "18:11",
+      "foodMl": 90,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-24",
+      "time": "20:12",
+      "foodMl": 65,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-24",
+      "time": "22:31",
+      "foodMl": 70,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-25",
+      "time": "01:35",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-25",
+      "time": "04:50",
+      "foodMl": 100,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-25",
+      "time": "07:05",
+      "foodMl": 100,
+      "poop": true,
+      "pee": true,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-25",
+      "time": "09:45",
+      "foodMl": 90,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-25",
+      "time": "11:20",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-25",
+      "time": "12:35",
+      "foodMl": null,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-25",
+      "time": "13:20",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-25",
+      "time": "15:00",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-25",
+      "time": "15:38",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-25",
+      "time": "17:00",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-25",
+      "time": "18:40",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-25",
+      "time": "19:00",
+      "foodMl": 70,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-25",
+      "time": "19:30",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-25",
+      "time": "20:40",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-26",
+      "time": "00:25",
+      "foodMl": 100,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-26",
+      "time": "03:50",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-26",
+      "time": "06:50",
+      "foodMl": 80,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-26",
+      "time": "09:30",
+      "foodMl": 90,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-26",
+      "time": "11:50",
+      "foodMl": 135,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-26",
+      "time": "15:05",
+      "foodMl": 135,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-26",
+      "time": "18:08",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-26",
+      "time": "21:25",
+      "foodMl": 130,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-27",
+      "time": "00:07",
+      "foodMl": 100,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-27",
+      "time": "03:50",
+      "foodMl": 80,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-27",
+      "time": "06:25",
+      "foodMl": 100,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-27",
+      "time": "09:50",
+      "foodMl": 130,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-27",
+      "time": "12:25",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-27",
+      "time": "15:30",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-27",
+      "time": "17:20",
+      "foodMl": 80,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-27",
+      "time": "19:50",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-27",
+      "time": "22:00",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-27",
+      "time": "22:30",
+      "foodMl": 70,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-28",
+      "time": "01:10",
+      "foodMl": 100,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-28",
+      "time": "04:20",
+      "foodMl": 110,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-28",
+      "time": "07:40",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-28",
+      "time": "08:50",
+      "foodMl": 30,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-28",
+      "time": "09:20",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-28",
+      "time": "11:20",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-28",
+      "time": "13:50",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-28",
+      "time": "16:10",
+      "foodMl": 130,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-28",
+      "time": "19:00",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-28",
+      "time": "20:00",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-29",
+      "time": "00:00",
+      "foodMl": 150,
+      "poop": true,
+      "pee": true,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-29",
+      "time": "04:00",
+      "foodMl": 110,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-29",
+      "time": "06:40",
+      "foodMl": 130,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-29",
+      "time": "09:40",
+      "foodMl": 110,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-29",
+      "time": "12:00",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-29",
+      "time": "13:00",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-29",
+      "time": "15:00",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-29",
+      "time": "17:30",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-29",
+      "time": "18:00",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-29",
+      "time": "20:50",
+      "foodMl": 140,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-30",
+      "time": "01:07",
+      "foodMl": 110,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-30",
+      "time": "04:00",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-30",
+      "time": "08:07",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-30",
+      "time": "10:50",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-30",
+      "time": "12:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-30",
+      "time": "12:40",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-30",
+      "time": "15:30",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-30",
+      "time": "18:00",
+      "foodMl": 80,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-30",
+      "time": "20:10",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-30",
+      "time": "22:22",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-31",
+      "time": "00:42",
+      "foodMl": 125,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-31",
+      "time": "03:35",
+      "foodMl": 100,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-31",
+      "time": "06:35",
+      "foodMl": 30,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-31",
+      "time": "08:30",
+      "foodMl": null,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": true
+    },
+    {
+      "date": "2026-05-31",
+      "time": "10:00",
+      "foodMl": 100,
+      "poop": false,
+      "pee": true,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-31",
+      "time": "11:03",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-31",
+      "time": "12:00",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-31",
+      "time": "13:10",
+      "foodMl": 70,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-31",
+      "time": "15:47",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-31",
+      "time": "18:47",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-05-31",
+      "time": "20:30",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-01",
+      "time": "01:10",
+      "foodMl": 80,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-06-01",
+      "time": "05:27",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-06-01",
+      "time": "09:15",
+      "foodMl": 80,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-06-01",
+      "time": "12:21",
+      "foodMl": 110,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-01",
+      "time": "15:45",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-06-01",
+      "time": "17:05",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-01",
+      "time": "19:30",
+      "foodMl": 100,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-06-01",
+      "time": "20:45",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-01",
+      "time": "21:20",
+      "foodMl": 20,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-02",
+      "time": "00:40",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-06-02",
+      "time": "03:50",
+      "foodMl": 130,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-02",
+      "time": "07:00",
+      "foodMl": 80,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-06-02",
+      "time": "09:15",
+      "foodMl": 90,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-02",
+      "time": "11:40",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-06-02",
+      "time": "13:15",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-02",
+      "time": "15:40",
+      "foodMl": 80,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-06-02",
+      "time": "18:00",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-02",
+      "time": "20:15",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-02",
+      "time": "22:00",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-06-03",
+      "time": "01:50",
+      "foodMl": 60,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-06-03",
+      "time": "04:50",
+      "foodMl": 80,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-06-03",
+      "time": "08:12",
+      "foodMl": 70,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-03",
+      "time": "11:40",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-03",
+      "time": "15:30",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-06-03",
+      "time": "17:20",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-03",
+      "time": "17:50",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-03",
+      "time": "19:30",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-06-03",
+      "time": "20:10",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-03",
+      "time": "21:30",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-04",
+      "time": "00:30",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-04",
+      "time": "03:22",
+      "foodMl": 90,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-06-04",
+      "time": "06:50",
+      "foodMl": 105,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-04",
+      "time": "08:30",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-04",
+      "time": "09:30",
+      "foodMl": 50,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-04",
+      "time": "10:50",
+      "foodMl": 70,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-04",
+      "time": "12:00",
+      "foodMl": 70,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-04",
+      "time": "15:00",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-04",
+      "time": "17:20",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-04",
+      "time": "18:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-04",
+      "time": "19:15",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-04",
+      "time": "20:50",
+      "foodMl": null,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-04",
+      "time": "22:00",
+      "foodMl": 150,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-05",
+      "time": "01:20",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-05",
+      "time": "01:22",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-05",
+      "time": "04:22",
+      "foodMl": 40,
+      "poop": true,
+      "pee": true,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-05",
+      "time": "08:15",
+      "foodMl": 115,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-05",
+      "time": "11:40",
+      "foodMl": 100,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-05",
+      "time": "13:50",
+      "foodMl": 110,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-05",
+      "time": "16:20",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-05",
+      "time": "18:30",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-05",
+      "time": "19:40",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-05",
+      "time": "20:50",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-05",
+      "time": "21:45",
+      "foodMl": 40,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-05",
+      "time": "22:25",
+      "foodMl": 45,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-06",
+      "time": "02:00",
+      "foodMl": 90,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-06-06",
+      "time": "05:15",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-06",
+      "time": "06:50",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-06",
+      "time": "08:15",
+      "foodMl": 70,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-06",
+      "time": "10:06",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-06",
+      "time": "11:40",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-06",
+      "time": "12:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-06",
+      "time": "15:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-06",
+      "time": "16:10",
+      "foodMl": 130,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": true
+    },
+    {
+      "date": "2026-06-06",
+      "time": "17:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-06",
+      "time": "18:20",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-06",
+      "time": "20:38",
+      "foodMl": 70,
+      "poop": true,
+      "pee": true,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-06",
+      "time": "21:00",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-07",
+      "time": "01:10",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-07",
+      "time": "04:40",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-07",
+      "time": "08:15",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-07",
+      "time": "10:47",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-07",
+      "time": "13:00",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-07",
+      "time": "16:07",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-07",
+      "time": "18:39",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-07",
+      "time": "20:40",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-07",
+      "time": "21:23",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-06-08",
+      "time": "03:15",
+      "foodMl": 100,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-08",
+      "time": "04:30",
+      "foodMl": null,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-08",
+      "time": "05:10",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-08",
+      "time": "07:20",
+      "foodMl": 100,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-08",
+      "time": "10:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-08",
+      "time": "11:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-08",
+      "time": "13:05",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-08",
+      "time": "16:15",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-08",
+      "time": "19:00",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-08",
+      "time": "20:50",
+      "foodMl": 80,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-06-09",
+      "time": "00:25",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-09",
+      "time": "03:30",
+      "foodMl": 100,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-09",
+      "time": "05:30",
+      "foodMl": 100,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-09",
+      "time": "08:08",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-09",
+      "time": "11:10",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-09",
+      "time": "13:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-09",
+      "time": "14:00",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-09",
+      "time": "17:20",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-09",
+      "time": "19:40",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-09",
+      "time": "22:10",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-10",
+      "time": "01:15",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-10",
+      "time": "04:40",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-10",
+      "time": "07:20",
+      "foodMl": 130,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-10",
+      "time": "10:40",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-10",
+      "time": "13:20",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-10",
+      "time": "16:10",
+      "foodMl": 125,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-10",
+      "time": "19:10",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-10",
+      "time": "21:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-10",
+      "time": "21:20",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-11",
+      "time": "01:30",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-11",
+      "time": "05:28",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-11",
+      "time": "08:45",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-11",
+      "time": "10:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-11",
+      "time": "13:17",
+      "foodMl": 135,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-11",
+      "time": "16:23",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-11",
+      "time": "18:55",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-11",
+      "time": "21:10",
+      "foodMl": 130,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-12",
+      "time": "02:00",
+      "foodMl": 130,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-12",
+      "time": "04:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-12",
+      "time": "08:04",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-12",
+      "time": "11:30",
+      "foodMl": 140,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-12",
+      "time": "13:50",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-12",
+      "time": "17:00",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-12",
+      "time": "19:13",
+      "foodMl": 105,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-12",
+      "time": "21:00",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-12",
+      "time": "21:30",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-13",
+      "time": "01:41",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-13",
+      "time": "05:12",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-13",
+      "time": "06:40",
+      "foodMl": null,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-13",
+      "time": "07:30",
+      "foodMl": 50,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-13",
+      "time": "09:30",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-13",
+      "time": "12:37",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-13",
+      "time": "15:00",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-13",
+      "time": "15:40",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-13",
+      "time": "18:00",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-13",
+      "time": "20:15",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-14",
+      "time": "00:10",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-14",
+      "time": "02:40",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-14",
+      "time": "05:05",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-14",
+      "time": "08:15",
+      "foodMl": 140,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-14",
+      "time": "11:04",
+      "foodMl": 140,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-14",
+      "time": "14:10",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-14",
+      "time": "16:35",
+      "foodMl": 170,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-14",
+      "time": "19:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-14",
+      "time": "20:30",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-14",
+      "time": "21:35",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-15",
+      "time": "02:20",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-15",
+      "time": "05:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-15",
+      "time": "08:30",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-15",
+      "time": "11:00",
+      "foodMl": 150,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-15",
+      "time": "14:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-15",
+      "time": "15:15",
+      "foodMl": 130,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-15",
+      "time": "17:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-15",
+      "time": "20:29",
+      "foodMl": 150,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-16",
+      "time": "01:35",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-16",
+      "time": "05:00",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-16",
+      "time": "06:40",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-16",
+      "time": "08:22",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-16",
+      "time": "10:30",
+      "foodMl": 180,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-16",
+      "time": "13:50",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-16",
+      "time": "16:30",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-16",
+      "time": "19:25",
+      "foodMl": 180,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-17",
+      "time": "23:55",
+      "foodMl": 130,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-17",
+      "time": "03:30",
+      "foodMl": 130,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-17",
+      "time": "06:05",
+      "foodMl": 70,
+      "poop": true,
+      "pee": true,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-17",
+      "time": "09:00",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-17",
+      "time": "11:30",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-17",
+      "time": "14:00",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-17",
+      "time": "16:30",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-17",
+      "time": "16:45",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-17",
+      "time": "19:22",
+      "foodMl": 140,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-17",
+      "time": "20:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-17",
+      "time": "23:45",
+      "foodMl": 170,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-18",
+      "time": "03:50",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-18",
+      "time": "07:00",
+      "foodMl": 150,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-18",
+      "time": "08:50",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-18",
+      "time": "10:00",
+      "foodMl": 120,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-18",
+      "time": "12:55",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-18",
+      "time": "16:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-18",
+      "time": "19:50",
+      "foodMl": 150,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-18",
+      "time": "23:47",
+      "foodMl": 140,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-19",
+      "time": "03:50",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-19",
+      "time": "06:35",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-19",
+      "time": "09:10",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-19",
+      "time": "12:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-19",
+      "time": "14:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-19",
+      "time": "15:00",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-19",
+      "time": "18:00",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-19",
+      "time": "21:00",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-20",
+      "time": "01:00",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-20",
+      "time": "04:20",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-20",
+      "time": "07:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-20",
+      "time": "08:30",
+      "foodMl": null,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-20",
+      "time": "10:15",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-20",
+      "time": "11:50",
+      "foodMl": 100,
+      "poop": true,
+      "pee": true,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-20",
+      "time": "14:10",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-20",
+      "time": "16:15",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-20",
+      "time": "18:45",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-20",
+      "time": "21:20",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-21",
+      "time": "01:15",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-21",
+      "time": "04:37",
+      "foodMl": 140,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-21",
+      "time": "07:21",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-21",
+      "time": "10:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-21",
+      "time": "12:20",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-21",
+      "time": "13:45",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-21",
+      "time": "16:35",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-21",
+      "time": "19:40",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-21",
+      "time": "20:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-22",
+      "time": "00:20",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-22",
+      "time": "03:40",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-22",
+      "time": "06:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-22",
+      "time": "08:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-22",
+      "time": "08:48",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-22",
+      "time": "10:17",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-22",
+      "time": "13:15",
+      "foodMl": 150,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-22",
+      "time": "15:45",
+      "foodMl": 130,
+      "poop": true,
+      "pee": true,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-22",
+      "time": "17:30",
+      "foodMl": 130,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-22",
+      "time": "20:30",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-23",
+      "time": "01:30",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-23",
+      "time": "04:30",
+      "foodMl": 80,
+      "poop": true,
+      "pee": true,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-23",
+      "time": "06:45",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-23",
+      "time": "08:12",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-23",
+      "time": "10:50",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-23",
+      "time": "13:45",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-23",
+      "time": "16:35",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-23",
+      "time": "19:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-23",
+      "time": "19:33",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-23",
+      "time": "22:30",
+      "foodMl": 35,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-24",
+      "time": "03:10",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-24",
+      "time": "06:00",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-24",
+      "time": "08:30",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-24",
+      "time": "11:30",
+      "foodMl": 120,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-24",
+      "time": "13:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-24",
+      "time": "14:40",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-24",
+      "time": "16:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-24",
+      "time": "17:20",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-24",
+      "time": "19:30",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-24",
+      "time": "20:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-25",
+      "time": "00:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-25",
+      "time": "04:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-25",
+      "time": "08:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-25",
+      "time": "08:30",
+      "foodMl": 140,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-25",
+      "time": "10:30",
+      "foodMl": null,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-25",
+      "time": "11:25",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-25",
+      "time": "13:30",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-25",
+      "time": "15:00",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-25",
+      "time": "17:20",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-25",
+      "time": "17:45",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-25",
+      "time": "20:10",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-26",
+      "time": "00:30",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-26",
+      "time": "03:25",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-26",
+      "time": "05:25",
+      "foodMl": 120,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-26",
+      "time": "07:44",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-26",
+      "time": "10:40",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-26",
+      "time": "13:40",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-26",
+      "time": "16:20",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-26",
+      "time": "19:00",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-26",
+      "time": "23:00",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-27",
+      "time": "02:13",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-27",
+      "time": "05:00",
+      "foodMl": 100,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-27",
+      "time": "08:00",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-27",
+      "time": "11:15",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-27",
+      "time": "13:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-27",
+      "time": "13:50",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-27",
+      "time": "16:50",
+      "foodMl": 140,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-27",
+      "time": "19:50",
+      "foodMl": 130,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-28",
+      "time": "01:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-28",
+      "time": "05:00",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-28",
+      "time": "07:50",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-28",
+      "time": "10:00",
+      "foodMl": null,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-28",
+      "time": "10:15",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-28",
+      "time": "11:20",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-28",
+      "time": "13:12",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-28",
+      "time": "15:34",
+      "foodMl": 150,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-28",
+      "time": "19:20",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-28",
+      "time": "21:20",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-29",
+      "time": "01:20",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-29",
+      "time": "03:30",
+      "foodMl": 50,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-29",
+      "time": "05:50",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-29",
+      "time": "07:50",
+      "foodMl": null,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-29",
+      "time": "08:20",
+      "foodMl": 160,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-29",
+      "time": "11:20",
+      "foodMl": 140,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-29",
+      "time": "13:50",
+      "foodMl": 130,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-29",
+      "time": "16:50",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-29",
+      "time": "17:20",
+      "foodMl": null,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-29",
+      "time": "19:20",
+      "foodMl": 90,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-30",
+      "time": "00:27",
+      "foodMl": 180,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-30",
+      "time": "04:00",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-30",
+      "time": "07:10",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-30",
+      "time": "10:03",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-30",
+      "time": "13:00",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-30",
+      "time": "14:30",
+      "foodMl": null,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-30",
+      "time": "15:55",
+      "foodMl": 170,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-30",
+      "time": "18:50",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-30",
+      "time": "19:30",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-06-30",
+      "time": "20:46",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-01",
+      "time": "03:15",
+      "foodMl": 190,
+      "poop": true,
+      "pee": true,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-01",
+      "time": "07:20",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-01",
+      "time": "10:22",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-01",
+      "time": "13:05",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-01",
+      "time": "16:33",
+      "foodMl": 160,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-01",
+      "time": "19:00",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-01",
+      "time": "22:57",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-02",
+      "time": "01:55",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-02",
+      "time": "04:54",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-02",
+      "time": "07:30",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-02",
+      "time": "08:10",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-02",
+      "time": "11:30",
+      "foodMl": 180,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-02",
+      "time": "15:00",
+      "foodMl": 180,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-02",
+      "time": "18:00",
+      "foodMl": 160,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-02",
+      "time": "20:35",
+      "foodMl": 140,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-03",
+      "time": "01:18",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-03",
+      "time": "04:30",
+      "foodMl": 135,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-03",
+      "time": "07:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-03",
+      "time": "07:36",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-03",
+      "time": "10:45",
+      "foodMl": 170,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-03",
+      "time": "14:00",
+      "foodMl": 160,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-03",
+      "time": "17:00",
+      "foodMl": 160,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-03",
+      "time": "19:50",
+      "foodMl": 160,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-04",
+      "time": "00:10",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-04",
+      "time": "02:50",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-04",
+      "time": "05:30",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-04",
+      "time": "08:00",
+      "foodMl": 80,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-04",
+      "time": "10:20",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-04",
+      "time": "12:30",
+      "foodMl": null,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-04",
+      "time": "12:50",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-04",
+      "time": "14:35",
+      "foodMl": 130,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-04",
+      "time": "17:00",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-04",
+      "time": "18:40",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-04",
+      "time": "20:21",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-04",
+      "time": "23:56",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-05",
+      "time": "03:30",
+      "foodMl": 130,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-05",
+      "time": "06:45",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-05",
+      "time": "09:00",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-05",
+      "time": "10:50",
+      "foodMl": null,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-05",
+      "time": "11:15",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-05",
+      "time": "14:30",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-05",
+      "time": "16:37",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-05",
+      "time": "18:36",
+      "foodMl": 170,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-05",
+      "time": "23:22",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-06",
+      "time": "03:17",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-06",
+      "time": "06:50",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-06",
+      "time": "09:50",
+      "foodMl": 160,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-06",
+      "time": "12:40",
+      "foodMl": 150,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-06",
+      "time": "15:30",
+      "foodMl": 170,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-06",
+      "time": "17:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-06",
+      "time": "18:30",
+      "foodMl": 150,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-06",
+      "time": "20:44",
+      "foodMl": 150,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-07",
+      "time": "00:20",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-07",
+      "time": "03:30",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-07",
+      "time": "06:25",
+      "foodMl": 130,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-07",
+      "time": "07:20",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-07",
+      "time": "08:53",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-07",
+      "time": "11:10",
+      "foodMl": 180,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-07",
+      "time": "13:50",
+      "foodMl": 150,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-07",
+      "time": "16:50",
+      "foodMl": 150,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-07",
+      "time": "20:10",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-08",
+      "time": "01:20",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-08",
+      "time": "04:18",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-08",
+      "time": "06:50",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-08",
+      "time": "09:30",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-08",
+      "time": "12:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-08",
+      "time": "15:10",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-08",
+      "time": "17:40",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-08",
+      "time": "20:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-08",
+      "time": "21:07",
+      "foodMl": 120,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-09",
+      "time": "02:35",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-09",
+      "time": "05:22",
+      "foodMl": null,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": true
+    },
+    {
+      "date": "2026-07-09",
+      "time": "06:10",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-09",
+      "time": "07:35",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-09",
+      "time": "10:09",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-09",
+      "time": "13:07",
+      "foodMl": 140,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-09",
+      "time": "16:35",
+      "foodMl": 115,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-09",
+      "time": "19:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-10",
+      "time": "00:21",
+      "foodMl": 130,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-10",
+      "time": "03:25",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-10",
+      "time": "07:30",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-10",
+      "time": "09:30",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-10",
+      "time": "12:35",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-10",
+      "time": "14:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-10",
+      "time": "17:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-10",
+      "time": "18:38",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-10",
+      "time": "20:13",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-11",
+      "time": "02:10",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-11",
+      "time": "05:20",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-11",
+      "time": "08:05",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-11",
+      "time": "10:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-11",
+      "time": "13:30",
+      "foodMl": 110,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-11",
+      "time": "14:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-11",
+      "time": "16:00",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-11",
+      "time": "18:45",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-11",
+      "time": "23:10",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-12",
+      "time": "02:10",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-12",
+      "time": "05:40",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-12",
+      "time": "08:15",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-12",
+      "time": "10:45",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-12",
+      "time": "12:00",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-12",
+      "time": "13:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-12",
+      "time": "15:30",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-12",
+      "time": "17:30",
+      "foodMl": 135,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-12",
+      "time": "20:57",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-13",
+      "time": "00:10",
+      "foodMl": 60,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-13",
+      "time": "02:35",
+      "foodMl": 140,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-13",
+      "time": "04:30",
+      "foodMl": 90,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-13",
+      "time": "09:10",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-13",
+      "time": "11:20",
+      "foodMl": 135,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-13",
+      "time": "14:00",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-13",
+      "time": "16:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-13",
+      "time": "19:30",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-13",
+      "time": "23:43",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-14",
+      "time": "02:42",
+      "foodMl": 135,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-14",
+      "time": "05:35",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-14",
+      "time": "08:20",
+      "foodMl": 135,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-14",
+      "time": "11:20",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-14",
+      "time": "13:30",
+      "foodMl": 100,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-14",
+      "time": "16:20",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-14",
+      "time": "19:26",
+      "foodMl": 140,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-15",
+      "time": "00:43",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-15",
+      "time": "04:23",
+      "foodMl": 120,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-15",
+      "time": "06:50",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-15",
+      "time": "10:15",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-15",
+      "time": "13:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-15",
+      "time": "16:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-15",
+      "time": "19:20",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-16",
+      "time": "01:15",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-16",
+      "time": "04:25",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-16",
+      "time": "07:20",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-16",
+      "time": "09:40",
+      "foodMl": 100,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-16",
+      "time": "12:10",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-16",
+      "time": "14:10",
+      "foodMl": 70,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-16",
+      "time": "17:40",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-16",
+      "time": "20:45",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-17",
+      "time": "01:40",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-17",
+      "time": "04:53",
+      "foodMl": 80,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-17",
+      "time": "07:50",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-17",
+      "time": "10:28",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-17",
+      "time": "14:31",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-17",
+      "time": "17:26",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-17",
+      "time": "18:38",
+      "foodMl": null,
+      "poop": false,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-17",
+      "time": "20:29",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-18",
+      "time": "00:20",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-18",
+      "time": "03:23",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-18",
+      "time": "05:40",
+      "foodMl": 60,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-18",
+      "time": "07:05",
+      "foodMl": 125,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-18",
+      "time": "07:15",
+      "foodMl": null,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-18",
+      "time": "10:00",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-18",
+      "time": "12:50",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-18",
+      "time": "15:45",
+      "foodMl": 140,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-18",
+      "time": "18:15",
+      "foodMl": null,
+      "poop": true,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-18",
+      "time": "18:25",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-18",
+      "time": "20:46",
+      "foodMl": 95,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-19",
+      "time": "00:55",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-19",
+      "time": "04:05",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-19",
+      "time": "08:14",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-19",
+      "time": "10:55",
+      "foodMl": 125,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-19",
+      "time": "13:41",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-19",
+      "time": "16:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-19",
+      "time": "19:58",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-19",
+      "time": "23:35",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-20",
+      "time": "02:08",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-20",
+      "time": "05:00",
+      "foodMl": 120,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-20",
+      "time": "07:52",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-20",
+      "time": "09:00",
+      "foodMl": null,
+      "poop": false,
+      "pee": false,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-20",
+      "time": "10:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-20",
+      "time": "13:17",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-20",
+      "time": "15:51",
+      "foodMl": 110,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-20",
+      "time": "18:08",
+      "foodMl": 90,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-20",
+      "time": "19:30",
+      "foodMl": null,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-20",
+      "time": "20:10",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-21",
+      "time": "00:30",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-21",
+      "time": "04:28",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": true,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-21",
+      "time": "08:11",
+      "foodMl": 140,
+      "poop": true,
+      "pee": true,
+      "puke": false,
+      "breastfed": false
+    },
+    {
+      "date": "2026-07-21",
+      "time": "11:17",
+      "foodMl": 140,
+      "poop": false,
+      "pee": false,
+      "puke": false,
+      "breastfed": false
+    }
+  ]
+}

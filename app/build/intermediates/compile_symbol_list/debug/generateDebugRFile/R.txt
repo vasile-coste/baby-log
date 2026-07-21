@@ -2,6 +2,10 @@ int drawable ic_launcher_background 0x0
 int drawable ic_launcher_foreground 0x0
 int drawable ic_launcher_monochrome 0x0
 int mipmap ic_launcher 0x0
+int plurals plural_days 0x0
+int plurals plural_entries 0x0
+int plurals plural_months 0x0
+int plurals plural_years 0x0
 int string about_app_description 0x0
 int string about_tech_stack 0x0
 int string about_title 0x0
@@ -53,6 +57,8 @@ int string drawer_import_export 0x0
 int string drawer_main_app 0x0
 int string edit_entry_title 0x0
 int string empty_state_message 0x0
+int string error_could_not_read_file 0x0
+int string error_could_not_write_file 0x0
 int string export_choose_baby_label 0x0
 int string export_description 0x0
 int string export_error 0x0
@@ -72,14 +78,14 @@ int string label_no 0x0
 int string label_yes 0x0
 int string no_entries_today 0x0
 int string profile_age_label 0x0
-int string profile_age_months_only 0x0
-int string profile_age_years_months 0x0
 int string profile_avg_food_7d 0x0
 int string profile_birth_date_label 0x0
 int string profile_birth_date_not_set 0x0
 int string profile_edit_birth_date 0x0
 int string profile_latest_height 0x0
 int string profile_latest_weight 0x0
+int string profile_max_food_7d 0x0
+int string profile_min_food_7d 0x0
 int string profile_no_data 0x0
 int string profile_set_birth_date 0x0
 int string profile_title 0x0

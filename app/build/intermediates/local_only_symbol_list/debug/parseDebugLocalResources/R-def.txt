@@ -4,6 +4,10 @@ drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_launcher_monochrome
 mipmap ic_launcher
+plurals plural_days
+plurals plural_entries
+plurals plural_months
+plurals plural_years
 string about_app_description
 string about_tech_stack
 string about_title
@@ -55,6 +59,8 @@ string drawer_import_export
 string drawer_main_app
 string edit_entry_title
 string empty_state_message
+string error_could_not_read_file
+string error_could_not_write_file
 string export_choose_baby_label
 string export_description
 string export_error
@@ -74,14 +80,14 @@ string label_no
 string label_yes
 string no_entries_today
 string profile_age_label
-string profile_age_months_only
-string profile_age_years_months
 string profile_avg_food_7d
 string profile_birth_date_label
 string profile_birth_date_not_set
 string profile_edit_birth_date
 string profile_latest_height
 string profile_latest_weight
+string profile_max_food_7d
+string profile_min_food_7d
 string profile_no_data
 string profile_set_birth_date
 string profile_title

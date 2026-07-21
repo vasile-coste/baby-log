@@ -93,13 +93,13 @@
     <string name="profile_set_birth_date">Set birth date</string>
     <string name="profile_edit_birth_date">Edit birth date</string>
     <string name="profile_age_label">Age</string>
-    <string name="profile_age_years_months">%1$d years, %2$d months</string>
-    <string name="profile_age_months_only">%1$d months</string>
-    <string name="profile_total_months">Total: %1$d months</string>
-    <string name="profile_total_days">Total: %1$d days</string>
+    <string name="profile_total_months">Total: %1$s</string>
+    <string name="profile_total_days">Total: %1$s</string>
     <string name="profile_latest_height">Latest height: %1$s cm</string>
     <string name="profile_latest_weight">Latest weight: %1$s kg</string>
     <string name="profile_avg_food_7d">Avg. food (last 7 days): %1$s ml/day</string>
+    <string name="profile_min_food_7d">Min. food (last 7 days): %1$s ml/day</string>
+    <string name="profile_max_food_7d">Max. food (last 7 days): %1$s ml/day</string>
     <string name="profile_no_data">Not enough data yet</string>
 
     <!-- Import / export screen -->
@@ -107,8 +107,10 @@
     <string name="import_section_title">Import</string>
     <string name="import_description">Import a Baby Log JSON file. This creates a new baby profile with the imported data.</string>
     <string name="action_choose_file">Choose file</string>
-    <string name="import_success">Imported \"%1$s\" successfully (%2$d entries)</string>
+    <string name="import_success">Imported \"%1$s\" successfully (%2$s)</string>
     <string name="import_error">Import failed: %1$s</string>
+    <string name="error_could_not_read_file">Could not read the selected file</string>
+    <string name="error_could_not_write_file">Could not write to the selected file</string>
     <string name="export_section_title">Export</string>
     <string name="export_description">Export the selected baby\'s data to a JSON file.</string>
     <string name="export_choose_baby_label">Baby to export</string>

@@ -21,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.vasilecoste.babylog.R
@@ -105,16 +106,28 @@ private fun AgeSection(birthDate: LocalDate) {
     val totalMonths = ChronoUnit.MONTHS.between(birthDate, today)
     val totalDays = ChronoUnit.DAYS.between(birthDate, today)
 
+    val monthsText = pluralStringResource(R.plurals.plural_months, period.months, period.months)
+    val ageText = if (period.years > 0) {
+        val yearsText = pluralStringResource(R.plurals.plural_years, period.years, period.years)
+        "$yearsText, $monthsText"
+    } else {
+        monthsText
+    }
+
     Text(stringResource(R.string.profile_age_label), style = MaterialTheme.typography.titleMedium)
+    Text(ageText)
     Text(
-        if (period.years > 0) {
-            stringResource(R.string.profile_age_years_months, period.years, period.months)
-        } else {
-            stringResource(R.string.profile_age_months_only, period.months)
-        },
+        stringResource(
+            R.string.profile_total_months,
+            pluralStringResource(R.plurals.plural_months, totalMonths.toInt(), totalMonths.toInt()),
+        ),
     )
-    Text(stringResource(R.string.profile_total_months, totalMonths.toInt()))
-    Text(stringResource(R.string.profile_total_days, totalDays.toInt()))
+    Text(
+        stringResource(
+            R.string.profile_total_days,
+            pluralStringResource(R.plurals.plural_days, totalDays.toInt(), totalDays.toInt()),
+        ),
+    )
 }
 
 @Composable
@@ -124,9 +137,10 @@ private fun GrowthAndFeedingSection(chartData: List<DailyAggregate>) {
 
     val today = LocalDate.now()
     val rangeStart = today.minusDays(7)
-    val avgFoodMl = chartData
-        .filter { it.date >= rangeStart && it.date < today }
-        .sumOf { it.totalFoodMl } / 7.0
+    val last7Days = chartData.filter { it.date >= rangeStart && it.date < today }
+    val avgFoodMl = last7Days.sumOf { it.totalFoodMl } / 7.0
+    val minFoodMl = last7Days.minOfOrNull { it.totalFoodMl }
+    val maxFoodMl = last7Days.maxOfOrNull { it.totalFoodMl }
 
     Text(
         if (latestWeightKg != null) {
@@ -143,6 +157,20 @@ private fun GrowthAndFeedingSection(chartData: List<DailyAggregate>) {
         },
     )
     Text(stringResource(R.string.profile_avg_food_7d, avgFoodMl.roundToInt().toString()))
+    Text(
+        if (minFoodMl != null) {
+            stringResource(R.string.profile_min_food_7d, minFoodMl.toString())
+        } else {
+            stringResource(R.string.profile_no_data)
+        },
+    )
+    Text(
+        if (maxFoodMl != null) {
+            stringResource(R.string.profile_max_food_7d, maxFoodMl.toString())
+        } else {
+            stringResource(R.string.profile_no_data)
+        },
+    )
 }
 
 private fun formatDecimal(value: Double, decimals: Int): String {
