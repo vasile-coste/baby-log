@@ -1,0 +1,125 @@
+<resources>
+    <string name="app_name">Baby Log</string>
+
+    <!-- Common actions -->
+    <string name="action_save">Salvează</string>
+    <string name="action_cancel">Anulează</string>
+    <string name="action_delete">Șterge</string>
+    <string name="action_add">Adaugă</string>
+    <string name="action_close">Închide</string>
+    <string name="label_yes">Da</string>
+    <string name="label_no">Nu</string>
+
+    <!-- Empty state -->
+    <string name="empty_state_message">Adaugă profilul bebelușului pentru a începe</string>
+    <string name="action_add_baby">Adaugă bebeluș</string>
+
+    <!-- Baby profile switcher -->
+    <string name="switch_baby_title">Schimbă bebelușul</string>
+    <string name="add_baby_profile_title">Adaugă profil bebeluș</string>
+    <string name="baby_name_label">Nume</string>
+
+    <!-- Header -->
+    <string name="day_today">Astăzi</string>
+    <string name="day_yesterday">Ieri</string>
+    <string name="cd_weight_food_chart">Grafic greutate și hrană</string>
+
+    <!-- Day picker -->
+    <string name="day_picker_title">Selectează o zi</string>
+
+    <!-- Quick info card -->
+    <string name="quick_total_food">Hrană totală: %1$d ml</string>
+    <string name="quick_vitamin">Vitamine: %1$s</string>
+    <string name="quick_poops">Scaun: %1$d</string>
+    <string name="quick_pees">Urină: %1$d</string>
+    <string name="quick_pukes">Vărsături: %1$d</string>
+
+    <!-- Timeline -->
+    <string name="timeline_food_amount">%1$d ml</string>
+    <string name="cd_poop">Scaun</string>
+    <string name="cd_pee">Urină</string>
+    <string name="cd_puke">Vărsătură</string>
+    <string name="cd_vitamin">Vitamine</string>
+    <string name="no_entries_today">Nicio înregistrare pentru această zi încă</string>
+
+    <!-- Expandable FAB -->
+    <string name="fab_add_weight">Adaugă greutate</string>
+    <string name="fab_add_entry">Adaugă înregistrare</string>
+    <string name="cd_fab_close_menu">Închide meniul</string>
+    <string name="cd_fab_add">Adaugă</string>
+
+    <!-- Add / edit entry dialog -->
+    <string name="add_entry_title">Adaugă înregistrare</string>
+    <string name="edit_entry_title">Editează înregistrarea</string>
+    <string name="food_amount_label">Cantitate hrană (ml)</string>
+    <string name="checkbox_poop">Scaun</string>
+    <string name="checkbox_pee">Urină</string>
+    <string name="checkbox_puke">Vărsătură</string>
+    <string name="checkbox_vitamins">Vitamine</string>
+    <string name="checkbox_breastfed">Alăptat</string>
+
+    <!-- Add weight dialog -->
+    <string name="add_weight_title">Adaugă creștere</string>
+    <string name="weight_kg_label">Greutate (kg)</string>
+    <string name="height_cm_label">Înălțime (cm, opțional)</string>
+
+    <!-- Chart -->
+    <string name="chart_no_data">Nu există date încă</string>
+    <string name="chart_growth_title">Creștere</string>
+    <string name="chart_no_weight_data">Nu există date despre greutate încă</string>
+    <string name="chart_food_title">Hrană</string>
+    <string name="chart_legend_weight_kg">Greutate (kg)</string>
+    <string name="chart_legend_height_cm">Înălțime (cm)</string>
+    <string name="chart_legend_total_food_ml">Hrană totală (ml)</string>
+    <string name="chart_axis_suffix_kg"> kg</string>
+    <string name="chart_axis_suffix_cm"> cm</string>
+    <string name="chart_axis_suffix_ml"> ml</string>
+
+    <!-- Navigation drawer -->
+    <string name="cd_open_menu">Deschide meniul</string>
+    <string name="drawer_main_app">Aplicația principală</string>
+    <string name="drawer_baby_profile">Profil bebeluș</string>
+    <string name="drawer_import_export">Import / export date</string>
+    <string name="drawer_about">Despre</string>
+
+    <!-- Date picker -->
+    <string name="birth_date_optional_label">Data nașterii (opțional)</string>
+    <string name="action_ok">OK</string>
+
+    <!-- Baby profile screen -->
+    <string name="profile_title">Profil bebeluș</string>
+    <string name="profile_birth_date_label">Data nașterii: %1$s</string>
+    <string name="profile_birth_date_not_set">Nesetată</string>
+    <string name="profile_set_birth_date">Setează data nașterii</string>
+    <string name="profile_edit_birth_date">Editează data nașterii</string>
+    <string name="profile_age_label">Vârstă</string>
+    <string name="profile_age_years_months">%1$d ani, %2$d luni</string>
+    <string name="profile_age_months_only">%1$d luni</string>
+    <string name="profile_total_months">Total: %1$d luni</string>
+    <string name="profile_total_days">Total: %1$d zile</string>
+    <string name="profile_latest_height">Ultima înălțime: %1$s cm</string>
+    <string name="profile_latest_weight">Ultima greutate: %1$s kg</string>
+    <string name="profile_avg_food_7d">Medie hrană (ultimele 7 zile): %1$s ml/zi</string>
+    <string name="profile_no_data">Nu sunt suficiente date încă</string>
+
+    <!-- Import / export screen -->
+    <string name="import_export_title">Import / export date</string>
+    <string name="import_section_title">Import</string>
+    <string name="import_description">Importă un fișier JSON Baby Log. Aceasta creează un profil nou de bebeluș cu datele importate.</string>
+    <string name="action_choose_file">Alege fișier</string>
+    <string name="import_success">Import reușit pentru \"%1$s\" (%2$d înregistrări)</string>
+    <string name="import_error">Import eșuat: %1$s</string>
+    <string name="export_section_title">Export</string>
+    <string name="export_description">Exportă datele bebelușului selectat într-un fișier JSON.</string>
+    <string name="export_choose_baby_label">Bebeluș de exportat</string>
+    <string name="action_export">Exportă</string>
+    <string name="export_success">Export reușit</string>
+    <string name="export_error">Export eșuat: %1$s</string>
+    <string name="export_no_baby">Niciun bebeluș selectat</string>
+
+    <!-- About screen -->
+    <string name="about_title">Despre</string>
+    <string name="about_app_description">Baby Log te ajută să urmărești mesele, scutecele, vitaminele și creșterea bebelușului tău — toate stocate local pe dispozitivul tău.</string>
+    <string name="about_version_label">Versiunea %1$s</string>
+    <string name="about_tech_stack">Construit cu Kotlin, Jetpack Compose, Material 3, Room și grafice Vico.</string>
+</resources>

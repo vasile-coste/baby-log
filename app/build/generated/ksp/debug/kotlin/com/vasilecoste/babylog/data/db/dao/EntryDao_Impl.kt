@@ -41,7 +41,7 @@ public class EntryDao_Impl(
   init {
     this.__db = __db
     this.__insertAdapterOfEntry = object : EntityInsertAdapter<Entry>() {
-      protected override fun createQuery(): String = "INSERT OR ABORT INTO `entries` (`id`,`babyId`,`date`,`time`,`foodMl`,`poop`,`pee`,`vitamin`) VALUES (nullif(?, 0),?,?,?,?,?,?,?)"
+      protected override fun createQuery(): String = "INSERT OR ABORT INTO `entries` (`id`,`babyId`,`date`,`time`,`foodMl`,`poop`,`pee`,`puke`,`vitamin`,`breastfed`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?)"
 
       protected override fun bind(statement: SQLiteStatement, entity: Entry) {
         statement.bindLong(1, entity.id)
@@ -68,8 +68,12 @@ public class EntryDao_Impl(
         statement.bindLong(6, _tmp_2.toLong())
         val _tmp_3: Int = if (entity.pee) 1 else 0
         statement.bindLong(7, _tmp_3.toLong())
-        val _tmp_4: Int = if (entity.vitamin) 1 else 0
+        val _tmp_4: Int = if (entity.puke) 1 else 0
         statement.bindLong(8, _tmp_4.toLong())
+        val _tmp_5: Int = if (entity.vitamin) 1 else 0
+        statement.bindLong(9, _tmp_5.toLong())
+        val _tmp_6: Int = if (entity.breastfed) 1 else 0
+        statement.bindLong(10, _tmp_6.toLong())
       }
     }
     this.__deleteAdapterOfEntry = object : EntityDeleteOrUpdateAdapter<Entry>() {
@@ -80,7 +84,7 @@ public class EntryDao_Impl(
       }
     }
     this.__updateAdapterOfEntry = object : EntityDeleteOrUpdateAdapter<Entry>() {
-      protected override fun createQuery(): String = "UPDATE OR ABORT `entries` SET `id` = ?,`babyId` = ?,`date` = ?,`time` = ?,`foodMl` = ?,`poop` = ?,`pee` = ?,`vitamin` = ? WHERE `id` = ?"
+      protected override fun createQuery(): String = "UPDATE OR ABORT `entries` SET `id` = ?,`babyId` = ?,`date` = ?,`time` = ?,`foodMl` = ?,`poop` = ?,`pee` = ?,`puke` = ?,`vitamin` = ?,`breastfed` = ? WHERE `id` = ?"
 
       protected override fun bind(statement: SQLiteStatement, entity: Entry) {
         statement.bindLong(1, entity.id)
@@ -107,9 +111,13 @@ public class EntryDao_Impl(
         statement.bindLong(6, _tmp_2.toLong())
         val _tmp_3: Int = if (entity.pee) 1 else 0
         statement.bindLong(7, _tmp_3.toLong())
-        val _tmp_4: Int = if (entity.vitamin) 1 else 0
+        val _tmp_4: Int = if (entity.puke) 1 else 0
         statement.bindLong(8, _tmp_4.toLong())
-        statement.bindLong(9, entity.id)
+        val _tmp_5: Int = if (entity.vitamin) 1 else 0
+        statement.bindLong(9, _tmp_5.toLong())
+        val _tmp_6: Int = if (entity.breastfed) 1 else 0
+        statement.bindLong(10, _tmp_6.toLong())
+        statement.bindLong(11, entity.id)
       }
     }
   }
@@ -117,6 +125,10 @@ public class EntryDao_Impl(
   public override suspend fun insert(entry: Entry): Long = performSuspending(__db, false, true) { _connection ->
     val _result: Long = __insertAdapterOfEntry.insertAndReturnId(_connection, entry)
     _result
+  }
+
+  public override suspend fun insertAll(entries: List<Entry>): Unit = performSuspending(__db, false, true) { _connection ->
+    __insertAdapterOfEntry.insert(_connection, entries)
   }
 
   public override suspend fun delete(entry: Entry): Unit = performSuspending(__db, false, true) { _connection ->
@@ -148,7 +160,9 @@ public class EntryDao_Impl(
         val _columnIndexOfFoodMl: Int = getColumnIndexOrThrow(_stmt, "foodMl")
         val _columnIndexOfPoop: Int = getColumnIndexOrThrow(_stmt, "poop")
         val _columnIndexOfPee: Int = getColumnIndexOrThrow(_stmt, "pee")
+        val _columnIndexOfPuke: Int = getColumnIndexOrThrow(_stmt, "puke")
         val _columnIndexOfVitamin: Int = getColumnIndexOrThrow(_stmt, "vitamin")
+        val _columnIndexOfBreastfed: Int = getColumnIndexOrThrow(_stmt, "breastfed")
         val _result: MutableList<Entry> = mutableListOf()
         while (_stmt.step()) {
           val _item: Entry
@@ -196,11 +210,105 @@ public class EntryDao_Impl(
           val _tmp_6: Int
           _tmp_6 = _stmt.getLong(_columnIndexOfPee).toInt()
           _tmpPee = _tmp_6 != 0
+          val _tmpPuke: Boolean
+          val _tmp_7: Int
+          _tmp_7 = _stmt.getLong(_columnIndexOfPuke).toInt()
+          _tmpPuke = _tmp_7 != 0
+          val _tmpVitamin: Boolean
+          val _tmp_8: Int
+          _tmp_8 = _stmt.getLong(_columnIndexOfVitamin).toInt()
+          _tmpVitamin = _tmp_8 != 0
+          val _tmpBreastfed: Boolean
+          val _tmp_9: Int
+          _tmp_9 = _stmt.getLong(_columnIndexOfBreastfed).toInt()
+          _tmpBreastfed = _tmp_9 != 0
+          _item = Entry(_tmpId,_tmpBabyId,_tmpDate,_tmpTime,_tmpFoodMl,_tmpPoop,_tmpPee,_tmpPuke,_tmpVitamin,_tmpBreastfed)
+          _result.add(_item)
+        }
+        _result
+      } finally {
+        _stmt.close()
+      }
+    }
+  }
+
+  public override suspend fun getAllForBaby(babyId: Long): List<Entry> {
+    val _sql: String = "SELECT * FROM entries WHERE babyId = ? ORDER BY date ASC, time ASC"
+    return performSuspending(__db, true, false) { _connection ->
+      val _stmt: SQLiteStatement = _connection.prepare(_sql)
+      try {
+        var _argIndex: Int = 1
+        _stmt.bindLong(_argIndex, babyId)
+        val _columnIndexOfId: Int = getColumnIndexOrThrow(_stmt, "id")
+        val _columnIndexOfBabyId: Int = getColumnIndexOrThrow(_stmt, "babyId")
+        val _columnIndexOfDate: Int = getColumnIndexOrThrow(_stmt, "date")
+        val _columnIndexOfTime: Int = getColumnIndexOrThrow(_stmt, "time")
+        val _columnIndexOfFoodMl: Int = getColumnIndexOrThrow(_stmt, "foodMl")
+        val _columnIndexOfPoop: Int = getColumnIndexOrThrow(_stmt, "poop")
+        val _columnIndexOfPee: Int = getColumnIndexOrThrow(_stmt, "pee")
+        val _columnIndexOfPuke: Int = getColumnIndexOrThrow(_stmt, "puke")
+        val _columnIndexOfVitamin: Int = getColumnIndexOrThrow(_stmt, "vitamin")
+        val _columnIndexOfBreastfed: Int = getColumnIndexOrThrow(_stmt, "breastfed")
+        val _result: MutableList<Entry> = mutableListOf()
+        while (_stmt.step()) {
+          val _item: Entry
+          val _tmpId: Long
+          _tmpId = _stmt.getLong(_columnIndexOfId)
+          val _tmpBabyId: Long
+          _tmpBabyId = _stmt.getLong(_columnIndexOfBabyId)
+          val _tmpDate: LocalDate
+          val _tmp: String?
+          if (_stmt.isNull(_columnIndexOfDate)) {
+            _tmp = null
+          } else {
+            _tmp = _stmt.getText(_columnIndexOfDate)
+          }
+          val _tmp_1: LocalDate? = __converters.toLocalDate(_tmp)
+          if (_tmp_1 == null) {
+            error("Expected NON-NULL 'java.time.LocalDate', but it was NULL.")
+          } else {
+            _tmpDate = _tmp_1
+          }
+          val _tmpTime: LocalTime
+          val _tmp_2: String?
+          if (_stmt.isNull(_columnIndexOfTime)) {
+            _tmp_2 = null
+          } else {
+            _tmp_2 = _stmt.getText(_columnIndexOfTime)
+          }
+          val _tmp_3: LocalTime? = __converters.toLocalTime(_tmp_2)
+          if (_tmp_3 == null) {
+            error("Expected NON-NULL 'java.time.LocalTime', but it was NULL.")
+          } else {
+            _tmpTime = _tmp_3
+          }
+          val _tmpFoodMl: Int?
+          if (_stmt.isNull(_columnIndexOfFoodMl)) {
+            _tmpFoodMl = null
+          } else {
+            _tmpFoodMl = _stmt.getLong(_columnIndexOfFoodMl).toInt()
+          }
+          val _tmpPoop: Boolean
+          val _tmp_4: Int
+          _tmp_4 = _stmt.getLong(_columnIndexOfPoop).toInt()
+          _tmpPoop = _tmp_4 != 0
+          val _tmpPee: Boolean
+          val _tmp_5: Int
+          _tmp_5 = _stmt.getLong(_columnIndexOfPee).toInt()
+          _tmpPee = _tmp_5 != 0
+          val _tmpPuke: Boolean
+          val _tmp_6: Int
+          _tmp_6 = _stmt.getLong(_columnIndexOfPuke).toInt()
+          _tmpPuke = _tmp_6 != 0
           val _tmpVitamin: Boolean
           val _tmp_7: Int
           _tmp_7 = _stmt.getLong(_columnIndexOfVitamin).toInt()
           _tmpVitamin = _tmp_7 != 0
-          _item = Entry(_tmpId,_tmpBabyId,_tmpDate,_tmpTime,_tmpFoodMl,_tmpPoop,_tmpPee,_tmpVitamin)
+          val _tmpBreastfed: Boolean
+          val _tmp_8: Int
+          _tmp_8 = _stmt.getLong(_columnIndexOfBreastfed).toInt()
+          _tmpBreastfed = _tmp_8 != 0
+          _item = Entry(_tmpId,_tmpBabyId,_tmpDate,_tmpTime,_tmpFoodMl,_tmpPoop,_tmpPee,_tmpPuke,_tmpVitamin,_tmpBreastfed)
           _result.add(_item)
         }
         _result

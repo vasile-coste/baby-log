@@ -1,6 +1,7 @@
 package com.vasilecoste.babylog.ui.main
 
 import com.vasilecoste.babylog.data.db.entity.BabyProfile
+import com.vasilecoste.babylog.data.db.entity.DiaperSummary
 import com.vasilecoste.babylog.data.db.entity.Entry
 import com.vasilecoste.babylog.data.repository.DailyAggregate
 import java.time.LocalDate
@@ -10,6 +11,7 @@ data class QuickStats(
     val vitaminTaken: Boolean,
     val poopCount: Int,
     val peeCount: Int,
+    val pukeCount: Int,
 )
 
 data class MainUiState(
@@ -17,6 +19,7 @@ data class MainUiState(
     val selectedBaby: BabyProfile? = null,
     val selectedDate: LocalDate = LocalDate.now(),
     val entries: List<Entry> = emptyList(),
+    val diaperSummary: DiaperSummary? = null,
     val pickerDates: List<LocalDate> = listOf(LocalDate.now()),
     val chartData: List<DailyAggregate> = emptyList(),
 ) {
@@ -24,8 +27,9 @@ data class MainUiState(
         get() = QuickStats(
             totalFoodMl = entries.sumOf { it.foodMl ?: 0 },
             vitaminTaken = entries.any { it.vitamin },
-            poopCount = entries.count { it.poop },
-            peeCount = entries.count { it.pee },
+            poopCount = entries.count { it.poop } + (diaperSummary?.poopCount ?: 0),
+            peeCount = entries.count { it.pee } + (diaperSummary?.peeCount ?: 0),
+            pukeCount = entries.count { it.puke },
         )
 
     val hasBabies: Boolean get() = babies.isNotEmpty()

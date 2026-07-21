@@ -27,5 +27,7 @@ data class Entry(
     val foodMl: Int? = null,
     val poop: Boolean = false,
     val pee: Boolean = false,
+    val puke: Boolean = false,
     val vitamin: Boolean = false,
+    val breastfed: Boolean = false,
 )

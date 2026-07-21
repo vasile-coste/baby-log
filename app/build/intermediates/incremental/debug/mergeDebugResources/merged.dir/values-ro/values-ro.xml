@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="about_app_description">Baby Log te ajută să urmărești mesele, scutecele, vitaminele și creșterea bebelușului tău — toate stocate local pe dispozitivul tău.</string>
+    <string name="about_tech_stack">Construit cu Kotlin, Jetpack Compose, Material 3, Room și grafice Vico.</string>
+    <string name="about_title">Despre</string>
+    <string name="about_version_label">Versiunea %1$s</string>
+    <string name="action_add">Adaugă</string>
+    <string name="action_add_baby">Adaugă bebeluș</string>
+    <string name="action_cancel">Anulează</string>
+    <string name="action_choose_file">Alege fișier</string>
+    <string name="action_close">Închide</string>
+    <string name="action_delete">Șterge</string>
+    <string name="action_export">Exportă</string>
+    <string name="action_ok">OK</string>
+    <string name="action_save">Salvează</string>
+    <string name="add_baby_profile_title">Adaugă profil bebeluș</string>
+    <string name="add_entry_title">Adaugă înregistrare</string>
+    <string name="add_weight_title">Adaugă creștere</string>
     <string msgid="8719607706653693137" name="androidx_compose_foundation_autofill">"Completare automată"</string>
     <string msgid="1150566100598813236" name="androidx_compose_ui_autofill">"Completare automată"</string>
+    <string name="app_name">Baby Log</string>
+    <string name="baby_name_label">Nume</string>
+    <string name="birth_date_optional_label">Data nașterii (opțional)</string>
     <string msgid="881409763997275156" name="call_notification_answer_action">"Răspunde"</string>
     <string msgid="8793775615905189152" name="call_notification_answer_video_action">"Video"</string>
     <string msgid="3229508546291798546" name="call_notification_decline_action">"Respinge"</string>
@@ -9,13 +28,62 @@
     <string msgid="6107532579223922871" name="call_notification_incoming_text">"Apel primit"</string>
     <string msgid="8623827134497363134" name="call_notification_ongoing_text">"Apel în desfășurare"</string>
     <string msgid="59049573811482460" name="call_notification_screening_text">"Se filtrează un apel primit"</string>
+    <string name="cd_fab_add">Adaugă</string>
+    <string name="cd_fab_close_menu">Închide meniul</string>
+    <string name="cd_open_menu">Deschide meniul</string>
+    <string name="cd_pee">Urină</string>
+    <string name="cd_poop">Scaun</string>
+    <string name="cd_puke">Vărsătură</string>
+    <string name="cd_vitamin">Vitamine</string>
+    <string name="cd_weight_food_chart">Grafic greutate și hrană</string>
+    <string name="chart_axis_suffix_cm"> cm</string>
+    <string name="chart_axis_suffix_kg"> kg</string>
+    <string name="chart_axis_suffix_ml"> ml</string>
+    <string name="chart_food_title">Hrană</string>
+    <string name="chart_growth_title">Creștere</string>
+    <string name="chart_legend_height_cm">Înălțime (cm)</string>
+    <string name="chart_legend_total_food_ml">Hrană totală (ml)</string>
+    <string name="chart_legend_weight_kg">Greutate (kg)</string>
+    <string name="chart_no_data">Nu există date încă</string>
+    <string name="chart_no_weight_data">Nu există date despre greutate încă</string>
+    <string name="checkbox_breastfed">Alăptat</string>
+    <string name="checkbox_pee">Urină</string>
+    <string name="checkbox_poop">Scaun</string>
+    <string name="checkbox_puke">Vărsătură</string>
+    <string name="checkbox_vitamins">Vitamine</string>
     <string msgid="406453423630273620" name="close_drawer">"Închide meniul de navigare"</string>
     <string msgid="7573152094250666567" name="close_sheet">"Închide foaia"</string>
+    <string name="day_picker_title">Selectează o zi</string>
+    <string name="day_today">Astăzi</string>
+    <string name="day_yesterday">Ieri</string>
     <string msgid="8038256446254964252" name="default_error_message">"Intrare nevalidă"</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"Fereastră pop-up"</string>
+    <string name="drawer_about">Despre</string>
+    <string name="drawer_baby_profile">Profil bebeluș</string>
+    <string name="drawer_import_export">Import / export date</string>
+    <string name="drawer_main_app">Aplicația principală</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"Meniu drop-down"</string>
+    <string name="edit_entry_title">Editează înregistrarea</string>
+    <string name="empty_state_message">Adaugă profilul bebelușului pentru a începe</string>
+    <string name="export_choose_baby_label">Bebeluș de exportat</string>
+    <string name="export_description">Exportă datele bebelușului selectat într-un fișier JSON.</string>
+    <string name="export_error">Export eșuat: %1$s</string>
+    <string name="export_no_baby">Niciun bebeluș selectat</string>
+    <string name="export_section_title">Export</string>
+    <string name="export_success">Export reușit</string>
+    <string name="fab_add_entry">Adaugă înregistrare</string>
+    <string name="fab_add_weight">Adaugă greutate</string>
+    <string name="food_amount_label">Cantitate hrană (ml)</string>
+    <string name="height_cm_label">Înălțime (cm, opțional)</string>
+    <string name="import_description">Importă un fișier JSON Baby Log. Aceasta creează un profil nou de bebeluș cu datele importate.</string>
+    <string name="import_error">Import eșuat: %1$s</string>
+    <string name="import_export_title">Import / export date</string>
+    <string name="import_section_title">Import</string>
+    <string name="import_success">Import reușit pentru \"%1$s\" (%2$d înregistrări)</string>
     <string msgid="6827826412747255547" name="in_progress">"În curs"</string>
     <string msgid="7933458017204019916" name="indeterminate">"Bifată parțial"</string>
+    <string name="label_no">Nu</string>
+    <string name="label_yes">Da</string>
     <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"Restrânge foaia din partea de jos"</string>
     <string msgid="1555567894577437024" name="m3c_bottom_sheet_dismiss_description">"Închide foaia din partea de jos"</string>
     <string msgid="8403354765404029791" name="m3c_bottom_sheet_drag_handle_description">"Ghidaj de tragere"</string>
@@ -83,7 +151,27 @@
     <string msgid="6564222473543418073" name="m3c_wide_navigation_rail_close_rail">"Închide bara"</string>
     <string msgid="8350283435461615411" name="m3c_wide_navigation_rail_pane_title">"Bară de navigare"</string>
     <string msgid="542007171693138492" name="navigation_menu">"Meniu de navigare"</string>
+    <string name="no_entries_today">Nicio înregistrare pentru această zi încă</string>
     <string msgid="6610465462668679431" name="not_selected">"Neselectat"</string>
+    <string name="profile_age_label">Vârstă</string>
+    <string name="profile_age_months_only">%1$d luni</string>
+    <string name="profile_age_years_months">%1$d ani, %2$d luni</string>
+    <string name="profile_avg_food_7d">Medie hrană (ultimele 7 zile): %1$s ml/zi</string>
+    <string name="profile_birth_date_label">Data nașterii: %1$s</string>
+    <string name="profile_birth_date_not_set">Nesetată</string>
+    <string name="profile_edit_birth_date">Editează data nașterii</string>
+    <string name="profile_latest_height">Ultima înălțime: %1$s cm</string>
+    <string name="profile_latest_weight">Ultima greutate: %1$s kg</string>
+    <string name="profile_no_data">Nu sunt suficiente date încă</string>
+    <string name="profile_set_birth_date">Setează data nașterii</string>
+    <string name="profile_title">Profil bebeluș</string>
+    <string name="profile_total_days">Total: %1$d zile</string>
+    <string name="profile_total_months">Total: %1$d luni</string>
+    <string name="quick_pees">Urină: %1$d</string>
+    <string name="quick_poops">Scaun: %1$d</string>
+    <string name="quick_pukes">Vărsături: %1$d</string>
+    <string name="quick_total_food">Hrană totală: %1$d ml</string>
+    <string name="quick_vitamin">Vitamine: %1$s</string>
     <string msgid="5941395253238309765" name="range_end">"Sfârșit de interval"</string>
     <string msgid="7097486360902471446" name="range_start">"Început de interval"</string>
     <string msgid="6043586758067023" name="selected">"Selectat"</string>
@@ -92,9 +180,12 @@
     <string msgid="5834637030682409883" name="state_off">"Dezactivat"</string>
     <string msgid="1490883874751719580" name="state_on">"Activat"</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="switch_baby_title">Schimbă bebelușul</string>
     <string msgid="2561197295334830845" name="switch_role">"Comută"</string>
     <string msgid="1672349317127674378" name="tab">"Filă"</string>
     <string msgid="5946805113151406391" name="template_percent">"<xliff:g id="PERCENTAGE">%1$d</xliff:g> %%."</string>
+    <string name="timeline_food_amount">%1$d ml</string>
     <string msgid="3765533235322692011" name="tooltip_description">"balon explicativ"</string>
     <string msgid="3124740595719787496" name="tooltip_label">"afișează balonul explicativ"</string>
+    <string name="weight_kg_label">Greutate (kg)</string>
 </resources>

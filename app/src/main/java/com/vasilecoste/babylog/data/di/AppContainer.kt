@@ -11,12 +11,13 @@ class AppContainer(context: Context) {
         context,
         AppDatabase::class.java,
         "baby-log.db",
-    ).build()
+    ).fallbackToDestructiveMigration(dropAllTables = true).build()
 
     val repository: BabyLogRepository = BabyLogRepository(
         babyProfileDao = database.babyProfileDao(),
         entryDao = database.entryDao(),
         weightDao = database.weightDao(),
+        diaperSummaryDao = database.diaperSummaryDao(),
     )
 
     val selectedBabyStore: SelectedBabyStore = SelectedBabyStore(context)

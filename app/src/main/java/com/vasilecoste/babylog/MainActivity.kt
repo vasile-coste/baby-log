@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.vasilecoste.babylog.ui.main.MainScreen
+import com.vasilecoste.babylog.ui.app.BabyLogApp
 import com.vasilecoste.babylog.ui.theme.BabyLogTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             BabyLogTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    MainScreen()
+                    BabyLogApp()
                 }
             }
         }

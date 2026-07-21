@@ -11,6 +11,8 @@ import androidx.sqlite.SQLiteConnection
 import androidx.sqlite.execSQL
 import com.vasilecoste.babylog.`data`.db.dao.BabyProfileDao
 import com.vasilecoste.babylog.`data`.db.dao.BabyProfileDao_Impl
+import com.vasilecoste.babylog.`data`.db.dao.DiaperSummaryDao
+import com.vasilecoste.babylog.`data`.db.dao.DiaperSummaryDao_Impl
 import com.vasilecoste.babylog.`data`.db.dao.EntryDao
 import com.vasilecoste.babylog.`data`.db.dao.EntryDao_Impl
 import com.vasilecoste.babylog.`data`.db.dao.WeightDao
@@ -45,24 +47,32 @@ public class AppDatabase_Impl : AppDatabase() {
     WeightDao_Impl(this)
   }
 
+  private val _diaperSummaryDao: Lazy<DiaperSummaryDao> = lazy {
+    DiaperSummaryDao_Impl(this)
+  }
+
   protected override fun createOpenDelegate(): RoomOpenDelegate {
-    val _openDelegate: RoomOpenDelegate = object : RoomOpenDelegate(1, "777e5b306f7a4a952bfaf5288cf9002a", "3ae5f73f80b4426f544fa2736bdfd708") {
+    val _openDelegate: RoomOpenDelegate = object : RoomOpenDelegate(1, "1510a4af81fe8f5f08f44bc048237466", "8d18cc89f2177456dc1a104d0c098590") {
       public override fun createAllTables(connection: SQLiteConnection) {
         connection.execSQL("CREATE TABLE IF NOT EXISTS `baby_profiles` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `birthDate` TEXT, `createdAtEpochMillis` INTEGER NOT NULL)")
-        connection.execSQL("CREATE TABLE IF NOT EXISTS `entries` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `babyId` INTEGER NOT NULL, `date` TEXT NOT NULL, `time` TEXT NOT NULL, `foodMl` INTEGER, `poop` INTEGER NOT NULL, `pee` INTEGER NOT NULL, `vitamin` INTEGER NOT NULL, FOREIGN KEY(`babyId`) REFERENCES `baby_profiles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )")
+        connection.execSQL("CREATE TABLE IF NOT EXISTS `entries` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `babyId` INTEGER NOT NULL, `date` TEXT NOT NULL, `time` TEXT NOT NULL, `foodMl` INTEGER, `poop` INTEGER NOT NULL, `pee` INTEGER NOT NULL, `puke` INTEGER NOT NULL, `vitamin` INTEGER NOT NULL, `breastfed` INTEGER NOT NULL, FOREIGN KEY(`babyId`) REFERENCES `baby_profiles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )")
         connection.execSQL("CREATE INDEX IF NOT EXISTS `index_entries_babyId` ON `entries` (`babyId`)")
         connection.execSQL("CREATE INDEX IF NOT EXISTS `index_entries_babyId_date` ON `entries` (`babyId`, `date`)")
         connection.execSQL("CREATE TABLE IF NOT EXISTS `weight_records` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `babyId` INTEGER NOT NULL, `date` TEXT NOT NULL, `weightKg` REAL NOT NULL, `heightCm` REAL, FOREIGN KEY(`babyId`) REFERENCES `baby_profiles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )")
         connection.execSQL("CREATE INDEX IF NOT EXISTS `index_weight_records_babyId` ON `weight_records` (`babyId`)")
         connection.execSQL("CREATE INDEX IF NOT EXISTS `index_weight_records_babyId_date` ON `weight_records` (`babyId`, `date`)")
+        connection.execSQL("CREATE TABLE IF NOT EXISTS `diaper_summaries` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `babyId` INTEGER NOT NULL, `date` TEXT NOT NULL, `poopCount` INTEGER NOT NULL, `peeCount` INTEGER NOT NULL, FOREIGN KEY(`babyId`) REFERENCES `baby_profiles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )")
+        connection.execSQL("CREATE INDEX IF NOT EXISTS `index_diaper_summaries_babyId` ON `diaper_summaries` (`babyId`)")
+        connection.execSQL("CREATE INDEX IF NOT EXISTS `index_diaper_summaries_babyId_date` ON `diaper_summaries` (`babyId`, `date`)")
         connection.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)")
-        connection.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '777e5b306f7a4a952bfaf5288cf9002a')")
+        connection.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1510a4af81fe8f5f08f44bc048237466')")
       }
 
       public override fun dropAllTables(connection: SQLiteConnection) {
         connection.execSQL("DROP TABLE IF EXISTS `baby_profiles`")
         connection.execSQL("DROP TABLE IF EXISTS `entries`")
         connection.execSQL("DROP TABLE IF EXISTS `weight_records`")
+        connection.execSQL("DROP TABLE IF EXISTS `diaper_summaries`")
       }
 
       public override fun onCreate(connection: SQLiteConnection) {
@@ -107,7 +117,9 @@ public class AppDatabase_Impl : AppDatabase() {
         _columnsEntries.put("foodMl", TableInfo.Column("foodMl", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY))
         _columnsEntries.put("poop", TableInfo.Column("poop", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY))
         _columnsEntries.put("pee", TableInfo.Column("pee", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY))
+        _columnsEntries.put("puke", TableInfo.Column("puke", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY))
         _columnsEntries.put("vitamin", TableInfo.Column("vitamin", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY))
+        _columnsEntries.put("breastfed", TableInfo.Column("breastfed", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY))
         val _foreignKeysEntries: MutableSet<TableInfo.ForeignKey> = mutableSetOf()
         _foreignKeysEntries.add(TableInfo.ForeignKey("baby_profiles", "CASCADE", "NO ACTION", listOf("babyId"), listOf("id")))
         val _indicesEntries: MutableSet<TableInfo.Index> = mutableSetOf()
@@ -146,6 +158,28 @@ public class AppDatabase_Impl : AppDatabase() {
               | Found:
               |""".trimMargin() + _existingWeightRecords)
         }
+        val _columnsDiaperSummaries: MutableMap<String, TableInfo.Column> = mutableMapOf()
+        _columnsDiaperSummaries.put("id", TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY))
+        _columnsDiaperSummaries.put("babyId", TableInfo.Column("babyId", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY))
+        _columnsDiaperSummaries.put("date", TableInfo.Column("date", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY))
+        _columnsDiaperSummaries.put("poopCount", TableInfo.Column("poopCount", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY))
+        _columnsDiaperSummaries.put("peeCount", TableInfo.Column("peeCount", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY))
+        val _foreignKeysDiaperSummaries: MutableSet<TableInfo.ForeignKey> = mutableSetOf()
+        _foreignKeysDiaperSummaries.add(TableInfo.ForeignKey("baby_profiles", "CASCADE", "NO ACTION", listOf("babyId"), listOf("id")))
+        val _indicesDiaperSummaries: MutableSet<TableInfo.Index> = mutableSetOf()
+        _indicesDiaperSummaries.add(TableInfo.Index("index_diaper_summaries_babyId", false, listOf("babyId"), listOf("ASC")))
+        _indicesDiaperSummaries.add(TableInfo.Index("index_diaper_summaries_babyId_date", false, listOf("babyId", "date"), listOf("ASC", "ASC")))
+        val _infoDiaperSummaries: TableInfo = TableInfo("diaper_summaries", _columnsDiaperSummaries, _foreignKeysDiaperSummaries, _indicesDiaperSummaries)
+        val _existingDiaperSummaries: TableInfo = read(connection, "diaper_summaries")
+        if (!_infoDiaperSummaries.equals(_existingDiaperSummaries)) {
+          return RoomOpenDelegate.ValidationResult(false, """
+              |diaper_summaries(com.vasilecoste.babylog.data.db.entity.DiaperSummary).
+              | Expected:
+              |""".trimMargin() + _infoDiaperSummaries + """
+              |
+              | Found:
+              |""".trimMargin() + _existingDiaperSummaries)
+        }
         return RoomOpenDelegate.ValidationResult(true, null)
       }
     }
@@ -155,11 +189,11 @@ public class AppDatabase_Impl : AppDatabase() {
   protected override fun createInvalidationTracker(): InvalidationTracker {
     val _shadowTablesMap: MutableMap<String, String> = mutableMapOf()
     val _viewTables: MutableMap<String, Set<String>> = mutableMapOf()
-    return InvalidationTracker(this, _shadowTablesMap, _viewTables, "baby_profiles", "entries", "weight_records")
+    return InvalidationTracker(this, _shadowTablesMap, _viewTables, "baby_profiles", "entries", "weight_records", "diaper_summaries")
   }
 
   public override fun clearAllTables() {
-    super.performClear(true, "baby_profiles", "entries", "weight_records")
+    super.performClear(true, "baby_profiles", "entries", "weight_records", "diaper_summaries")
   }
 
   protected override fun getRequiredTypeConverterClasses(): Map<KClass<*>, List<KClass<*>>> {
@@ -167,6 +201,7 @@ public class AppDatabase_Impl : AppDatabase() {
     _typeConvertersMap.put(BabyProfileDao::class, BabyProfileDao_Impl.getRequiredConverters())
     _typeConvertersMap.put(EntryDao::class, EntryDao_Impl.getRequiredConverters())
     _typeConvertersMap.put(WeightDao::class, WeightDao_Impl.getRequiredConverters())
+    _typeConvertersMap.put(DiaperSummaryDao::class, DiaperSummaryDao_Impl.getRequiredConverters())
     return _typeConvertersMap
   }
 
@@ -185,4 +220,6 @@ public class AppDatabase_Impl : AppDatabase() {
   public override fun entryDao(): EntryDao = _entryDao.value
 
   public override fun weightDao(): WeightDao = _weightDao.value
+
+  public override fun diaperSummaryDao(): DiaperSummaryDao = _diaperSummaryDao.value
 }

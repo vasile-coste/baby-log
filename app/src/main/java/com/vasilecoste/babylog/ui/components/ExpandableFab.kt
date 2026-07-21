@@ -20,7 +20,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.vasilecoste.babylog.R
 
 @Composable
 fun ExpandableFab(
@@ -41,7 +43,7 @@ fun ExpandableFab(
             exit = fadeOut() + scaleOut(),
         ) {
             ExtendedFloatingActionButton(
-                text = { Text("Add weight") },
+                text = { Text(stringResource(R.string.fab_add_weight)) },
                 icon = { Icon(Icons.Filled.MonitorWeight, contentDescription = null) },
                 onClick = onAddWeight,
             )
@@ -52,7 +54,7 @@ fun ExpandableFab(
             exit = fadeOut() + scaleOut(),
         ) {
             ExtendedFloatingActionButton(
-                text = { Text("Add entry") },
+                text = { Text(stringResource(R.string.fab_add_entry)) },
                 icon = { Icon(Icons.Filled.Restaurant, contentDescription = null) },
                 onClick = onAddEntry,
             )
@@ -60,7 +62,7 @@ fun ExpandableFab(
         FloatingActionButton(onClick = onToggle, modifier = Modifier.padding(top = 4.dp)) {
             Icon(
                 imageVector = if (expanded) Icons.Filled.Close else Icons.Filled.Add,
-                contentDescription = if (expanded) "Close menu" else "Add",
+                contentDescription = stringResource(if (expanded) R.string.cd_fab_close_menu else R.string.cd_fab_add),
             )
         }
     }

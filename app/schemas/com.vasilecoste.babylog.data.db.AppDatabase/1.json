@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "777e5b306f7a4a952bfaf5288cf9002a",
+    "identityHash": "1510a4af81fe8f5f08f44bc048237466",
     "entities": [
       {
         "tableName": "baby_profiles",
@@ -41,7 +41,7 @@
       },
       {
         "tableName": "entries",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `babyId` INTEGER NOT NULL, `date` TEXT NOT NULL, `time` TEXT NOT NULL, `foodMl` INTEGER, `poop` INTEGER NOT NULL, `pee` INTEGER NOT NULL, `vitamin` INTEGER NOT NULL, FOREIGN KEY(`babyId`) REFERENCES `baby_profiles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `babyId` INTEGER NOT NULL, `date` TEXT NOT NULL, `time` TEXT NOT NULL, `foodMl` INTEGER, `poop` INTEGER NOT NULL, `pee` INTEGER NOT NULL, `puke` INTEGER NOT NULL, `vitamin` INTEGER NOT NULL, `breastfed` INTEGER NOT NULL, FOREIGN KEY(`babyId`) REFERENCES `baby_profiles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -85,8 +85,20 @@
             "notNull": true
           },
           {
+            "fieldPath": "puke",
+            "columnName": "puke",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
             "fieldPath": "vitamin",
             "columnName": "vitamin",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "breastfed",
+            "columnName": "breastfed",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -206,11 +218,87 @@
             ]
           }
         ]
+      },
+      {
+        "tableName": "diaper_summaries",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `babyId` INTEGER NOT NULL, `date` TEXT NOT NULL, `poopCount` INTEGER NOT NULL, `peeCount` INTEGER NOT NULL, FOREIGN KEY(`babyId`) REFERENCES `baby_profiles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "babyId",
+            "columnName": "babyId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "poopCount",
+            "columnName": "poopCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "peeCount",
+            "columnName": "peeCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_diaper_summaries_babyId",
+            "unique": false,
+            "columnNames": [
+              "babyId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_diaper_summaries_babyId` ON `${TABLE_NAME}` (`babyId`)"
+          },
+          {
+            "name": "index_diaper_summaries_babyId_date",
+            "unique": false,
+            "columnNames": [
+              "babyId",
+              "date"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_diaper_summaries_babyId_date` ON `${TABLE_NAME}` (`babyId`, `date`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "baby_profiles",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "babyId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '777e5b306f7a4a952bfaf5288cf9002a')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1510a4af81fe8f5f08f44bc048237466')"
     ]
   }
 }

@@ -16,6 +16,9 @@ interface EntryDao {
     @Insert
     suspend fun insert(entry: Entry): Long
 
+    @Insert
+    suspend fun insertAll(entries: List<Entry>)
+
     @Update
     suspend fun update(entry: Entry)
 
@@ -24,6 +27,9 @@ interface EntryDao {
 
     @Query("SELECT * FROM entries WHERE babyId = :babyId AND date = :date ORDER BY time ASC")
     fun getForDay(babyId: Long, date: LocalDate): Flow<List<Entry>>
+
+    @Query("SELECT * FROM entries WHERE babyId = :babyId ORDER BY date ASC, time ASC")
+    suspend fun getAllForBaby(babyId: Long): List<Entry>
 
     @Query("SELECT DISTINCT date FROM entries WHERE babyId = :babyId ORDER BY date DESC")
     fun getDistinctDates(babyId: Long): Flow<List<LocalDate>>

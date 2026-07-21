@@ -12,8 +12,14 @@ interface WeightDao {
     @Insert
     suspend fun insert(record: WeightRecord): Long
 
+    @Insert
+    suspend fun insertAll(records: List<WeightRecord>)
+
     @Query("SELECT * FROM weight_records WHERE babyId = :babyId ORDER BY date ASC, id ASC")
     fun getForBaby(babyId: Long): Flow<List<WeightRecord>>
+
+    @Query("SELECT * FROM weight_records WHERE babyId = :babyId ORDER BY date ASC, id ASC")
+    suspend fun getAllForBaby(babyId: Long): List<WeightRecord>
 
     @Query("SELECT DISTINCT date FROM weight_records WHERE babyId = :babyId")
     fun getDistinctDates(babyId: Long): Flow<List<LocalDate>>

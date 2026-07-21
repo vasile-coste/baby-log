@@ -20,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.patrykandpatrick.vico.compose.cartesian.CartesianChartHost
 import com.patrykandpatrick.vico.compose.cartesian.axis.Axis
@@ -33,6 +34,8 @@ import com.patrykandpatrick.vico.compose.cartesian.layer.rememberLine
 import com.patrykandpatrick.vico.compose.cartesian.layer.rememberLineCartesianLayer
 import com.patrykandpatrick.vico.compose.cartesian.rememberCartesianChart
 import com.patrykandpatrick.vico.compose.common.Fill
+import com.patrykandpatrick.vico.compose.common.component.ShapeComponent
+import com.vasilecoste.babylog.R
 import com.vasilecoste.babylog.data.repository.DailyAggregate
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -47,7 +50,7 @@ fun WeightFoodChartSheet(data: List<DailyAggregate>, onDismiss: () -> Unit) {
     ModalBottomSheet(onDismissRequest = onDismiss) {
         if (data.isEmpty()) {
             Text(
-                "No data yet",
+                stringResource(R.string.chart_no_data),
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.padding(16.dp),
             )
@@ -59,40 +62,49 @@ fun WeightFoodChartSheet(data: List<DailyAggregate>, onDismiss: () -> Unit) {
         val foodPoints = data.map { it.date to it.totalFoodMl.toDouble() }
 
         Text(
-            "Growth",
+            stringResource(R.string.chart_growth_title),
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
         )
-        DualLineChart(
-            primaryPoints = weightPoints,
-            primaryFormatter = CartesianValueFormatter.decimal(suffix = " kg"),
-            secondaryPoints = heightPoints.ifEmpty { null },
-            secondaryFormatter = CartesianValueFormatter.decimal(suffix = " cm"),
-            modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
-        )
-        Legend(
-            modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
-            items = buildList {
-                add(MaterialTheme.colorScheme.primary to "Weight (kg)")
-                if (heightPoints.isNotEmpty()) add(MaterialTheme.colorScheme.tertiary to "Height (cm)")
-            },
-        )
+        if (weightPoints.isEmpty()) {
+            Text(
+                stringResource(R.string.chart_no_weight_data),
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+            )
+        } else {
+            DualLineChart(
+                primaryPoints = weightPoints,
+                primaryFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_kg)),
+                secondaryPoints = heightPoints.ifEmpty { null },
+                secondaryFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_cm)),
+                modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
+            )
+            Legend(
+                modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
+                items = buildList {
+                    add(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_weight_kg))
+                    if (heightPoints.isNotEmpty()) {
+                        add(MaterialTheme.colorScheme.tertiary to stringResource(R.string.chart_legend_height_cm))
+                    }
+                },
+            )
+        }
 
         Text(
-            "Food",
+            stringResource(R.string.chart_food_title),
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
         )
         DualLineChart(
             primaryPoints = foodPoints,
-            primaryFormatter = CartesianValueFormatter.decimal(suffix = " ml"),
+            primaryFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_ml)),
             secondaryPoints = null,
             secondaryFormatter = null,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp).fillMaxWidth(),
         )
         Legend(
             modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
-            items = listOf(MaterialTheme.colorScheme.primary to "Total food (ml)"),
+            items = listOf(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_total_food_ml)),
         )
     }
 }
@@ -130,14 +142,28 @@ private fun DualLineChart(
 
     val primaryLayer = rememberLineCartesianLayer(
         lineProvider = LineCartesianLayer.LineProvider.series(
-            listOf(LineCartesianLayer.rememberLine(LineCartesianLayer.LineFill.single(Fill(primaryColor)))),
+            listOf(
+                LineCartesianLayer.rememberLine(
+                    fill = LineCartesianLayer.LineFill.single(Fill(primaryColor)),
+                    pointProvider = LineCartesianLayer.PointProvider.single(
+                        LineCartesianLayer.Point(ShapeComponent(Fill(primaryColor), CircleShape)),
+                    ),
+                ),
+            ),
         ),
         verticalAxisPosition = Axis.Position.Vertical.Start,
     )
     val secondaryLayer = if (secondaryPoints != null) {
         rememberLineCartesianLayer(
             lineProvider = LineCartesianLayer.LineProvider.series(
-                listOf(LineCartesianLayer.rememberLine(LineCartesianLayer.LineFill.single(Fill(secondaryColor)))),
+                listOf(
+                    LineCartesianLayer.rememberLine(
+                        fill = LineCartesianLayer.LineFill.single(Fill(secondaryColor)),
+                        pointProvider = LineCartesianLayer.PointProvider.single(
+                            LineCartesianLayer.Point(ShapeComponent(Fill(secondaryColor), CircleShape)),
+                        ),
+                    ),
+                ),
             ),
             verticalAxisPosition = Axis.Position.Vertical.End,
         )

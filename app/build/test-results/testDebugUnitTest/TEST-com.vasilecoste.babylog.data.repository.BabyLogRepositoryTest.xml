@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.vasilecoste.babylog.data.repository.BabyLogRepositoryTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-07-21T07:39:45.786Z" hostname="MacBook-Pro.local" time="0.015">
+<testsuite name="com.vasilecoste.babylog.data.repository.BabyLogRepositoryTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-07-21T09:47:38.899Z" hostname="MacBook-Pro.local" time="0.018">
   <properties/>
-  <testcase name="returns dates sorted ascending" classname="com.vasilecoste.babylog.data.repository.BabyLogRepositoryTest" time="0.014"/>
-  <testcase name="latest weight record wins when a day has more than one" classname="com.vasilecoste.babylog.data.repository.BabyLogRepositoryTest" time="0.0"/>
+  <testcase name="returns dates sorted ascending" classname="com.vasilecoste.babylog.data.repository.BabyLogRepositoryTest" time="0.015"/>
+  <testcase name="latest weight record wins when a day has more than one" classname="com.vasilecoste.babylog.data.repository.BabyLogRepositoryTest" time="0.001"/>
   <testcase name="includes days with only a weight record and no food entries" classname="com.vasilecoste.babylog.data.repository.BabyLogRepositoryTest" time="0.0"/>
   <testcase name="merges food totals and weights for the same day" classname="com.vasilecoste.babylog.data.repository.BabyLogRepositoryTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>

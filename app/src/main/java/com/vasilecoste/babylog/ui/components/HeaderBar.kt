@@ -1,7 +1,9 @@
 package com.vasilecoste.babylog.ui.components
 
+import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ShowChart
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -9,6 +11,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import com.vasilecoste.babylog.R
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
@@ -18,34 +22,41 @@ import java.time.format.FormatStyle
 fun HeaderBar(
     babyName: String,
     selectedDate: LocalDate,
+    onMenuClick: () -> Unit,
     onDayClick: () -> Unit,
     onChartClick: () -> Unit,
     onTitleClick: () -> Unit,
 ) {
     TopAppBar(
-        title = {
-            TextButton(onClick = onTitleClick) {
-                Text(babyName)
+        navigationIcon = {
+            IconButton(onClick = onMenuClick) {
+                Icon(Icons.Filled.Menu, contentDescription = stringResource(R.string.cd_open_menu))
             }
         },
-        navigationIcon = {
-            TextButton(onClick = onDayClick) {
-                Text(formatDayLabel(selectedDate))
+        title = {
+            Row {
+                TextButton(onClick = onDayClick) {
+                    Text(formatDayLabel(selectedDate))
+                }
+                TextButton(onClick = onTitleClick) {
+                    Text(babyName)
+                }
             }
         },
         actions = {
             IconButton(onClick = onChartClick) {
-                Icon(Icons.AutoMirrored.Filled.ShowChart, contentDescription = "Weight and food chart")
+                Icon(Icons.AutoMirrored.Filled.ShowChart, contentDescription = stringResource(R.string.cd_weight_food_chart))
             }
         },
     )
 }
 
+@Composable
 private fun formatDayLabel(date: LocalDate): String {
     val today = LocalDate.now()
     return when {
-        date == today -> "Today"
-        date == today.minusDays(1) -> "Yesterday"
+        date == today -> stringResource(R.string.day_today)
+        date == today.minusDays(1) -> stringResource(R.string.day_yesterday)
         else -> date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
     }
 }

@@ -24,9 +24,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import com.vasilecoste.babylog.R
 import com.vasilecoste.babylog.data.db.entity.Entry
 import java.time.LocalTime
 
@@ -35,7 +37,7 @@ import java.time.LocalTime
 fun AddEditEntryDialog(
     entry: Entry?,
     showVitaminOption: Boolean,
-    onSave: (time: LocalTime, foodMl: Int?, poop: Boolean, pee: Boolean, vitamin: Boolean) -> Unit,
+    onSave: (time: LocalTime, foodMl: Int?, poop: Boolean, pee: Boolean, puke: Boolean, vitamin: Boolean, breastfed: Boolean) -> Unit,
     onDelete: (() -> Unit)? = null,
     onDismiss: () -> Unit,
 ) {
@@ -48,7 +50,9 @@ fun AddEditEntryDialog(
     var foodMlText by remember { mutableStateOf(entry?.foodMl?.toString().orEmpty()) }
     var poop by remember { mutableStateOf(entry?.poop ?: false) }
     var pee by remember { mutableStateOf(entry?.pee ?: false) }
+    var puke by remember { mutableStateOf(entry?.puke ?: false) }
     var vitamin by remember { mutableStateOf(entry?.vitamin ?: false) }
+    var breastfed by remember { mutableStateOf(entry?.breastfed ?: false) }
 
     Dialog(onDismissRequest = onDismiss) {
         Surface(shape = MaterialTheme.shapes.extraLarge) {
@@ -59,7 +63,7 @@ fun AddEditEntryDialog(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 Text(
-                    if (entry == null) "Add entry" else "Edit entry",
+                    stringResource(if (entry == null) R.string.add_entry_title else R.string.edit_entry_title),
                     style = MaterialTheme.typography.titleLarge,
                 )
 
@@ -68,16 +72,26 @@ fun AddEditEntryDialog(
                 OutlinedTextField(
                     value = foodMlText,
                     onValueChange = { foodMlText = it.filter { c -> c.isDigit() } },
-                    label = { Text("Food amount (ml)") },
+                    label = { Text(stringResource(R.string.food_amount_label)) },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                 )
 
-                CheckboxRow(label = "Poop", checked = poop, onCheckedChange = { poop = it })
-                CheckboxRow(label = "Pee", checked = pee, onCheckedChange = { pee = it })
+                CheckboxRow(label = stringResource(R.string.checkbox_poop), checked = poop, onCheckedChange = { poop = it })
+                CheckboxRow(label = stringResource(R.string.checkbox_pee), checked = pee, onCheckedChange = { pee = it })
+                CheckboxRow(label = stringResource(R.string.checkbox_puke), checked = puke, onCheckedChange = { puke = it })
+                CheckboxRow(
+                    label = stringResource(R.string.checkbox_breastfed),
+                    checked = breastfed,
+                    onCheckedChange = { breastfed = it },
+                )
                 if (showVitaminOption) {
-                    CheckboxRow(label = "Vitamins", checked = vitamin, onCheckedChange = { vitamin = it })
+                    CheckboxRow(
+                        label = stringResource(R.string.checkbox_vitamins),
+                        checked = vitamin,
+                        onCheckedChange = { vitamin = it },
+                    )
                 }
 
                 Row(
@@ -85,12 +99,12 @@ fun AddEditEntryDialog(
                     horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     if (onDelete != null) {
-                        TextButton(onClick = onDelete) { Text("Delete") }
+                        TextButton(onClick = onDelete) { Text(stringResource(R.string.action_delete)) }
                     } else {
                         Column {}
                     }
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        TextButton(onClick = onDismiss) { Text("Cancel") }
+                        TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) }
                         TextButton(
                             onClick = {
                                 onSave(
@@ -98,10 +112,12 @@ fun AddEditEntryDialog(
                                     foodMlText.toIntOrNull(),
                                     poop,
                                     pee,
+                                    puke,
                                     vitamin,
+                                    breastfed,
                                 )
                             },
-                        ) { Text("Save") }
+                        ) { Text(stringResource(R.string.action_save)) }
                     }
                 }
             }

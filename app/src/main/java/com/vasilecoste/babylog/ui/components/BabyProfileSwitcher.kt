@@ -17,8 +17,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.vasilecoste.babylog.R
 import com.vasilecoste.babylog.data.db.entity.BabyProfile
+import java.time.LocalDate
 
 @Composable
 fun BabyProfileSwitcherDialog(
@@ -30,7 +33,7 @@ fun BabyProfileSwitcherDialog(
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Switch baby") },
+        title = { Text(stringResource(R.string.switch_baby_title)) },
         text = {
             Column {
                 babies.forEach { baby ->
@@ -53,36 +56,45 @@ fun BabyProfileSwitcherDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = onAddNew) { Text("Add baby") }
+            TextButton(onClick = onAddNew) { Text(stringResource(R.string.action_add_baby)) }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text("Close") }
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_close)) }
         },
     )
 }
 
 @Composable
-fun AddBabyDialog(onConfirm: (String) -> Unit, onDismiss: () -> Unit) {
+fun AddBabyDialog(onConfirm: (String, LocalDate?) -> Unit, onDismiss: () -> Unit) {
     var name by remember { mutableStateOf("") }
+    var birthDate by remember { mutableStateOf<LocalDate?>(null) }
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Add baby profile") },
+        title = { Text(stringResource(R.string.add_baby_profile_title)) },
         text = {
-            OutlinedTextField(
-                value = name,
-                onValueChange = { name = it },
-                label = { Text("Name") },
-                singleLine = true,
-            )
+            Column {
+                OutlinedTextField(
+                    value = name,
+                    onValueChange = { name = it },
+                    label = { Text(stringResource(R.string.baby_name_label)) },
+                    singleLine = true,
+                )
+                DatePickerField(
+                    label = stringResource(R.string.birth_date_optional_label),
+                    selectedDate = birthDate,
+                    onDateSelected = { birthDate = it },
+                    modifier = Modifier.padding(top = 8.dp),
+                )
+            }
         },
         confirmButton = {
             TextButton(
-                onClick = { if (name.isNotBlank()) onConfirm(name.trim()) },
+                onClick = { if (name.isNotBlank()) onConfirm(name.trim(), birthDate) },
                 enabled = name.isNotBlank(),
-            ) { Text("Add") }
+            ) { Text(stringResource(R.string.action_add)) }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text("Cancel") }
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) }
         },
     )
 }

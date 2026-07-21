@@ -19,8 +19,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.vasilecoste.babylog.R
 import com.vasilecoste.babylog.data.db.entity.Entry
 import com.vasilecoste.babylog.ui.chart.WeightFoodChartSheet
 import com.vasilecoste.babylog.ui.components.AddBabyDialog
@@ -28,13 +30,17 @@ import com.vasilecoste.babylog.ui.components.BabyProfileSwitcherDialog
 import com.vasilecoste.babylog.ui.components.ExpandableFab
 import com.vasilecoste.babylog.ui.components.HeaderBar
 import com.vasilecoste.babylog.ui.components.QuickInfoCard
+import com.vasilecoste.babylog.ui.components.SimpleTopBar
 import com.vasilecoste.babylog.ui.components.TimelineItem
 import com.vasilecoste.babylog.ui.daypicker.DayPickerSheet
 import com.vasilecoste.babylog.ui.entry.AddEditEntryDialog
 import com.vasilecoste.babylog.ui.weight.AddWeightDialog
 
 @Composable
-fun MainScreen(viewModel: MainViewModel = viewModel(factory = MainViewModel.Factory)) {
+fun MainScreen(
+    onMenuClick: () -> Unit,
+    viewModel: MainViewModel = viewModel(factory = MainViewModel.Factory),
+) {
     val uiState by viewModel.uiState.collectAsState()
 
     var fabExpanded by remember { mutableStateOf(false) }
@@ -47,11 +53,15 @@ fun MainScreen(viewModel: MainViewModel = viewModel(factory = MainViewModel.Fact
     var showAddBaby by remember { mutableStateOf(false) }
 
     if (!uiState.hasBabies) {
-        EmptyState(onAddBaby = { showAddBaby = true })
+        Scaffold(topBar = { SimpleTopBar(title = stringResource(R.string.app_name), onMenuClick = onMenuClick) }) { padding ->
+            Box(modifier = Modifier.padding(padding).fillMaxSize()) {
+                EmptyState(onAddBaby = { showAddBaby = true })
+            }
+        }
         if (showAddBaby) {
             AddBabyDialog(
-                onConfirm = { name ->
-                    viewModel.addBabyProfile(name)
+                onConfirm = { name, birthDate ->
+                    viewModel.addBabyProfile(name, birthDate)
                     showAddBaby = false
                 },
                 onDismiss = { showAddBaby = false },
@@ -65,6 +75,7 @@ fun MainScreen(viewModel: MainViewModel = viewModel(factory = MainViewModel.Fact
             HeaderBar(
                 babyName = uiState.selectedBaby?.name ?: "",
                 selectedDate = uiState.selectedDate,
+                onMenuClick = onMenuClick,
                 onDayClick = { showDayPicker = true },
                 onChartClick = { showChart = true },
                 onTitleClick = { showBabySwitcher = true },
@@ -89,7 +100,7 @@ fun MainScreen(viewModel: MainViewModel = viewModel(factory = MainViewModel.Fact
             QuickInfoCard(stats = uiState.quickStats)
             if (uiState.entries.isEmpty()) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text("No entries for this day yet", style = MaterialTheme.typography.bodyLarge)
+                    Text(stringResource(R.string.no_entries_today), style = MaterialTheme.typography.bodyLarge)
                 }
             } else {
                 LazyColumn(modifier = Modifier.fillMaxSize()) {
@@ -119,8 +130,8 @@ fun MainScreen(viewModel: MainViewModel = viewModel(factory = MainViewModel.Fact
         AddEditEntryDialog(
             entry = null,
             showVitaminOption = !hasVitaminToday,
-            onSave = { time, foodMl, poop, pee, vitamin ->
-                viewModel.addEntry(time, foodMl, poop, pee, vitamin)
+            onSave = { time, foodMl, poop, pee, puke, vitamin, breastfed ->
+                viewModel.addEntry(time, foodMl, poop, pee, puke, vitamin, breastfed)
                 showAddEntry = false
             },
             onDismiss = { showAddEntry = false },
@@ -131,9 +142,17 @@ fun MainScreen(viewModel: MainViewModel = viewModel(factory = MainViewModel.Fact
         AddEditEntryDialog(
             entry = entry,
             showVitaminOption = true,
-            onSave = { time, foodMl, poop, pee, vitamin ->
+            onSave = { time, foodMl, poop, pee, puke, vitamin, breastfed ->
                 viewModel.updateEntry(
-                    entry.copy(time = time, foodMl = foodMl, poop = poop, pee = pee, vitamin = vitamin),
+                    entry.copy(
+                        time = time,
+                        foodMl = foodMl,
+                        poop = poop,
+                        pee = pee,
+                        puke = puke,
+                        vitamin = vitamin,
+                        breastfed = breastfed,
+                    ),
                 )
                 editingEntry = null
             },
@@ -170,8 +189,8 @@ fun MainScreen(viewModel: MainViewModel = viewModel(factory = MainViewModel.Fact
 
     if (showAddBaby) {
         AddBabyDialog(
-            onConfirm = { name ->
-                viewModel.addBabyProfile(name)
+            onConfirm = { name, birthDate ->
+                viewModel.addBabyProfile(name, birthDate)
                 showAddBaby = false
             },
             onDismiss = { showAddBaby = false },
@@ -187,8 +206,8 @@ private fun EmptyState(onAddBaby: () -> Unit) {
             verticalArrangement = Arrangement.spacedBy(16.dp),
             modifier = Modifier.padding(24.dp),
         ) {
-            Text("Add your baby's profile to get started", style = MaterialTheme.typography.titleMedium)
-            Button(onClick = onAddBaby) { Text("Add baby") }
+            Text(stringResource(R.string.empty_state_message), style = MaterialTheme.typography.titleMedium)
+            Button(onClick = onAddBaby) { Text(stringResource(R.string.action_add_baby)) }
         }
     }
 }

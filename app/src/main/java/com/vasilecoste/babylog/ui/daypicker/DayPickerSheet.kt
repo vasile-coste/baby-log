@@ -16,8 +16,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.vasilecoste.babylog.R
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
@@ -32,7 +34,7 @@ fun DayPickerSheet(
 ) {
     ModalBottomSheet(onDismissRequest = onDismiss) {
         Text(
-            "Select a day",
+            stringResource(R.string.day_picker_title),
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
         )

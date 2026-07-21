@@ -15,6 +15,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.collections.List
 import kotlin.collections.MutableList
 import kotlin.collections.mutableListOf
@@ -61,9 +62,63 @@ public class WeightDao_Impl(
     _result
   }
 
+  public override suspend fun insertAll(records: List<WeightRecord>): Unit = performSuspending(__db, false, true) { _connection ->
+    __insertAdapterOfWeightRecord.insert(_connection, records)
+  }
+
   public override fun getForBaby(babyId: Long): Flow<List<WeightRecord>> {
     val _sql: String = "SELECT * FROM weight_records WHERE babyId = ? ORDER BY date ASC, id ASC"
     return createFlow(__db, false, arrayOf("weight_records")) { _connection ->
+      val _stmt: SQLiteStatement = _connection.prepare(_sql)
+      try {
+        var _argIndex: Int = 1
+        _stmt.bindLong(_argIndex, babyId)
+        val _columnIndexOfId: Int = getColumnIndexOrThrow(_stmt, "id")
+        val _columnIndexOfBabyId: Int = getColumnIndexOrThrow(_stmt, "babyId")
+        val _columnIndexOfDate: Int = getColumnIndexOrThrow(_stmt, "date")
+        val _columnIndexOfWeightKg: Int = getColumnIndexOrThrow(_stmt, "weightKg")
+        val _columnIndexOfHeightCm: Int = getColumnIndexOrThrow(_stmt, "heightCm")
+        val _result: MutableList<WeightRecord> = mutableListOf()
+        while (_stmt.step()) {
+          val _item: WeightRecord
+          val _tmpId: Long
+          _tmpId = _stmt.getLong(_columnIndexOfId)
+          val _tmpBabyId: Long
+          _tmpBabyId = _stmt.getLong(_columnIndexOfBabyId)
+          val _tmpDate: LocalDate
+          val _tmp: String?
+          if (_stmt.isNull(_columnIndexOfDate)) {
+            _tmp = null
+          } else {
+            _tmp = _stmt.getText(_columnIndexOfDate)
+          }
+          val _tmp_1: LocalDate? = __converters.toLocalDate(_tmp)
+          if (_tmp_1 == null) {
+            error("Expected NON-NULL 'java.time.LocalDate', but it was NULL.")
+          } else {
+            _tmpDate = _tmp_1
+          }
+          val _tmpWeightKg: Double
+          _tmpWeightKg = _stmt.getDouble(_columnIndexOfWeightKg)
+          val _tmpHeightCm: Double?
+          if (_stmt.isNull(_columnIndexOfHeightCm)) {
+            _tmpHeightCm = null
+          } else {
+            _tmpHeightCm = _stmt.getDouble(_columnIndexOfHeightCm)
+          }
+          _item = WeightRecord(_tmpId,_tmpBabyId,_tmpDate,_tmpWeightKg,_tmpHeightCm)
+          _result.add(_item)
+        }
+        _result
+      } finally {
+        _stmt.close()
+      }
+    }
+  }
+
+  public override suspend fun getAllForBaby(babyId: Long): List<WeightRecord> {
+    val _sql: String = "SELECT * FROM weight_records WHERE babyId = ? ORDER BY date ASC, id ASC"
+    return performSuspending(__db, true, false) { _connection ->
       val _stmt: SQLiteStatement = _connection.prepare(_sql)
       try {
         var _argIndex: Int = 1

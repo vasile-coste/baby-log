@@ -14,21 +14,27 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.vasilecoste.babylog.R
 import com.vasilecoste.babylog.ui.main.QuickStats
 
 @Composable
 fun QuickInfoCard(stats: QuickStats, modifier: Modifier = Modifier) {
     Card(modifier = modifier.fillMaxWidth().padding(16.dp)) {
         Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text("Total food: ${stats.totalFoodMl} ml", style = MaterialTheme.typography.titleMedium)
+            Text(
+                stringResource(R.string.quick_total_food, stats.totalFoodMl),
+                style = MaterialTheme.typography.titleMedium,
+            )
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 VitaminIndicator(taken = stats.vitaminTaken)
-                Text("Poops: ${stats.poopCount}")
-                Text("Pees: ${stats.peeCount}")
+                Text(stringResource(R.string.quick_poops, stats.poopCount))
+                Text(stringResource(R.string.quick_pees, stats.peeCount))
+                Text(stringResource(R.string.quick_pukes, stats.pukeCount))
             }
         }
     }
@@ -42,6 +48,11 @@ private fun VitaminIndicator(taken: Boolean) {
             contentDescription = null,
             tint = if (taken) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
         )
-        Text(" Vitamin: ${if (taken) "Yes" else "No"}")
+        Text(
+            " " + stringResource(
+                R.string.quick_vitamin,
+                stringResource(if (taken) R.string.label_yes else R.string.label_no),
+            ),
+        )
     }
 }

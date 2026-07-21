@@ -7,6 +7,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.vasilecoste.babylog.BabyLogApplication
 import com.vasilecoste.babylog.data.db.entity.BabyProfile
+import com.vasilecoste.babylog.data.db.entity.DiaperSummary
 import com.vasilecoste.babylog.data.db.entity.Entry
 import com.vasilecoste.babylog.data.prefs.SelectedBabyStore
 import com.vasilecoste.babylog.data.repository.BabyLogRepository
@@ -29,6 +30,7 @@ private data class ProfilesState(val babies: List<BabyProfile>, val selectedBaby
 private data class DayState(
     val selectedDate: LocalDate,
     val entries: List<Entry>,
+    val diaperSummary: DiaperSummary?,
     val pickerDates: List<LocalDate>,
     val chartData: List<DailyAggregate>,
 )
@@ -56,6 +58,11 @@ class MainViewModel(
             if (id == null) flowOf(emptyList()) else repository.entriesForDay(id, date)
         }
 
+    private val diaperSummary = combine(selectedBabyId, selectedDate) { id, date -> id to date }
+        .flatMapLatest { (id, date) ->
+            if (id == null) flowOf<DiaperSummary?>(null) else repository.diaperSummaryForDay(id, date)
+        }
+
     private val pickerDates = selectedBabyId.flatMapLatest { id ->
         if (id == null) {
             flowOf(listOf(LocalDate.now()))
@@ -69,9 +76,9 @@ class MainViewModel(
     }
 
     private val dayState: Flow<DayState> =
-        combine(selectedDate, entries, pickerDates, chartData) { date, entries, pickerDates, chart ->
+        combine(selectedDate, entries, diaperSummary, pickerDates, chartData) { date, entries, summary, pickerDates, chart ->
             val allPickerDates = (pickerDates + LocalDate.now()).distinct().sortedDescending()
-            DayState(date, entries, allPickerDates, chart)
+            DayState(date, entries, summary, allPickerDates, chart)
         }
 
     val uiState: StateFlow<MainUiState> = combine(profilesState, dayState) { profiles, day ->
@@ -80,6 +87,7 @@ class MainViewModel(
             selectedBaby = profiles.selectedBaby,
             selectedDate = day.selectedDate,
             entries = day.entries,
+            diaperSummary = day.diaperSummary,
             pickerDates = day.pickerDates,
             chartData = day.chartData,
         )
@@ -93,17 +101,21 @@ class MainViewModel(
         viewModelScope.launch { selectedBabyStore.setSelectedBabyId(babyId) }
     }
 
-    fun addBabyProfile(name: String) {
+    fun addBabyProfile(name: String, birthDate: LocalDate? = null) {
         viewModelScope.launch {
-            val id = repository.addBabyProfile(name)
+            val id = repository.addBabyProfile(name, birthDate)
             selectedBabyStore.setSelectedBabyId(id)
         }
     }
 
-    fun addEntry(time: LocalTime, foodMl: Int?, poop: Boolean, pee: Boolean, vitamin: Boolean) {
+    fun updateBabyBirthDate(babyId: Long, birthDate: LocalDate) {
+        viewModelScope.launch { repository.updateBabyBirthDate(babyId, birthDate) }
+    }
+
+    fun addEntry(time: LocalTime, foodMl: Int?, poop: Boolean, pee: Boolean, puke: Boolean, vitamin: Boolean, breastfed: Boolean) {
         val babyId = selectedBabyId.value ?: return
         viewModelScope.launch {
-            repository.addEntry(babyId, selectedDate.value, time, foodMl, poop, pee, vitamin)
+            repository.addEntry(babyId, selectedDate.value, time, foodMl, poop, pee, puke, vitamin, breastfed)
         }
     }
 
