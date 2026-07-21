@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "3d1e720037cc774f6c8b1ab87bf56c8e",
+    "identityHash": "777e5b306f7a4a952bfaf5288cf9002a",
     "entities": [
       {
         "tableName": "baby_profiles",
@@ -134,7 +134,7 @@
       },
       {
         "tableName": "weight_records",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `babyId` INTEGER NOT NULL, `date` TEXT NOT NULL, `weightKg` REAL NOT NULL, FOREIGN KEY(`babyId`) REFERENCES `baby_profiles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `babyId` INTEGER NOT NULL, `date` TEXT NOT NULL, `weightKg` REAL NOT NULL, `heightCm` REAL, FOREIGN KEY(`babyId`) REFERENCES `baby_profiles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -159,6 +159,11 @@
             "columnName": "weightKg",
             "affinity": "REAL",
             "notNull": true
+          },
+          {
+            "fieldPath": "heightCm",
+            "columnName": "heightCm",
+            "affinity": "REAL"
           }
         ],
         "primaryKey": {
@@ -205,7 +210,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3d1e720037cc774f6c8b1ab87bf56c8e')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '777e5b306f7a4a952bfaf5288cf9002a')"
     ]
   }
 }

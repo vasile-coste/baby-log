@@ -115,10 +115,10 @@ class MainViewModel(
         viewModelScope.launch { repository.deleteEntry(entry) }
     }
 
-    fun addWeight(weightKg: Double) {
+    fun addWeight(weightKg: Double, heightCm: Double?) {
         val babyId = selectedBabyId.value ?: return
         viewModelScope.launch {
-            repository.addWeight(babyId, selectedDate.value, weightKg)
+            repository.addWeight(babyId, selectedDate.value, weightKg, heightCm)
         }
     }
 

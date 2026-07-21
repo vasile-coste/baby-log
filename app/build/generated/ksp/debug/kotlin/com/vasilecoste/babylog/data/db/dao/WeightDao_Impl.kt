@@ -34,7 +34,7 @@ public class WeightDao_Impl(
   init {
     this.__db = __db
     this.__insertAdapterOfWeightRecord = object : EntityInsertAdapter<WeightRecord>() {
-      protected override fun createQuery(): String = "INSERT OR ABORT INTO `weight_records` (`id`,`babyId`,`date`,`weightKg`) VALUES (nullif(?, 0),?,?,?)"
+      protected override fun createQuery(): String = "INSERT OR ABORT INTO `weight_records` (`id`,`babyId`,`date`,`weightKg`,`heightCm`) VALUES (nullif(?, 0),?,?,?,?)"
 
       protected override fun bind(statement: SQLiteStatement, entity: WeightRecord) {
         statement.bindLong(1, entity.id)
@@ -46,6 +46,12 @@ public class WeightDao_Impl(
           statement.bindText(3, _tmp)
         }
         statement.bindDouble(4, entity.weightKg)
+        val _tmpHeightCm: Double? = entity.heightCm
+        if (_tmpHeightCm == null) {
+          statement.bindNull(5)
+        } else {
+          statement.bindDouble(5, _tmpHeightCm)
+        }
       }
     }
   }
@@ -66,6 +72,7 @@ public class WeightDao_Impl(
         val _columnIndexOfBabyId: Int = getColumnIndexOrThrow(_stmt, "babyId")
         val _columnIndexOfDate: Int = getColumnIndexOrThrow(_stmt, "date")
         val _columnIndexOfWeightKg: Int = getColumnIndexOrThrow(_stmt, "weightKg")
+        val _columnIndexOfHeightCm: Int = getColumnIndexOrThrow(_stmt, "heightCm")
         val _result: MutableList<WeightRecord> = mutableListOf()
         while (_stmt.step()) {
           val _item: WeightRecord
@@ -88,7 +95,13 @@ public class WeightDao_Impl(
           }
           val _tmpWeightKg: Double
           _tmpWeightKg = _stmt.getDouble(_columnIndexOfWeightKg)
-          _item = WeightRecord(_tmpId,_tmpBabyId,_tmpDate,_tmpWeightKg)
+          val _tmpHeightCm: Double?
+          if (_stmt.isNull(_columnIndexOfHeightCm)) {
+            _tmpHeightCm = null
+          } else {
+            _tmpHeightCm = _stmt.getDouble(_columnIndexOfHeightCm)
+          }
+          _item = WeightRecord(_tmpId,_tmpBabyId,_tmpDate,_tmpWeightKg,_tmpHeightCm)
           _result.add(_item)
         }
         _result

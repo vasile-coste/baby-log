@@ -46,17 +46,17 @@ public class AppDatabase_Impl : AppDatabase() {
   }
 
   protected override fun createOpenDelegate(): RoomOpenDelegate {
-    val _openDelegate: RoomOpenDelegate = object : RoomOpenDelegate(1, "3d1e720037cc774f6c8b1ab87bf56c8e", "9215e667899f98f64ff4997f68052074") {
+    val _openDelegate: RoomOpenDelegate = object : RoomOpenDelegate(1, "777e5b306f7a4a952bfaf5288cf9002a", "3ae5f73f80b4426f544fa2736bdfd708") {
       public override fun createAllTables(connection: SQLiteConnection) {
         connection.execSQL("CREATE TABLE IF NOT EXISTS `baby_profiles` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `birthDate` TEXT, `createdAtEpochMillis` INTEGER NOT NULL)")
         connection.execSQL("CREATE TABLE IF NOT EXISTS `entries` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `babyId` INTEGER NOT NULL, `date` TEXT NOT NULL, `time` TEXT NOT NULL, `foodMl` INTEGER, `poop` INTEGER NOT NULL, `pee` INTEGER NOT NULL, `vitamin` INTEGER NOT NULL, FOREIGN KEY(`babyId`) REFERENCES `baby_profiles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )")
         connection.execSQL("CREATE INDEX IF NOT EXISTS `index_entries_babyId` ON `entries` (`babyId`)")
         connection.execSQL("CREATE INDEX IF NOT EXISTS `index_entries_babyId_date` ON `entries` (`babyId`, `date`)")
-        connection.execSQL("CREATE TABLE IF NOT EXISTS `weight_records` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `babyId` INTEGER NOT NULL, `date` TEXT NOT NULL, `weightKg` REAL NOT NULL, FOREIGN KEY(`babyId`) REFERENCES `baby_profiles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )")
+        connection.execSQL("CREATE TABLE IF NOT EXISTS `weight_records` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `babyId` INTEGER NOT NULL, `date` TEXT NOT NULL, `weightKg` REAL NOT NULL, `heightCm` REAL, FOREIGN KEY(`babyId`) REFERENCES `baby_profiles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )")
         connection.execSQL("CREATE INDEX IF NOT EXISTS `index_weight_records_babyId` ON `weight_records` (`babyId`)")
         connection.execSQL("CREATE INDEX IF NOT EXISTS `index_weight_records_babyId_date` ON `weight_records` (`babyId`, `date`)")
         connection.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)")
-        connection.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3d1e720037cc774f6c8b1ab87bf56c8e')")
+        connection.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '777e5b306f7a4a952bfaf5288cf9002a')")
       }
 
       public override fun dropAllTables(connection: SQLiteConnection) {
@@ -129,6 +129,7 @@ public class AppDatabase_Impl : AppDatabase() {
         _columnsWeightRecords.put("babyId", TableInfo.Column("babyId", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY))
         _columnsWeightRecords.put("date", TableInfo.Column("date", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY))
         _columnsWeightRecords.put("weightKg", TableInfo.Column("weightKg", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY))
+        _columnsWeightRecords.put("heightCm", TableInfo.Column("heightCm", "REAL", false, 0, null, TableInfo.CREATED_FROM_ENTITY))
         val _foreignKeysWeightRecords: MutableSet<TableInfo.ForeignKey> = mutableSetOf()
         _foreignKeysWeightRecords.add(TableInfo.ForeignKey("baby_profiles", "CASCADE", "NO ACTION", listOf("babyId"), listOf("id")))
         val _indicesWeightRecords: MutableSet<TableInfo.Index> = mutableSetOf()

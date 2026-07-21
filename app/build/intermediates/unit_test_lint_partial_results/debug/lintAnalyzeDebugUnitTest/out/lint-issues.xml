@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 9.3.0" type="configured_issues">
+    <config id="NewerVersionAvailable" severity="ignore"/>
+    <config id="ObsoleteSdkInt" severity="ignore"/>
+
+</incidents>

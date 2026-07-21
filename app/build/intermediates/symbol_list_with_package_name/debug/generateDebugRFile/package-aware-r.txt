@@ -1,6 +1,7 @@
 com.vasilecoste.babylog
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable ic_launcher_monochrome
 mipmap ic_launcher
 string app_name
 style Theme_BabyLog

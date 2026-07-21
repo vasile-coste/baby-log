@@ -35,6 +35,10 @@ android {
     ksp {
         arg("room.schemaLocation", "$projectDir/schemas")
     }
+
+    lint {
+        disable += setOf("ObsoleteSdkInt", "NewerVersionAvailable")
+    }
 }
 
 kotlin {
@@ -68,6 +72,6 @@ dependencies {
     implementation(libs.vico.compose)
     implementation(libs.vico.compose.m3)
 
-    testImplementation(libs.kotlin.test)
+    testImplementation(libs.kotlin.test.junit)
     testImplementation(libs.kotlinx.coroutines.test)
 }

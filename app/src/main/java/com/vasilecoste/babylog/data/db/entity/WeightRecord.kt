@@ -23,4 +23,5 @@ data class WeightRecord(
     val babyId: Long,
     val date: LocalDate,
     val weightKg: Double,
+    val heightCm: Double? = null,
 )

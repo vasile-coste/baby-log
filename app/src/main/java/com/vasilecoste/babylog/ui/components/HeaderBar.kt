@@ -1,7 +1,7 @@
 package com.vasilecoste.babylog.ui.components
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ShowChart
+import androidx.compose.material.icons.automirrored.filled.ShowChart
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -35,7 +35,7 @@ fun HeaderBar(
         },
         actions = {
             IconButton(onClick = onChartClick) {
-                Icon(Icons.Filled.ShowChart, contentDescription = "Weight and food chart")
+                Icon(Icons.AutoMirrored.Filled.ShowChart, contentDescription = "Weight and food chart")
             }
         },
     )

@@ -8,6 +8,10 @@
         "source": "com.vasilecoste.babylog.app-main-42:/drawable/ic_launcher_foreground.xml"
     },
     {
+        "merged": "com.vasilecoste.babylog.app-debug-40:/drawable_ic_launcher_monochrome.xml.flat",
+        "source": "com.vasilecoste.babylog.app-main-42:/drawable/ic_launcher_monochrome.xml"
+    },
+    {
         "merged": "com.vasilecoste.babylog.app-debug-40:/drawable_ic_launcher_background.xml.flat",
         "source": "com.vasilecoste.babylog.app-main-42:/drawable/ic_launcher_background.xml"
     }

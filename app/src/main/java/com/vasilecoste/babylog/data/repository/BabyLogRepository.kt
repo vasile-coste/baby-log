@@ -1,6 +1,7 @@
 package com.vasilecoste.babylog.data.repository
 
 import com.vasilecoste.babylog.data.db.dao.BabyProfileDao
+import com.vasilecoste.babylog.data.db.dao.DailyFoodTotal
 import com.vasilecoste.babylog.data.db.dao.EntryDao
 import com.vasilecoste.babylog.data.db.dao.WeightDao
 import com.vasilecoste.babylog.data.db.entity.BabyProfile
@@ -15,6 +16,7 @@ data class DailyAggregate(
     val date: LocalDate,
     val totalFoodMl: Int,
     val weightKg: Double?,
+    val heightCm: Double?,
 )
 
 class BabyLogRepository(
@@ -41,8 +43,8 @@ class BabyLogRepository(
 
     suspend fun deleteEntry(entry: Entry) = entryDao.delete(entry)
 
-    suspend fun addWeight(babyId: Long, date: LocalDate, weightKg: Double) {
-        weightDao.insert(WeightRecord(babyId = babyId, date = date, weightKg = weightKg))
+    suspend fun addWeight(babyId: Long, date: LocalDate, weightKg: Double, heightCm: Double?) {
+        weightDao.insert(WeightRecord(babyId = babyId, date = date, weightKg = weightKg, heightCm = heightCm))
     }
 
     fun weightsForBaby(babyId: Long): Flow<List<WeightRecord>> = weightDao.getForBaby(babyId)
@@ -54,16 +56,25 @@ class BabyLogRepository(
 
     fun dailyChartData(babyId: Long): Flow<List<DailyAggregate>> =
         combine(entryDao.getDailyFoodTotals(babyId), weightDao.getForBaby(babyId)) { foodTotals, weights ->
-            val weightByDate = LinkedHashMap<LocalDate, Double>()
-            weights.forEach { weightByDate[it.date] = it.weightKg }
-            val allDates = (foodTotals.map { it.date } + weightByDate.keys).distinct().sorted()
-            val foodByDate = foodTotals.associate { it.date to it.totalMl }
-            allDates.map { date ->
-                DailyAggregate(
-                    date = date,
-                    totalFoodMl = foodByDate[date] ?: 0,
-                    weightKg = weightByDate[date],
-                )
-            }
+            buildDailyAggregates(foodTotals, weights)
         }
+}
+
+internal fun buildDailyAggregates(foodTotals: List<DailyFoodTotal>, weights: List<WeightRecord>): List<DailyAggregate> {
+    val weightByDate = LinkedHashMap<LocalDate, Double>()
+    val heightByDate = LinkedHashMap<LocalDate, Double>()
+    weights.forEach { record ->
+        weightByDate[record.date] = record.weightKg
+        record.heightCm?.let { heightByDate[record.date] = it }
+    }
+    val allDates = (foodTotals.map { it.date } + weightByDate.keys).distinct().sorted()
+    val foodByDate = foodTotals.associate { it.date to it.totalMl }
+    return allDates.map { date ->
+        DailyAggregate(
+            date = date,
+            totalFoodMl = foodByDate[date] ?: 0,
+            weightKg = weightByDate[date],
+            heightCm = heightByDate[date],
+        )
+    }
 }

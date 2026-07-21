@@ -15,12 +15,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
-import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -64,12 +64,13 @@ private fun DayChip(date: LocalDate, selected: Boolean, onClick: () -> Unit) {
             CardDefaults.cardColors()
         },
     ) {
+        val locale = LocalConfiguration.current.locales[0]
         Column(
             modifier = Modifier.padding(12.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
-                date.dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault()),
+                date.dayOfWeek.getDisplayName(TextStyle.SHORT, locale),
                 textAlign = TextAlign.Center,
             )
             Text(date.format(DateTimeFormatter.ofPattern("MMM d")), textAlign = TextAlign.Center)
