@@ -59,6 +59,7 @@
 
     <!-- Add weight dialog -->
     <string name="add_weight_title">Add growth</string>
+    <string name="add_weight_hint">Enter weight and/or height</string>
     <string name="weight_kg_label">Weight (kg)</string>
     <string name="height_cm_label">Height (cm, optional)</string>
 
@@ -74,6 +75,9 @@
     <string name="chart_axis_suffix_kg"> kg</string>
     <string name="chart_axis_suffix_cm"> cm</string>
     <string name="chart_axis_suffix_ml"> ml</string>
+    <string name="chart_filter_current_month">This month</string>
+    <string name="chart_filter_previous_month">Last month</string>
+    <string name="chart_filter_all_time">All time</string>
 
     <!-- Navigation drawer -->
     <string name="cd_open_menu">Open menu</string>
@@ -107,10 +111,14 @@
     <!-- Import / export screen -->
     <string name="import_export_title">Import / export data</string>
     <string name="import_section_title">Import</string>
-    <string name="import_description">Import a Baby Log JSON file. This creates a new baby profile with the imported data.</string>
+    <string name="import_description">Import a Baby Log JSON file. If the baby doesn\'t exist yet, a new profile is created; otherwise you\'ll be asked whether to replace or add to its existing data.</string>
     <string name="action_choose_file">Choose file</string>
     <string name="import_success">Imported \"%1$s\" successfully (%2$s)</string>
     <string name="import_error">Import failed: %1$s</string>
+    <string name="import_existing_baby_title">Baby already exists</string>
+    <string name="import_existing_baby_message">A baby named \"%1$s\" already exists. Replace its existing data, or add the imported data to it?</string>
+    <string name="action_replace">Replace</string>
+    <string name="action_insert_update">Insert/update</string>
     <string name="error_could_not_read_file">Could not read the selected file</string>
     <string name="error_could_not_write_file">Could not write to the selected file</string>
     <string name="export_section_title">Export</string>

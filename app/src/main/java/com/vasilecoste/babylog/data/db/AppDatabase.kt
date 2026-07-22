@@ -14,7 +14,7 @@ import com.vasilecoste.babylog.data.db.entity.WeightRecord
 
 @Database(
     entities = [BabyProfile::class, Entry::class, WeightRecord::class, DiaperSummary::class],
-    version = 2,
+    version = 3,
     exportSchema = true,
 )
 @TypeConverters(Converters::class)

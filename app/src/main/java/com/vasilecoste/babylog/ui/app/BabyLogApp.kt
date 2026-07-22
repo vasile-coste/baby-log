@@ -1,5 +1,6 @@
 package com.vasilecoste.babylog.ui.app
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ShowChart
@@ -49,6 +50,10 @@ fun BabyLogApp() {
     }
 
     val onMenuClick: () -> Unit = { scope.launch { drawerState.open() } }
+
+    BackHandler(enabled = screen != AppScreen.MAIN) {
+        screen = AppScreen.MAIN
+    }
 
     ModalNavigationDrawer(
         drawerState = drawerState,

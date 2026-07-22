@@ -386,6 +386,20 @@ public class EntryDao_Impl(
     }
   }
 
+  public override suspend fun deleteAllForBaby(babyId: Long) {
+    val _sql: String = "DELETE FROM entries WHERE babyId = ?"
+    return performSuspending(__db, false, true) { _connection ->
+      val _stmt: SQLiteStatement = _connection.prepare(_sql)
+      try {
+        var _argIndex: Int = 1
+        _stmt.bindLong(_argIndex, babyId)
+        _stmt.step()
+      } finally {
+        _stmt.close()
+      }
+    }
+  }
+
   public companion object {
     public fun getRequiredConverters(): List<KClass<*>> = emptyList()
   }

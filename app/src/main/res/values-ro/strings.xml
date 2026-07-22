@@ -59,6 +59,7 @@
 
     <!-- Add weight dialog -->
     <string name="add_weight_title">Adaugă creștere</string>
+    <string name="add_weight_hint">Introdu greutatea și/sau înălțimea</string>
     <string name="weight_kg_label">Greutate (kg)</string>
     <string name="height_cm_label">Înălțime (cm, opțional)</string>
 
@@ -74,6 +75,9 @@
     <string name="chart_axis_suffix_kg"> kg</string>
     <string name="chart_axis_suffix_cm"> cm</string>
     <string name="chart_axis_suffix_ml"> ml</string>
+    <string name="chart_filter_current_month">Luna aceasta</string>
+    <string name="chart_filter_previous_month">Luna trecută</string>
+    <string name="chart_filter_all_time">Tot timpul</string>
 
     <!-- Navigation drawer -->
     <string name="cd_open_menu">Deschide meniul</string>
@@ -107,10 +111,14 @@
     <!-- Import / export screen -->
     <string name="import_export_title">Import / export date</string>
     <string name="import_section_title">Import</string>
-    <string name="import_description">Importă un fișier JSON Baby Log. Aceasta creează un profil nou de bebeluș cu datele importate.</string>
+    <string name="import_description">Importă un fișier JSON Baby Log. Dacă bebelușul nu există încă, se creează un profil nou; altfel vei fi întrebat dacă vrei să înlocuiești datele existente sau să le adaugi la ele.</string>
     <string name="action_choose_file">Alege fișier</string>
     <string name="import_success">Import reușit pentru \"%1$s\" (%2$s)</string>
     <string name="import_error">Import eșuat: %1$s</string>
+    <string name="import_existing_baby_title">Bebelușul există deja</string>
+    <string name="import_existing_baby_message">Un bebeluș numit \"%1$s\" există deja. Înlocuiești datele existente sau adaugi datele importate la ele?</string>
+    <string name="action_replace">Înlocuiește</string>
+    <string name="action_insert_update">Inserează/actualizează</string>
     <string name="error_could_not_read_file">Fișierul selectat nu a putut fi citit</string>
     <string name="error_could_not_write_file">Nu s-a putut scrie în fișierul selectat</string>
     <string name="export_section_title">Export</string>

@@ -15,6 +15,9 @@ interface WeightDao {
     @Insert
     suspend fun insertAll(records: List<WeightRecord>)
 
+    @Query("DELETE FROM weight_records WHERE babyId = :babyId")
+    suspend fun deleteAllForBaby(babyId: Long)
+
     @Query("SELECT * FROM weight_records WHERE babyId = :babyId ORDER BY date ASC, id ASC")
     fun getForBaby(babyId: Long): Flow<List<WeightRecord>>
 

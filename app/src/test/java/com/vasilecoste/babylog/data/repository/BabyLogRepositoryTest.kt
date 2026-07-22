@@ -40,6 +40,20 @@ class BabyLogRepositoryTest {
     }
 
     @Test
+    fun `includes days with only a height record and no weight or food entries`() {
+        val foodTotals = emptyList<DailyFoodTotal>()
+        val weights = listOf(WeightRecord(babyId = 1, date = day3, weightKg = null, heightCm = 61.5))
+
+        val result = buildDailyAggregates(foodTotals, weights)
+
+        assertEquals(1, result.size)
+        assertEquals(day3, result[0].date)
+        assertEquals(0, result[0].totalFoodMl)
+        assertNull(result[0].weightKg)
+        assertEquals(61.5, result[0].heightCm)
+    }
+
+    @Test
     fun `latest weight record wins when a day has more than one`() {
         val weights = listOf(
             WeightRecord(id = 1, babyId = 1, date = day1, weightKg = 5.0, heightCm = 57.0),

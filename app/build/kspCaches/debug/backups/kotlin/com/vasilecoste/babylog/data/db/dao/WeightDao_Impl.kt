@@ -46,7 +46,12 @@ public class WeightDao_Impl(
         } else {
           statement.bindText(3, _tmp)
         }
-        statement.bindDouble(4, entity.weightKg)
+        val _tmpWeightKg: Double? = entity.weightKg
+        if (_tmpWeightKg == null) {
+          statement.bindNull(4)
+        } else {
+          statement.bindDouble(4, _tmpWeightKg)
+        }
         val _tmpHeightCm: Double? = entity.heightCm
         if (_tmpHeightCm == null) {
           statement.bindNull(5)
@@ -98,8 +103,12 @@ public class WeightDao_Impl(
           } else {
             _tmpDate = _tmp_1
           }
-          val _tmpWeightKg: Double
-          _tmpWeightKg = _stmt.getDouble(_columnIndexOfWeightKg)
+          val _tmpWeightKg: Double?
+          if (_stmt.isNull(_columnIndexOfWeightKg)) {
+            _tmpWeightKg = null
+          } else {
+            _tmpWeightKg = _stmt.getDouble(_columnIndexOfWeightKg)
+          }
           val _tmpHeightCm: Double?
           if (_stmt.isNull(_columnIndexOfHeightCm)) {
             _tmpHeightCm = null
@@ -148,8 +157,12 @@ public class WeightDao_Impl(
           } else {
             _tmpDate = _tmp_1
           }
-          val _tmpWeightKg: Double
-          _tmpWeightKg = _stmt.getDouble(_columnIndexOfWeightKg)
+          val _tmpWeightKg: Double?
+          if (_stmt.isNull(_columnIndexOfWeightKg)) {
+            _tmpWeightKg = null
+          } else {
+            _tmpWeightKg = _stmt.getDouble(_columnIndexOfWeightKg)
+          }
           val _tmpHeightCm: Double?
           if (_stmt.isNull(_columnIndexOfHeightCm)) {
             _tmpHeightCm = null
@@ -191,6 +204,20 @@ public class WeightDao_Impl(
           _result.add(_item)
         }
         _result
+      } finally {
+        _stmt.close()
+      }
+    }
+  }
+
+  public override suspend fun deleteAllForBaby(babyId: Long) {
+    val _sql: String = "DELETE FROM weight_records WHERE babyId = ?"
+    return performSuspending(__db, false, true) { _connection ->
+      val _stmt: SQLiteStatement = _connection.prepare(_sql)
+      try {
+        var _argIndex: Int = 1
+        _stmt.bindLong(_argIndex, babyId)
+        _stmt.step()
       } finally {
         _stmt.close()
       }

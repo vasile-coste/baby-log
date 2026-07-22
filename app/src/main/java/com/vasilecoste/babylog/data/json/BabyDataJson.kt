@@ -37,7 +37,7 @@ object BabyDataJson {
         val weights = root.optJSONArray("weights").orEmpty().map { obj ->
             ImportedWeight(
                 date = LocalDate.parse(obj.getString("date")),
-                weightKg = obj.getDouble("weightKg"),
+                weightKg = obj.optDoubleOrNull("weightKg"),
                 heightCm = obj.optDoubleOrNull("heightCm"),
             )
         }

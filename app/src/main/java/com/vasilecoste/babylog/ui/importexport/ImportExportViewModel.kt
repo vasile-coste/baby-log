@@ -8,7 +8,9 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.vasilecoste.babylog.BabyLogApplication
 import com.vasilecoste.babylog.data.db.entity.BabyProfile
 import com.vasilecoste.babylog.data.json.BabyDataJson
+import com.vasilecoste.babylog.data.model.ImportedBabyData
 import com.vasilecoste.babylog.data.repository.BabyLogRepository
+import com.vasilecoste.babylog.data.repository.ImportMode
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
@@ -18,9 +20,18 @@ class ImportExportViewModel(private val repository: BabyLogRepository) : ViewMod
     val babies: StateFlow<List<BabyProfile>> =
         repository.babies.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
 
-    suspend fun importJson(jsonText: String): Result<Pair<String, Int>> = try {
-        val data = BabyDataJson.parse(jsonText)
-        repository.importBabyData(data)
+    fun parseImport(jsonText: String): Result<ImportedBabyData> = try {
+        Result.success(BabyDataJson.parse(jsonText))
+    } catch (t: Throwable) {
+        Result.failure(t)
+    }
+
+    suspend fun importData(
+        data: ImportedBabyData,
+        existingBabyId: Long? = null,
+        mode: ImportMode = ImportMode.MERGE,
+    ): Result<Pair<String, Int>> = try {
+        repository.importBabyData(data, existingBabyId, mode)
         Result.success(data.babyName to data.entries.size)
     } catch (t: Throwable) {
         Result.failure(t)

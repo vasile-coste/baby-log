@@ -17,7 +17,7 @@ data class ImportedEntry(
     val breastfed: Boolean,
 )
 
-data class ImportedWeight(val date: LocalDate, val weightKg: Double, val heightCm: Double?)
+data class ImportedWeight(val date: LocalDate, val weightKg: Double?, val heightCm: Double?)
 
 data class ImportedDiaperSummary(val date: LocalDate, val poopCount: Int, val peeCount: Int)
 

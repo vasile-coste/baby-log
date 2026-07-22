@@ -15,6 +15,9 @@ interface DiaperSummaryDao {
     @Insert
     suspend fun insertAll(summaries: List<DiaperSummary>)
 
+    @Query("DELETE FROM diaper_summaries WHERE babyId = :babyId")
+    suspend fun deleteAllForBaby(babyId: Long)
+
     @Query("SELECT * FROM diaper_summaries WHERE babyId = :babyId AND date = :date LIMIT 1")
     fun getForDay(babyId: Long, date: LocalDate): Flow<DiaperSummary?>
 

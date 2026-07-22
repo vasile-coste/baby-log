@@ -22,6 +22,6 @@ data class WeightRecord(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val babyId: Long,
     val date: LocalDate,
-    val weightKg: Double,
+    val weightKg: Double? = null,
     val heightCm: Double? = null,
 )

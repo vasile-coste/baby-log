@@ -17,10 +17,13 @@ int string action_choose_file 0x0
 int string action_close 0x0
 int string action_delete 0x0
 int string action_export 0x0
+int string action_insert_update 0x0
 int string action_ok 0x0
+int string action_replace 0x0
 int string action_save 0x0
 int string add_baby_profile_title 0x0
 int string add_entry_title 0x0
+int string add_weight_hint 0x0
 int string add_weight_title 0x0
 int string app_name 0x0
 int string baby_name_label 0x0
@@ -35,6 +38,9 @@ int string cd_vitamin 0x0
 int string chart_axis_suffix_cm 0x0
 int string chart_axis_suffix_kg 0x0
 int string chart_axis_suffix_ml 0x0
+int string chart_filter_all_time 0x0
+int string chart_filter_current_month 0x0
+int string chart_filter_previous_month 0x0
 int string chart_food_title 0x0
 int string chart_growth_title 0x0
 int string chart_legend_height_cm 0x0
@@ -72,6 +78,8 @@ int string food_amount_label 0x0
 int string height_cm_label 0x0
 int string import_description 0x0
 int string import_error 0x0
+int string import_existing_baby_message 0x0
+int string import_existing_baby_title 0x0
 int string import_export_title 0x0
 int string import_section_title 0x0
 int string import_success 0x0

@@ -19,10 +19,13 @@ string action_choose_file
 string action_close
 string action_delete
 string action_export
+string action_insert_update
 string action_ok
+string action_replace
 string action_save
 string add_baby_profile_title
 string add_entry_title
+string add_weight_hint
 string add_weight_title
 string app_name
 string baby_name_label
@@ -37,6 +40,9 @@ string cd_vitamin
 string chart_axis_suffix_cm
 string chart_axis_suffix_kg
 string chart_axis_suffix_ml
+string chart_filter_all_time
+string chart_filter_current_month
+string chart_filter_previous_month
 string chart_food_title
 string chart_growth_title
 string chart_legend_height_cm
@@ -74,6 +80,8 @@ string food_amount_label
 string height_cm_label
 string import_description
 string import_error
+string import_existing_baby_message
+string import_existing_baby_title
 string import_export_title
 string import_section_title
 string import_success

@@ -23,6 +23,8 @@ data class DailyAggregate(
     val heightCm: Double?,
 )
 
+enum class ImportMode { REPLACE, MERGE }
+
 class BabyLogRepository(
     private val babyProfileDao: BabyProfileDao,
     private val entryDao: EntryDao,
@@ -76,7 +78,7 @@ class BabyLogRepository(
 
     suspend fun deleteEntry(entry: Entry) = entryDao.delete(entry)
 
-    suspend fun addWeight(babyId: Long, date: LocalDate, weightKg: Double, heightCm: Double?) {
+    suspend fun addWeight(babyId: Long, date: LocalDate, weightKg: Double?, heightCm: Double?) {
         weightDao.insert(WeightRecord(babyId = babyId, date = date, weightKg = weightKg, heightCm = heightCm))
     }
 
@@ -96,9 +98,23 @@ class BabyLogRepository(
             buildDailyAggregates(foodTotals, weights)
         }
 
-    /** Creates a new baby profile from [data] and imports all its entries/weights/summaries under it. Returns the new baby's id. */
-    suspend fun importBabyData(data: ImportedBabyData): Long {
-        val babyId = addBabyProfile(data.babyName)
+    /**
+     * Imports [data]'s entries/weights/summaries. If [existingBabyId] is null, a new baby profile is
+     * created from [data]. Otherwise the data is imported under that existing baby: [ImportMode.REPLACE]
+     * first wipes its current entries/weights/summaries, [ImportMode.MERGE] adds to them. Returns the
+     * baby's id.
+     */
+    suspend fun importBabyData(
+        data: ImportedBabyData,
+        existingBabyId: Long? = null,
+        mode: ImportMode = ImportMode.MERGE,
+    ): Long {
+        val babyId = existingBabyId ?: addBabyProfile(data.babyName)
+        if (existingBabyId != null && mode == ImportMode.REPLACE) {
+            entryDao.deleteAllForBaby(babyId)
+            weightDao.deleteAllForBaby(babyId)
+            diaperSummaryDao.deleteAllForBaby(babyId)
+        }
         entryDao.insertAll(
             data.entries.map { e ->
                 Entry(
@@ -140,10 +156,10 @@ internal fun buildDailyAggregates(foodTotals: List<DailyFoodTotal>, weights: Lis
     val weightByDate = LinkedHashMap<LocalDate, Double>()
     val heightByDate = LinkedHashMap<LocalDate, Double>()
     weights.forEach { record ->
-        weightByDate[record.date] = record.weightKg
+        record.weightKg?.let { weightByDate[record.date] = it }
         record.heightCm?.let { heightByDate[record.date] = it }
     }
-    val allDates = (foodTotals.map { it.date } + weightByDate.keys).distinct().sorted()
+    val allDates = (foodTotals.map { it.date } + weightByDate.keys + heightByDate.keys).distinct().sorted()
     val foodByDate = foodTotals.associate { it.date to it.totalMl }
     return allDates.map { date ->
         DailyAggregate(

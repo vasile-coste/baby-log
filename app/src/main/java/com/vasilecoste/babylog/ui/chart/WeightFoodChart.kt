@@ -13,14 +13,20 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,13 +39,17 @@ import com.patrykandpatrick.vico.compose.cartesian.axis.HorizontalAxis
 import com.patrykandpatrick.vico.compose.cartesian.axis.VerticalAxis
 import com.patrykandpatrick.vico.compose.cartesian.data.CartesianChartModelProducer
 import com.patrykandpatrick.vico.compose.cartesian.data.CartesianValueFormatter
+import com.patrykandpatrick.vico.compose.cartesian.data.columnModel
 import com.patrykandpatrick.vico.compose.cartesian.data.lineModel
+import com.patrykandpatrick.vico.compose.cartesian.layer.ColumnCartesianLayer
 import com.patrykandpatrick.vico.compose.cartesian.layer.LineCartesianLayer
+import com.patrykandpatrick.vico.compose.cartesian.layer.rememberColumnCartesianLayer
 import com.patrykandpatrick.vico.compose.cartesian.layer.rememberLine
 import com.patrykandpatrick.vico.compose.cartesian.layer.rememberLineCartesianLayer
 import com.patrykandpatrick.vico.compose.cartesian.rememberCartesianChart
 import com.patrykandpatrick.vico.compose.common.Fill
 import com.patrykandpatrick.vico.compose.common.component.ShapeComponent
+import com.patrykandpatrick.vico.compose.common.component.rememberLineComponent
 import com.vasilecoste.babylog.R
 import com.vasilecoste.babylog.data.repository.DailyAggregate
 import com.vasilecoste.babylog.ui.components.SimpleTopBar
@@ -51,74 +61,186 @@ private val BottomAxisFormatter = CartesianValueFormatter { _, value, _ ->
     LocalDate.ofEpochDay(value.toLong()).format(DateTimeFormatter.ofPattern("MMM d"))
 }
 
+private enum class ChartFilter { CURRENT_MONTH, PREVIOUS_MONTH, ALL_TIME }
+
+private val ChartFilter.labelRes: Int
+    get() = when (this) {
+        ChartFilter.CURRENT_MONTH -> R.string.chart_filter_current_month
+        ChartFilter.PREVIOUS_MONTH -> R.string.chart_filter_previous_month
+        ChartFilter.ALL_TIME -> R.string.chart_filter_all_time
+    }
+
+private fun List<DailyAggregate>.filteredBy(selected: ChartFilter): List<DailyAggregate> {
+    val today = LocalDate.now()
+    val month = when (selected) {
+        ChartFilter.CURRENT_MONTH -> today
+        ChartFilter.PREVIOUS_MONTH -> today.minusMonths(1)
+        ChartFilter.ALL_TIME -> return this
+    }
+    return filter { it.date.year == month.year && it.date.month == month.month }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StatisticsScreen(
     onMenuClick: () -> Unit,
     viewModel: MainViewModel = viewModel(factory = MainViewModel.Factory),
 ) {
     val uiState by viewModel.uiState.collectAsState()
-    val data = uiState.chartData
+    var chartFilter by remember { mutableStateOf(ChartFilter.CURRENT_MONTH) }
+    val data = remember(uiState.chartData, chartFilter) { uiState.chartData.filteredBy(chartFilter) }
 
     Scaffold(topBar = { SimpleTopBar(title = stringResource(R.string.statistics_title), onMenuClick = onMenuClick) }) { padding ->
-        if (data.isEmpty()) {
-            Box(modifier = Modifier.padding(padding).fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text(stringResource(R.string.chart_no_data), style = MaterialTheme.typography.titleMedium)
-            }
-            return@Scaffold
-        }
-
-        val weightPoints = data.mapNotNull { d -> d.weightKg?.let { d.date to it } }
-        val heightPoints = data.mapNotNull { d -> d.heightCm?.let { d.date to it } }
-        val foodPoints = data.map { it.date to it.totalFoodMl.toDouble() }
-
-        Column(modifier = Modifier.padding(padding).fillMaxSize().verticalScroll(rememberScrollState())) {
-            Text(
-                stringResource(R.string.chart_growth_title),
-                style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+        Column(modifier = Modifier.padding(padding).fillMaxSize()) {
+            ChartFilterSelector(
+                selected = chartFilter,
+                onSelect = { chartFilter = it },
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
             )
-            if (weightPoints.isEmpty()) {
+
+            if (data.isEmpty()) {
+                Box(modifier = Modifier.weight(1f).fillMaxWidth(), contentAlignment = Alignment.Center) {
+                    Text(stringResource(R.string.chart_no_data), style = MaterialTheme.typography.titleMedium)
+                }
+                return@Scaffold
+            }
+
+            val weightPoints = data.mapNotNull { d -> d.weightKg?.let { d.date to it } }
+            val heightPoints = data.mapNotNull { d -> d.heightCm?.let { d.date to it } }
+            val foodPoints = data.map { it.date to it.totalFoodMl.toDouble() }
+
+            Column(modifier = Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState())) {
                 Text(
-                    stringResource(R.string.chart_no_weight_data),
+                    stringResource(R.string.chart_growth_title),
+                    style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
                 )
-            } else {
+                if (weightPoints.isEmpty()) {
+                    Text(
+                        stringResource(R.string.chart_no_weight_data),
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                    )
+                } else {
+                    GrowthChart(
+                        weightPoints = weightPoints,
+                        weightFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_kg)),
+                        heightPoints = heightPoints.ifEmpty { null },
+                        heightFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_cm)),
+                        modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
+                    )
+                    Legend(
+                        modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
+                        items = buildList {
+                            add(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_weight_kg))
+                            if (heightPoints.isNotEmpty()) {
+                                add(MaterialTheme.colorScheme.tertiary to stringResource(R.string.chart_legend_height_cm))
+                            }
+                        },
+                    )
+                }
+
+                Text(
+                    stringResource(R.string.chart_food_title),
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                )
                 DualLineChart(
-                    primaryPoints = weightPoints,
-                    primaryFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_kg)),
-                    secondaryPoints = heightPoints.ifEmpty { null },
-                    secondaryFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_cm)),
-                    modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
+                    primaryPoints = foodPoints,
+                    primaryFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_ml)),
+                    secondaryPoints = null,
+                    secondaryFormatter = null,
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp).fillMaxWidth(),
                 )
                 Legend(
                     modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
-                    items = buildList {
-                        add(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_weight_kg))
-                        if (heightPoints.isNotEmpty()) {
-                            add(MaterialTheme.colorScheme.tertiary to stringResource(R.string.chart_legend_height_cm))
-                        }
-                    },
+                    items = listOf(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_total_food_ml)),
                 )
             }
+        }
+    }
+}
 
-            Text(
-                stringResource(R.string.chart_food_title),
-                style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-            )
-            DualLineChart(
-                primaryPoints = foodPoints,
-                primaryFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_ml)),
-                secondaryPoints = null,
-                secondaryFormatter = null,
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp).fillMaxWidth(),
-            )
-            Legend(
-                modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
-                items = listOf(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_total_food_ml)),
+@Composable
+private fun ChartFilterSelector(selected: ChartFilter, onSelect: (ChartFilter) -> Unit, modifier: Modifier = Modifier) {
+    val options = ChartFilter.entries
+    SingleChoiceSegmentedButtonRow(modifier = modifier) {
+        options.forEachIndexed { index, option ->
+            SegmentedButton(
+                selected = selected == option,
+                onClick = { onSelect(option) },
+                shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
+                label = { Text(stringResource(option.labelRes)) },
             )
         }
     }
+}
+
+@Composable
+private fun GrowthChart(
+    weightPoints: List<Pair<LocalDate, Double>>,
+    weightFormatter: CartesianValueFormatter,
+    heightPoints: List<Pair<LocalDate, Double>>?,
+    heightFormatter: CartesianValueFormatter?,
+    modifier: Modifier = Modifier,
+) {
+    val modelProducer = remember { CartesianChartModelProducer() }
+    val weightColor = MaterialTheme.colorScheme.primary
+    val heightColor = MaterialTheme.colorScheme.tertiary
+
+    LaunchedEffect(weightPoints, heightPoints) {
+        modelProducer.runTransaction {
+            lineModel {
+                series(
+                    x = weightPoints.map { it.first.toEpochDay().toDouble() },
+                    y = weightPoints.map { it.second },
+                )
+            }
+            if (heightPoints != null) {
+                columnModel {
+                    series(
+                        x = heightPoints.map { it.first.toEpochDay().toDouble() },
+                        y = heightPoints.map { it.second },
+                    )
+                }
+            }
+        }
+    }
+
+    val lineLayer = rememberLineCartesianLayer(
+        lineProvider = LineCartesianLayer.LineProvider.series(
+            listOf(
+                LineCartesianLayer.rememberLine(
+                    fill = LineCartesianLayer.LineFill.single(Fill(weightColor)),
+                    pointProvider = LineCartesianLayer.PointProvider.single(
+                        LineCartesianLayer.Point(ShapeComponent(Fill(weightColor), CircleShape)),
+                    ),
+                ),
+            ),
+        ),
+        verticalAxisPosition = Axis.Position.Vertical.Start,
+    )
+    val columnLayer = if (heightPoints != null) {
+        rememberColumnCartesianLayer(
+            columnProvider = ColumnCartesianLayer.ColumnProvider.series(
+                rememberLineComponent(fill = Fill(heightColor), thickness = 12.dp),
+            ),
+            verticalAxisPosition = Axis.Position.Vertical.End,
+        )
+    } else {
+        null
+    }
+
+    val layers = listOfNotNull(lineLayer, columnLayer).toTypedArray()
+    CartesianChartHost(
+        chart = rememberCartesianChart(
+            *layers,
+            startAxis = VerticalAxis.rememberStart(valueFormatter = weightFormatter),
+            endAxis = if (heightFormatter != null) VerticalAxis.rememberEnd(valueFormatter = heightFormatter) else null,
+            bottomAxis = HorizontalAxis.rememberBottom(valueFormatter = BottomAxisFormatter),
+        ),
+        modelProducer = modelProducer,
+        modifier = modifier.height(200.dp),
+    )
 }
 
 @Composable
