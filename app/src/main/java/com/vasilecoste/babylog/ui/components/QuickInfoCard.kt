@@ -39,7 +39,7 @@ fun QuickInfoCard(stats: QuickStats, modifier: Modifier = Modifier) {
             StatRow(
                 icon = Icons.Filled.Sick,
                 text = stringResource(R.string.quick_pukes, stats.pukeCount),
-                tint = MaterialTheme.colorScheme.error,
+                tint = if (stats.pukeCount == 0) Color(0xFF2E7D32) else MaterialTheme.colorScheme.error,
             )
         }
     }

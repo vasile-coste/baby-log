@@ -32,7 +32,6 @@ int string cd_pee 0x0
 int string cd_poop 0x0
 int string cd_puke 0x0
 int string cd_vitamin 0x0
-int string cd_weight_food_chart 0x0
 int string chart_axis_suffix_cm 0x0
 int string chart_axis_suffix_kg 0x0
 int string chart_axis_suffix_ml 0x0
@@ -55,6 +54,8 @@ int string drawer_about 0x0
 int string drawer_baby_profile 0x0
 int string drawer_import_export 0x0
 int string drawer_main_app 0x0
+int string drawer_statistics 0x0
+int string drawer_title 0x0
 int string edit_entry_title 0x0
 int string empty_state_message 0x0
 int string error_could_not_read_file 0x0
@@ -96,6 +97,7 @@ int string quick_poops 0x0
 int string quick_pukes 0x0
 int string quick_total_food 0x0
 int string quick_vitamin 0x0
+int string statistics_title 0x0
 int string switch_baby_title 0x0
 int string timeline_food_amount 0x0
 int string weight_kg_label 0x0

@@ -2,12 +2,14 @@ package com.vasilecoste.babylog.ui.app
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ShowChart
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.ImportExport
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
@@ -25,13 +27,14 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vasilecoste.babylog.R
 import com.vasilecoste.babylog.ui.about.AboutScreen
+import com.vasilecoste.babylog.ui.chart.StatisticsScreen
 import com.vasilecoste.babylog.ui.importexport.ImportExportScreen
 import com.vasilecoste.babylog.ui.main.MainScreen
 import com.vasilecoste.babylog.ui.main.MainViewModel
 import com.vasilecoste.babylog.ui.profile.ProfileScreen
 import kotlinx.coroutines.launch
 
-private enum class AppScreen { MAIN, PROFILE, IMPORT_EXPORT, ABOUT }
+private enum class AppScreen { MAIN, STATISTICS, PROFILE, IMPORT_EXPORT, ABOUT }
 
 @Composable
 fun BabyLogApp() {
@@ -51,11 +54,23 @@ fun BabyLogApp() {
         drawerState = drawerState,
         drawerContent = {
             ModalDrawerSheet {
+                Text(
+                    stringResource(R.string.drawer_title),
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.padding(horizontal = 28.dp, vertical = 16.dp),
+                )
                 NavigationDrawerItem(
                     label = { Text(stringResource(R.string.drawer_main_app)) },
                     icon = { Icon(Icons.Filled.Home, contentDescription = null) },
                     selected = screen == AppScreen.MAIN,
                     onClick = { navigateTo(AppScreen.MAIN) },
+                    modifier = Modifier.padding(horizontal = 12.dp),
+                )
+                NavigationDrawerItem(
+                    label = { Text(stringResource(R.string.drawer_statistics)) },
+                    icon = { Icon(Icons.AutoMirrored.Filled.ShowChart, contentDescription = null) },
+                    selected = screen == AppScreen.STATISTICS,
+                    onClick = { navigateTo(AppScreen.STATISTICS) },
                     modifier = Modifier.padding(horizontal = 12.dp),
                 )
                 NavigationDrawerItem(
@@ -84,6 +99,7 @@ fun BabyLogApp() {
     ) {
         when (screen) {
             AppScreen.MAIN -> MainScreen(onMenuClick = onMenuClick, viewModel = viewModel)
+            AppScreen.STATISTICS -> StatisticsScreen(onMenuClick = onMenuClick, viewModel = viewModel)
             AppScreen.PROFILE -> ProfileScreen(onMenuClick = onMenuClick, viewModel = viewModel)
             AppScreen.IMPORT_EXPORT -> ImportExportScreen(onMenuClick = onMenuClick)
             AppScreen.ABOUT -> AboutScreen(onMenuClick = onMenuClick)

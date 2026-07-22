@@ -5,23 +5,28 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.patrykandpatrick.vico.compose.cartesian.CartesianChartHost
 import com.patrykandpatrick.vico.compose.cartesian.axis.Axis
 import com.patrykandpatrick.vico.compose.cartesian.axis.HorizontalAxis
@@ -37,6 +42,8 @@ import com.patrykandpatrick.vico.compose.common.Fill
 import com.patrykandpatrick.vico.compose.common.component.ShapeComponent
 import com.vasilecoste.babylog.R
 import com.vasilecoste.babylog.data.repository.DailyAggregate
+import com.vasilecoste.babylog.ui.components.SimpleTopBar
+import com.vasilecoste.babylog.ui.main.MainViewModel
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -44,68 +51,73 @@ private val BottomAxisFormatter = CartesianValueFormatter { _, value, _ ->
     LocalDate.ofEpochDay(value.toLong()).format(DateTimeFormatter.ofPattern("MMM d"))
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WeightFoodChartSheet(data: List<DailyAggregate>, onDismiss: () -> Unit) {
-    ModalBottomSheet(onDismissRequest = onDismiss) {
+fun StatisticsScreen(
+    onMenuClick: () -> Unit,
+    viewModel: MainViewModel = viewModel(factory = MainViewModel.Factory),
+) {
+    val uiState by viewModel.uiState.collectAsState()
+    val data = uiState.chartData
+
+    Scaffold(topBar = { SimpleTopBar(title = stringResource(R.string.statistics_title), onMenuClick = onMenuClick) }) { padding ->
         if (data.isEmpty()) {
-            Text(
-                stringResource(R.string.chart_no_data),
-                style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier.padding(16.dp),
-            )
-            return@ModalBottomSheet
+            Box(modifier = Modifier.padding(padding).fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text(stringResource(R.string.chart_no_data), style = MaterialTheme.typography.titleMedium)
+            }
+            return@Scaffold
         }
 
         val weightPoints = data.mapNotNull { d -> d.weightKg?.let { d.date to it } }
         val heightPoints = data.mapNotNull { d -> d.heightCm?.let { d.date to it } }
         val foodPoints = data.map { it.date to it.totalFoodMl.toDouble() }
 
-        Text(
-            stringResource(R.string.chart_growth_title),
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-        )
-        if (weightPoints.isEmpty()) {
+        Column(modifier = Modifier.padding(padding).fillMaxSize().verticalScroll(rememberScrollState())) {
             Text(
-                stringResource(R.string.chart_no_weight_data),
+                stringResource(R.string.chart_growth_title),
+                style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
             )
-        } else {
+            if (weightPoints.isEmpty()) {
+                Text(
+                    stringResource(R.string.chart_no_weight_data),
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                )
+            } else {
+                DualLineChart(
+                    primaryPoints = weightPoints,
+                    primaryFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_kg)),
+                    secondaryPoints = heightPoints.ifEmpty { null },
+                    secondaryFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_cm)),
+                    modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
+                )
+                Legend(
+                    modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
+                    items = buildList {
+                        add(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_weight_kg))
+                        if (heightPoints.isNotEmpty()) {
+                            add(MaterialTheme.colorScheme.tertiary to stringResource(R.string.chart_legend_height_cm))
+                        }
+                    },
+                )
+            }
+
+            Text(
+                stringResource(R.string.chart_food_title),
+                style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+            )
             DualLineChart(
-                primaryPoints = weightPoints,
-                primaryFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_kg)),
-                secondaryPoints = heightPoints.ifEmpty { null },
-                secondaryFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_cm)),
-                modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
+                primaryPoints = foodPoints,
+                primaryFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_ml)),
+                secondaryPoints = null,
+                secondaryFormatter = null,
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp).fillMaxWidth(),
             )
             Legend(
                 modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
-                items = buildList {
-                    add(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_weight_kg))
-                    if (heightPoints.isNotEmpty()) {
-                        add(MaterialTheme.colorScheme.tertiary to stringResource(R.string.chart_legend_height_cm))
-                    }
-                },
+                items = listOf(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_total_food_ml)),
             )
         }
-
-        Text(
-            stringResource(R.string.chart_food_title),
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-        )
-        DualLineChart(
-            primaryPoints = foodPoints,
-            primaryFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_ml)),
-            secondaryPoints = null,
-            secondaryFormatter = null,
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp).fillMaxWidth(),
-        )
-        Legend(
-            modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
-            items = listOf(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_total_food_ml)),
-        )
     }
 }
 

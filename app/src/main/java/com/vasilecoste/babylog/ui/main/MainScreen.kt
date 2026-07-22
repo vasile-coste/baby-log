@@ -24,7 +24,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vasilecoste.babylog.R
 import com.vasilecoste.babylog.data.db.entity.Entry
-import com.vasilecoste.babylog.ui.chart.WeightFoodChartSheet
 import com.vasilecoste.babylog.ui.components.AddBabyDialog
 import com.vasilecoste.babylog.ui.components.BabyProfileSwitcherDialog
 import com.vasilecoste.babylog.ui.components.ExpandableFab
@@ -45,7 +44,6 @@ fun MainScreen(
 
     var fabExpanded by remember { mutableStateOf(false) }
     var showDayPicker by remember { mutableStateOf(false) }
-    var showChart by remember { mutableStateOf(false) }
     var showAddEntry by remember { mutableStateOf(false) }
     var editingEntry by remember { mutableStateOf<Entry?>(null) }
     var showAddWeight by remember { mutableStateOf(false) }
@@ -77,7 +75,6 @@ fun MainScreen(
                 selectedDate = uiState.selectedDate,
                 onMenuClick = onMenuClick,
                 onDayClick = { showDayPicker = true },
-                onChartClick = { showChart = true },
                 onTitleClick = { showBabySwitcher = true },
             )
         },
@@ -119,10 +116,6 @@ fun MainScreen(
             onSelect = { viewModel.selectDate(it) },
             onDismiss = { showDayPicker = false },
         )
-    }
-
-    if (showChart) {
-        WeightFoodChartSheet(data = uiState.chartData, onDismiss = { showChart = false })
     }
 
     if (showAddEntry) {

@@ -22,7 +22,6 @@
     <!-- Header -->
     <string name="day_today">Today</string>
     <string name="day_yesterday">Yesterday</string>
-    <string name="cd_weight_food_chart">Weight and food chart</string>
 
     <!-- Day picker -->
     <string name="day_picker_title">Select a day</string>
@@ -64,6 +63,7 @@
     <string name="height_cm_label">Height (cm, optional)</string>
 
     <!-- Chart -->
+    <string name="statistics_title">Statistics</string>
     <string name="chart_no_data">No data yet</string>
     <string name="chart_growth_title">Growth</string>
     <string name="chart_no_weight_data">No weight data yet</string>
@@ -77,7 +77,9 @@
 
     <!-- Navigation drawer -->
     <string name="cd_open_menu">Open menu</string>
+    <string name="drawer_title">Menu</string>
     <string name="drawer_main_app">Main app</string>
+    <string name="drawer_statistics">Statistics</string>
     <string name="drawer_baby_profile">Baby profile</string>
     <string name="drawer_import_export">Import / export data</string>
     <string name="drawer_about">About</string>

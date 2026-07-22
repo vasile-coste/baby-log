@@ -46,7 +46,6 @@
     <string name="cd_poop">Scaun</string>
     <string name="cd_puke">Vărsătură</string>
     <string name="cd_vitamin">Vitamine</string>
-    <string name="cd_weight_food_chart">Grafic greutate și hrană</string>
     <string name="chart_axis_suffix_cm"> cm</string>
     <string name="chart_axis_suffix_kg"> kg</string>
     <string name="chart_axis_suffix_ml"> ml</string>
@@ -69,6 +68,8 @@
     <string name="drawer_baby_profile">Profil bebeluș</string>
     <string name="drawer_import_export">Import / export date</string>
     <string name="drawer_main_app">Aplicația principală</string>
+    <string name="drawer_statistics">Statistici</string>
+    <string name="drawer_title">Meniu</string>
     <string name="edit_entry_title">Editează înregistrarea</string>
     <string name="empty_state_message">Adaugă profilul bebelușului pentru a începe</string>
     <string name="error_could_not_read_file">Fișierul selectat nu a putut fi citit</string>
@@ -110,6 +111,7 @@
     <string name="quick_pukes">Vărsături: %1$d</string>
     <string name="quick_total_food">Hrană totală: %1$d ml</string>
     <string name="quick_vitamin">Vitamine: %1$s</string>
+    <string name="statistics_title">Statistici</string>
     <string name="switch_baby_title">Schimbă bebelușul</string>
     <string name="timeline_food_amount">%1$d ml</string>
     <string name="weight_kg_label">Greutate (kg)</string>

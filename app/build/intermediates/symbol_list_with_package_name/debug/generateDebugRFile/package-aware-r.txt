@@ -33,7 +33,6 @@ string cd_pee
 string cd_poop
 string cd_puke
 string cd_vitamin
-string cd_weight_food_chart
 string chart_axis_suffix_cm
 string chart_axis_suffix_kg
 string chart_axis_suffix_ml
@@ -56,6 +55,8 @@ string drawer_about
 string drawer_baby_profile
 string drawer_import_export
 string drawer_main_app
+string drawer_statistics
+string drawer_title
 string edit_entry_title
 string empty_state_message
 string error_could_not_read_file
@@ -97,6 +98,7 @@ string quick_poops
 string quick_pukes
 string quick_total_food
 string quick_vitamin
+string statistics_title
 string switch_baby_title
 string timeline_food_amount
 string weight_kg_label

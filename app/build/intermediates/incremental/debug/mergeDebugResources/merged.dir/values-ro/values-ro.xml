@@ -55,7 +55,6 @@
     <string name="cd_poop">Scaun</string>
     <string name="cd_puke">Vărsătură</string>
     <string name="cd_vitamin">Vitamine</string>
-    <string name="cd_weight_food_chart">Grafic greutate și hrană</string>
     <string name="chart_axis_suffix_cm"> cm</string>
     <string name="chart_axis_suffix_kg"> kg</string>
     <string name="chart_axis_suffix_ml"> ml</string>
@@ -82,6 +81,8 @@
     <string name="drawer_baby_profile">Profil bebeluș</string>
     <string name="drawer_import_export">Import / export date</string>
     <string name="drawer_main_app">Aplicația principală</string>
+    <string name="drawer_statistics">Statistici</string>
+    <string name="drawer_title">Meniu</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"Meniu drop-down"</string>
     <string name="edit_entry_title">Editează înregistrarea</string>
     <string name="empty_state_message">Adaugă profilul bebelușului pentru a începe</string>
@@ -201,6 +202,7 @@
     <string msgid="4139871816613051306" name="state_empty">"Gol"</string>
     <string msgid="5834637030682409883" name="state_off">"Dezactivat"</string>
     <string msgid="1490883874751719580" name="state_on">"Activat"</string>
+    <string name="statistics_title">Statistici</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
     <string name="switch_baby_title">Schimbă bebelușul</string>
     <string msgid="2561197295334830845" name="switch_role">"Comută"</string>

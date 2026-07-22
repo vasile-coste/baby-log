@@ -22,7 +22,6 @@
     <!-- Header -->
     <string name="day_today">Astăzi</string>
     <string name="day_yesterday">Ieri</string>
-    <string name="cd_weight_food_chart">Grafic greutate și hrană</string>
 
     <!-- Day picker -->
     <string name="day_picker_title">Selectează o zi</string>
@@ -64,6 +63,7 @@
     <string name="height_cm_label">Înălțime (cm, opțional)</string>
 
     <!-- Chart -->
+    <string name="statistics_title">Statistici</string>
     <string name="chart_no_data">Nu există date încă</string>
     <string name="chart_growth_title">Creștere</string>
     <string name="chart_no_weight_data">Nu există date despre greutate încă</string>
@@ -77,7 +77,9 @@
 
     <!-- Navigation drawer -->
     <string name="cd_open_menu">Deschide meniul</string>
+    <string name="drawer_title">Meniu</string>
     <string name="drawer_main_app">Aplicația principală</string>
+    <string name="drawer_statistics">Statistici</string>
     <string name="drawer_baby_profile">Profil bebeluș</string>
     <string name="drawer_import_export">Import / export date</string>
     <string name="drawer_about">Despre</string>

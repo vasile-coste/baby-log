@@ -42,7 +42,6 @@
     <string name="cd_poop">Poop</string>
     <string name="cd_puke">Puke</string>
     <string name="cd_vitamin">Vitamin</string>
-    <string name="cd_weight_food_chart">Weight and food chart</string>
     <string name="chart_axis_suffix_cm"> cm</string>
     <string name="chart_axis_suffix_kg"> kg</string>
     <string name="chart_axis_suffix_ml"> ml</string>
@@ -65,6 +64,8 @@
     <string name="drawer_baby_profile">Baby profile</string>
     <string name="drawer_import_export">Import / export data</string>
     <string name="drawer_main_app">Main app</string>
+    <string name="drawer_statistics">Statistics</string>
+    <string name="drawer_title">Menu</string>
     <string name="edit_entry_title">Edit entry</string>
     <string name="empty_state_message">Add your baby\'s profile to get started</string>
     <string name="error_could_not_read_file">Could not read the selected file</string>
@@ -106,6 +107,7 @@
     <string name="quick_pukes">Pukes: %1$d</string>
     <string name="quick_total_food">Total food: %1$d ml</string>
     <string name="quick_vitamin">Vitamin: %1$s</string>
+    <string name="statistics_title">Statistics</string>
     <string name="switch_baby_title">Switch baby</string>
     <string name="timeline_food_amount">%1$d ml</string>
     <string name="weight_kg_label">Weight (kg)</string>

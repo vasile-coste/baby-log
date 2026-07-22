@@ -11,12 +11,13 @@ An Android app (Jetpack Compose, Material 3) for logging a baby's day-to-day car
   - **Add weight**: weight in kg, with an optional height in cm.
 - **Edit and delete** — long-press any timeline entry to edit its details or remove it.
 - **Day picker** — tap the day label to jump between past days that have logged data.
-- **Growth and food charts** — a dual-axis chart plotting weight (kg) and height (cm) over time, plus a separate chart of total daily food intake (ml).
+- **Statistics page** — a dedicated screen (accessible from the navigation drawer) with a dual-axis chart plotting weight (kg) and height (cm) over time, plus a separate chart of total daily food intake (ml).
 - **Quick stats** — a header card summarizing the selected day at a glance: total food, whether vitamins were given, and poop/pee/puke counts.
 - **Fully local** — all data is stored on-device (Room database), no account or internet connection required.
 - **Multi-language** — available in English and Romanian, following the device's language automatically; all UI text is externalized to string resources, so more languages are easy to add.
-- **Navigation drawer** (hamburger menu) with:
+- **Navigation drawer** ("Menu", opened via the hamburger icon) with:
   - **Main app** — the daily timeline described above.
+  - **Statistics** — the growth and food charts described above.
   - **Baby profile** — name, birth date (editable), age shown as years+months, total months, and total days, plus latest weight, latest height, and the last 7 days' average/min/max food intake (today excluded, since it may still be incomplete).
   - **Import / export data** — import a Baby Log JSON file (creates a new baby profile from it) or export any existing baby's data to a JSON file, using the system file picker.
   - **About** — app info and credits.
@@ -32,9 +33,51 @@ An Android app (Jetpack Compose, Material 3) for logging a baby's day-to-day car
 ## Building the app
 
 ### Prerequisites
-- JDK 17 (the project pins `org.gradle.java.home` in `gradle.properties`; edit that path if your JDK 17 lives elsewhere)
+- JDK 17
 - Android SDK with platform 37.1 and build-tools installed (`compileSdk`/`targetSdk` = 37, `minSdk` = 26)
 - No system-wide Gradle install is required — the Gradle wrapper (`./gradlew`) downloads Gradle 9.6.1 on first run
+
+`gradle.properties` in this repo is shared across every machine via git, so it deliberately does **not** pin a JDK path — a machine-specific path there breaks the build on any other OS. Point Gradle at your JDK 17 locally instead, using whichever of these fits your workflow:
+
+#### macOS
+List installed JDKs:
+```bash
+/usr/libexec/java_home -V
+```
+If JDK 17 isn't listed, install one (e.g. `brew install openjdk@17`, or a distro from Adoptium/Oracle). Then either export it in your shell profile (`~/.zshrc`):
+```bash
+export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+```
+or, without touching your shell profile, pin it for Gradle only by adding this line to `~/.gradle/gradle.properties` (per-user, never committed to the repo):
+```
+org.gradle.java.home=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
+```
+
+#### Linux
+Install a JDK 17, e.g. on Debian/Ubuntu/Zorin:
+```bash
+sudo apt install openjdk-17-jdk
+```
+Then set `JAVA_HOME` (add to `~/.bashrc` or `~/.zshrc`):
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64   # confirm the exact path: update-alternatives --list java
+export PATH="$JAVA_HOME/bin:$PATH"
+```
+If Android Studio is installed, it also bundles its own JDK you can point to instead (e.g. `/opt/android-studio/jbr`), which lets you skip the `apt install` above.
+
+#### Windows
+Check for an installed JDK 17:
+```powershell
+where java
+java -version
+```
+If JDK 17 isn't installed, get one (e.g. from [Adoptium](https://adoptium.net/) or Oracle), or point to the JDK bundled with Android Studio (typically `C:\Program Files\Android\Android Studio\jbr`). Then either set `JAVA_HOME` as a user environment variable (System Properties → Environment Variables, or `setx JAVA_HOME "C:\Program Files\Eclipse Adoptium\jdk-17\.jdk\Home"` in a new terminal afterwards), or pin it for Gradle only by adding this line to `%USERPROFILE%\.gradle\gradle.properties` (per-user, never committed to the repo):
+```
+org.gradle.java.home=C:\\Program Files\\Eclipse Adoptium\\jdk-17.jdk\\Home
+```
+Use `./gradlew.bat` instead of `./gradlew` for the commands below.
+
+Any OS: verify with `java -version` and `./gradlew -v` before building. Building through Android Studio's own UI instead of a terminal doesn't need any of this — its Gradle JDK is configured separately under **Settings → Build, Execution, Deployment → Build Tools → Gradle → Gradle JDK**.
 
 ### Key dependency versions
 | Dependency | Version |

@@ -243,7 +243,6 @@
     <string name="cd_poop">Poop</string>
     <string name="cd_puke">Puke</string>
     <string name="cd_vitamin">Vitamin</string>
-    <string name="cd_weight_food_chart">Weight and food chart</string>
     <string name="chart_axis_suffix_cm"> cm</string>
     <string name="chart_axis_suffix_kg"> kg</string>
     <string name="chart_axis_suffix_ml"> ml</string>
@@ -270,6 +269,8 @@
     <string name="drawer_baby_profile">Baby profile</string>
     <string name="drawer_import_export">Import / export data</string>
     <string name="drawer_main_app">Main app</string>
+    <string name="drawer_statistics">Statistics</string>
+    <string name="drawer_title">Menu</string>
     <string name="dropdown_menu">"Dropdown menu"</string>
     <string name="edit_entry_title">Edit entry</string>
     <string name="empty_state_message">Add your baby\'s profile to get started</string>
@@ -393,6 +394,7 @@
     <string name="state_empty">Empty</string>
     <string name="state_off">Off</string>
     <string name="state_on">On</string>
+    <string name="statistics_title">Statistics</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="switch_baby_title">Switch baby</string>
     <string name="switch_role">Switch</string>
@@ -467,9 +469,9 @@
     <declare-styleable name="DividerAttributes">
         
         <attr format="enum" name="embeddingDividerType">
-            
+            <!-- Fixed divider type. -->
             <enum name="fixed" value="0"/>
-            
+            <!-- Draggable divider type. -->
             <enum name="draggable" value="1"/>
         </attr>
         
@@ -496,14 +498,23 @@
         <attr format="reference" name="fontProviderCerts"/>
         
         <attr name="fontProviderFetchStrategy">
-            
+            <!-- The blocking font fetch works as follows.
+              First, check the local cache, then if the requested font is not cached, request the
+              font from the provider and wait until it is finished.  You can change the length of
+              the timeout by modifying fontProviderFetchTimeout.  If the timeout happens, the
+              default typeface will be used instead. -->
             <enum name="blocking" value="0"/>
-            
+            <!-- The async font fetch works as follows.
+              First, check the local cache, then if the requested font is not cached, trigger a
+              request the font and continue with layout inflation. Once the font fetch succeeds, the
+              target text view will be refreshed with the downloaded font data. The
+              fontProviderFetchTimeout will be ignored if async loading is specified. -->
             <enum name="async" value="1"/>
         </attr>
         
         <attr format="integer" name="fontProviderFetchTimeout">
-            
+            <!-- A special value for the timeout. In this case, the blocking font fetching will not
+              timeout and wait until a reply is received from the font provider. -->
             <enum name="forever" value="-1"/>
         </attr>
         

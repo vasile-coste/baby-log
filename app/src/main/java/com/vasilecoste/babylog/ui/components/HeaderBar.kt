@@ -1,8 +1,8 @@
 package com.vasilecoste.babylog.ui.components
 
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ShowChart
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.vasilecoste.babylog.R
 import java.time.LocalDate
@@ -24,7 +25,6 @@ fun HeaderBar(
     selectedDate: LocalDate,
     onMenuClick: () -> Unit,
     onDayClick: () -> Unit,
-    onChartClick: () -> Unit,
     onTitleClick: () -> Unit,
 ) {
     TopAppBar(
@@ -34,18 +34,15 @@ fun HeaderBar(
             }
         },
         title = {
-            Row {
-                TextButton(onClick = onDayClick) {
-                    Text(formatDayLabel(selectedDate))
-                }
+            Row(modifier = Modifier.fillMaxWidth()) {
                 TextButton(onClick = onTitleClick) {
                     Text(babyName)
                 }
             }
         },
         actions = {
-            IconButton(onClick = onChartClick) {
-                Icon(Icons.AutoMirrored.Filled.ShowChart, contentDescription = stringResource(R.string.cd_weight_food_chart))
+            TextButton(onClick = onDayClick) {
+                Text(formatDayLabel(selectedDate))
             }
         },
     )
