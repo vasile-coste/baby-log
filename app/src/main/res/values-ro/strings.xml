@@ -63,15 +63,29 @@
     <string name="weight_kg_label">Greutate (kg)</string>
     <string name="height_cm_label">Înălțime (cm, opțional)</string>
 
+    <!-- Tummy time -->
+    <string name="tummy_time_total_today">Timp total pe burtică: %1$dm %2$ds</string>
+    <string name="tummy_time_start">Start</string>
+    <string name="tummy_time_stop">Stop</string>
+    <string name="tummy_time_no_entries">Nicio înregistrare de timp pe burtică pentru această zi încă</string>
+    <string name="tummy_time_duration_format">%1$dm %2$ds</string>
+    <string name="tummy_time_add_manual_cd">Adaugă manual timp pe burtică</string>
+    <string name="tummy_time_add_title">Adaugă timp pe burtică</string>
+    <string name="tummy_time_edit_title">Editează timpul pe burtică</string>
+    <string name="tummy_time_duration_minutes_label">Minute</string>
+    <string name="tummy_time_duration_seconds_label">Secunde</string>
+
     <!-- Chart -->
     <string name="statistics_title">Statistici</string>
     <string name="chart_no_data">Nu există date încă</string>
     <string name="chart_growth_title">Creștere</string>
     <string name="chart_no_weight_data">Nu există date despre greutate încă</string>
     <string name="chart_food_title">Hrană</string>
+    <string name="chart_tummy_time_title">Timp pe burtică</string>
     <string name="chart_legend_weight_kg">Greutate (kg)</string>
     <string name="chart_legend_height_cm">Înălțime (cm)</string>
     <string name="chart_legend_total_food_ml">Hrană totală (ml)</string>
+    <string name="chart_legend_tummy_time">Timp pe burtică</string>
     <string name="chart_axis_suffix_kg"> kg</string>
     <string name="chart_axis_suffix_cm"> cm</string>
     <string name="chart_axis_suffix_ml"> ml</string>
@@ -83,6 +97,7 @@
     <string name="cd_open_menu">Deschide meniul</string>
     <string name="drawer_title">Meniu</string>
     <string name="drawer_main_app">Aplicația principală</string>
+    <string name="drawer_tummy_time">Timp pe burtică</string>
     <string name="drawer_statistics">Statistici</string>
     <string name="drawer_baby_profile">Profil bebeluș</string>
     <string name="drawer_import_export">Import / export date</string>

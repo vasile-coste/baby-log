@@ -63,15 +63,29 @@
     <string name="weight_kg_label">Weight (kg)</string>
     <string name="height_cm_label">Height (cm, optional)</string>
 
+    <!-- Tummy time -->
+    <string name="tummy_time_total_today">Total tummy time: %1$dm %2$ds</string>
+    <string name="tummy_time_start">Start</string>
+    <string name="tummy_time_stop">Stop</string>
+    <string name="tummy_time_no_entries">No tummy time logged for this day yet</string>
+    <string name="tummy_time_duration_format">%1$dm %2$ds</string>
+    <string name="tummy_time_add_manual_cd">Add tummy time manually</string>
+    <string name="tummy_time_add_title">Add tummy time</string>
+    <string name="tummy_time_edit_title">Edit tummy time</string>
+    <string name="tummy_time_duration_minutes_label">Minutes</string>
+    <string name="tummy_time_duration_seconds_label">Seconds</string>
+
     <!-- Chart -->
     <string name="statistics_title">Statistics</string>
     <string name="chart_no_data">No data yet</string>
     <string name="chart_growth_title">Growth</string>
     <string name="chart_no_weight_data">No weight data yet</string>
     <string name="chart_food_title">Food</string>
+    <string name="chart_tummy_time_title">Tummy time</string>
     <string name="chart_legend_weight_kg">Weight (kg)</string>
     <string name="chart_legend_height_cm">Height (cm)</string>
     <string name="chart_legend_total_food_ml">Total food (ml)</string>
+    <string name="chart_legend_tummy_time">Tummy time</string>
     <string name="chart_axis_suffix_kg"> kg</string>
     <string name="chart_axis_suffix_cm"> cm</string>
     <string name="chart_axis_suffix_ml"> ml</string>
@@ -83,6 +97,7 @@
     <string name="cd_open_menu">Open menu</string>
     <string name="drawer_title">Menu</string>
     <string name="drawer_main_app">Main app</string>
+    <string name="drawer_tummy_time">Tummy time</string>
     <string name="drawer_statistics">Statistics</string>
     <string name="drawer_baby_profile">Baby profile</string>
     <string name="drawer_import_export">Import / export data</string>

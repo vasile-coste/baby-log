@@ -28,6 +28,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -54,6 +55,7 @@ fun ImportExportScreen(
 ) {
     val babies by viewModel.babies.collectAsState()
     val context = LocalContext.current
+    val resources = LocalResources.current
     val scope = rememberCoroutineScope()
 
     var status by remember { mutableStateOf<StatusMessage?>(null) }
@@ -67,8 +69,8 @@ fun ImportExportScreen(
         scope.launch {
             viewModel.importData(data, existingBabyId, mode).fold(
                 onSuccess = { (name, count) ->
-                    val entriesLabel = context.resources.getQuantityString(R.plurals.plural_entries, count, count)
-                    Toast.makeText(context, context.getString(R.string.import_success, name, entriesLabel), Toast.LENGTH_LONG).show()
+                    val entriesLabel = resources.getQuantityString(R.plurals.plural_entries, count, count)
+                    Toast.makeText(context, resources.getString(R.string.import_success, name, entriesLabel), Toast.LENGTH_LONG).show()
                 },
                 onFailure = { e -> status = StatusMessage.ImportError(e.message ?: e.toString()) },
             )
@@ -109,7 +111,7 @@ fun ImportExportScreen(
                         context.contentResolver.openOutputStream(uri)?.bufferedWriter()?.use { it.write(json) }
                     }.isSuccess
                     if (written) {
-                        Toast.makeText(context, context.getString(R.string.export_success), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, resources.getString(R.string.export_success), Toast.LENGTH_SHORT).show()
                     } else {
                         status = StatusMessage.ExportWriteError
                     }

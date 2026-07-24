@@ -9,6 +9,7 @@ import com.vasilecoste.babylog.BabyLogApplication
 import com.vasilecoste.babylog.data.db.entity.BabyProfile
 import com.vasilecoste.babylog.data.db.entity.DiaperSummary
 import com.vasilecoste.babylog.data.db.entity.Entry
+import com.vasilecoste.babylog.data.db.entity.TummyTimeEntry
 import com.vasilecoste.babylog.data.prefs.SelectedBabyStore
 import com.vasilecoste.babylog.data.repository.BabyLogRepository
 import com.vasilecoste.babylog.data.repository.DailyAggregate
@@ -33,7 +34,10 @@ private data class DayState(
     val diaperSummary: DiaperSummary?,
     val pickerDates: List<LocalDate>,
     val chartData: List<DailyAggregate>,
+    val tummyTimeEntries: List<TummyTimeEntry>,
 )
+
+private data class TummyTimerStart(val epochMillis: Long, val date: LocalDate, val time: LocalTime)
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class MainViewModel(
@@ -75,13 +79,23 @@ class MainViewModel(
         if (id == null) flowOf(emptyList()) else repository.dailyChartData(id)
     }
 
-    private val dayState: Flow<DayState> =
-        combine(selectedDate, entries, diaperSummary, pickerDates, chartData) { date, entries, summary, pickerDates, chart ->
-            val allPickerDates = (pickerDates + LocalDate.now()).distinct().sortedDescending()
-            DayState(date, entries, summary, allPickerDates, chart)
+    private val tummyTimeEntries = combine(selectedBabyId, selectedDate) { id, date -> id to date }
+        .flatMapLatest { (id, date) ->
+            if (id == null) flowOf(emptyList()) else repository.tummyTimeForDay(id, date)
         }
 
-    val uiState: StateFlow<MainUiState> = combine(profilesState, dayState) { profiles, day ->
+    private val tummyTimerStart = MutableStateFlow<TummyTimerStart?>(null)
+
+    private val dayState: Flow<DayState> =
+        combine(
+            combine(selectedDate, entries, diaperSummary) { date, entries, summary -> Triple(date, entries, summary) },
+            combine(pickerDates, chartData, tummyTimeEntries) { picker, chart, tummy -> Triple(picker, chart, tummy) },
+        ) { (date, entries, summary), (pickerDates, chart, tummy) ->
+            val allPickerDates = (pickerDates + LocalDate.now()).distinct().sortedDescending()
+            DayState(date, entries, summary, allPickerDates, chart, tummy)
+        }
+
+    val uiState: StateFlow<MainUiState> = combine(profilesState, dayState, tummyTimerStart) { profiles, day, timer ->
         MainUiState(
             babies = profiles.babies,
             selectedBaby = profiles.selectedBaby,
@@ -90,6 +104,9 @@ class MainViewModel(
             diaperSummary = day.diaperSummary,
             pickerDates = day.pickerDates,
             chartData = day.chartData,
+            tummyTimeEntries = day.tummyTimeEntries,
+            tummyTimerRunning = timer != null,
+            tummyTimerStartEpochMillis = timer?.epochMillis,
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), MainUiState())
 
@@ -132,6 +149,37 @@ class MainViewModel(
         viewModelScope.launch {
             repository.addWeight(babyId, selectedDate.value, weightKg, heightCm)
         }
+    }
+
+    fun startTummyTimer() {
+        if (tummyTimerStart.value != null) return
+        tummyTimerStart.value = TummyTimerStart(System.currentTimeMillis(), LocalDate.now(), LocalTime.now())
+    }
+
+    fun stopTummyTimer() {
+        val start = tummyTimerStart.value ?: return
+        tummyTimerStart.value = null
+        val babyId = selectedBabyId.value ?: return
+        val elapsedSeconds = ((System.currentTimeMillis() - start.epochMillis) / 1000).toInt().coerceAtLeast(0)
+        if (elapsedSeconds <= 0) return
+        viewModelScope.launch {
+            repository.addTummyTimeEntry(babyId, start.date, start.time, elapsedSeconds)
+        }
+    }
+
+    fun addManualTummyTime(date: LocalDate, startTime: LocalTime, durationSeconds: Int) {
+        val babyId = selectedBabyId.value ?: return
+        viewModelScope.launch {
+            repository.addTummyTimeEntry(babyId, date, startTime, durationSeconds)
+        }
+    }
+
+    fun updateTummyTimeEntry(entry: TummyTimeEntry) {
+        viewModelScope.launch { repository.updateTummyTimeEntry(entry) }
+    }
+
+    fun deleteTummyTimeEntry(entry: TummyTimeEntry) {
+        viewModelScope.launch { repository.deleteTummyTimeEntry(entry) }
     }
 
     companion object {

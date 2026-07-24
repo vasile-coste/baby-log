@@ -2,12 +2,15 @@ package com.vasilecoste.babylog.data.repository
 
 import com.vasilecoste.babylog.data.db.dao.BabyProfileDao
 import com.vasilecoste.babylog.data.db.dao.DailyFoodTotal
+import com.vasilecoste.babylog.data.db.dao.DailyTummyTimeTotal
 import com.vasilecoste.babylog.data.db.dao.DiaperSummaryDao
 import com.vasilecoste.babylog.data.db.dao.EntryDao
+import com.vasilecoste.babylog.data.db.dao.TummyTimeDao
 import com.vasilecoste.babylog.data.db.dao.WeightDao
 import com.vasilecoste.babylog.data.db.entity.BabyProfile
 import com.vasilecoste.babylog.data.db.entity.DiaperSummary
 import com.vasilecoste.babylog.data.db.entity.Entry
+import com.vasilecoste.babylog.data.db.entity.TummyTimeEntry
 import com.vasilecoste.babylog.data.db.entity.WeightRecord
 import com.vasilecoste.babylog.data.model.ExportedBabyData
 import com.vasilecoste.babylog.data.model.ImportedBabyData
@@ -21,6 +24,7 @@ data class DailyAggregate(
     val totalFoodMl: Int,
     val weightKg: Double?,
     val heightCm: Double?,
+    val tummyTimeSeconds: Int = 0,
 )
 
 enum class ImportMode { REPLACE, MERGE }
@@ -30,6 +34,7 @@ class BabyLogRepository(
     private val entryDao: EntryDao,
     private val weightDao: WeightDao,
     private val diaperSummaryDao: DiaperSummaryDao,
+    private val tummyTimeDao: TummyTimeDao,
 ) {
     val babies: Flow<List<BabyProfile>> = babyProfileDao.getAll()
 
@@ -84,18 +89,36 @@ class BabyLogRepository(
 
     fun weightsForBaby(babyId: Long): Flow<List<WeightRecord>> = weightDao.getForBaby(babyId)
 
+    fun tummyTimeForDay(babyId: Long, date: LocalDate): Flow<List<TummyTimeEntry>> =
+        tummyTimeDao.getForDay(babyId, date)
+
+    suspend fun addTummyTimeEntry(babyId: Long, date: LocalDate, startTime: LocalTime, durationSeconds: Int) {
+        tummyTimeDao.insert(
+            TummyTimeEntry(babyId = babyId, date = date, startTime = startTime, durationSeconds = durationSeconds),
+        )
+    }
+
+    suspend fun updateTummyTimeEntry(entry: TummyTimeEntry) = tummyTimeDao.update(entry)
+
+    suspend fun deleteTummyTimeEntry(entry: TummyTimeEntry) = tummyTimeDao.delete(entry)
+
     fun datesWithData(babyId: Long): Flow<List<LocalDate>> =
         combine(
             entryDao.getDistinctDates(babyId),
             weightDao.getDistinctDates(babyId),
             diaperSummaryDao.getDistinctDates(babyId),
-        ) { entryDates, weightDates, summaryDates ->
-            (entryDates + weightDates + summaryDates).distinct().sortedDescending()
+            tummyTimeDao.getDistinctDates(babyId),
+        ) { entryDates, weightDates, summaryDates, tummyDates ->
+            (entryDates + weightDates + summaryDates + tummyDates).distinct().sortedDescending()
         }
 
     fun dailyChartData(babyId: Long): Flow<List<DailyAggregate>> =
-        combine(entryDao.getDailyFoodTotals(babyId), weightDao.getForBaby(babyId)) { foodTotals, weights ->
-            buildDailyAggregates(foodTotals, weights)
+        combine(
+            entryDao.getDailyFoodTotals(babyId),
+            weightDao.getForBaby(babyId),
+            tummyTimeDao.getDailyTotals(babyId),
+        ) { foodTotals, weights, tummyTotals ->
+            buildDailyAggregates(foodTotals, weights, tummyTotals)
         }
 
     /**
@@ -114,6 +137,7 @@ class BabyLogRepository(
             entryDao.deleteAllForBaby(babyId)
             weightDao.deleteAllForBaby(babyId)
             diaperSummaryDao.deleteAllForBaby(babyId)
+            tummyTimeDao.deleteAllForBaby(babyId)
         }
         entryDao.insertAll(
             data.entries.map { e ->
@@ -138,6 +162,11 @@ class BabyLogRepository(
                 DiaperSummary(babyId = babyId, date = s.date, poopCount = s.poopCount, peeCount = s.peeCount)
             },
         )
+        tummyTimeDao.insertAll(
+            data.tummyTimeEntries.map { t ->
+                TummyTimeEntry(babyId = babyId, date = t.date, startTime = t.startTime, durationSeconds = t.durationSeconds)
+            },
+        )
         return babyId
     }
 
@@ -148,18 +177,26 @@ class BabyLogRepository(
             entries = entryDao.getAllForBaby(babyId),
             weights = weightDao.getAllForBaby(babyId),
             diaperSummaries = diaperSummaryDao.getAllForBaby(babyId),
+            tummyTimeEntries = tummyTimeDao.getAllForBaby(babyId),
         )
     }
 }
 
-internal fun buildDailyAggregates(foodTotals: List<DailyFoodTotal>, weights: List<WeightRecord>): List<DailyAggregate> {
+internal fun buildDailyAggregates(
+    foodTotals: List<DailyFoodTotal>,
+    weights: List<WeightRecord>,
+    tummyTotals: List<DailyTummyTimeTotal> = emptyList(),
+): List<DailyAggregate> {
     val weightByDate = LinkedHashMap<LocalDate, Double>()
     val heightByDate = LinkedHashMap<LocalDate, Double>()
     weights.forEach { record ->
         record.weightKg?.let { weightByDate[record.date] = it }
         record.heightCm?.let { heightByDate[record.date] = it }
     }
-    val allDates = (foodTotals.map { it.date } + weightByDate.keys + heightByDate.keys).distinct().sorted()
+    val tummyByDate = tummyTotals.associate { it.date to it.totalSeconds }
+    val allDates = (foodTotals.map { it.date } + weightByDate.keys + heightByDate.keys + tummyByDate.keys)
+        .distinct()
+        .sorted()
     val foodByDate = foodTotals.associate { it.date to it.totalMl }
     return allDates.map { date ->
         DailyAggregate(
@@ -167,6 +204,7 @@ internal fun buildDailyAggregates(foodTotals: List<DailyFoodTotal>, weights: Lis
             totalFoodMl = foodByDate[date] ?: 0,
             weightKg = weightByDate[date],
             heightCm = heightByDate[date],
+            tummyTimeSeconds = tummyByDate[date] ?: 0,
         )
     }
 }

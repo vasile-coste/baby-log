@@ -108,6 +108,7 @@ fun StatisticsScreen(
             val weightPoints = data.mapNotNull { d -> d.weightKg?.let { d.date to it } }
             val heightPoints = data.mapNotNull { d -> d.heightCm?.let { d.date to it } }
             val foodPoints = data.map { it.date to it.totalFoodMl.toDouble() }
+            val tummyTimePoints = data.map { it.date to it.tummyTimeSeconds.toDouble() }
 
             Column(modifier = Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState())) {
                 Text(
@@ -155,9 +156,31 @@ fun StatisticsScreen(
                     modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
                     items = listOf(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_total_food_ml)),
                 )
+
+                Text(
+                    stringResource(R.string.chart_tummy_time_title),
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                )
+                DualLineChart(
+                    primaryPoints = tummyTimePoints,
+                    primaryFormatter = MinutesSecondsValueFormatter,
+                    secondaryPoints = null,
+                    secondaryFormatter = null,
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp).fillMaxWidth(),
+                )
+                Legend(
+                    modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
+                    items = listOf(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_tummy_time)),
+                )
             }
         }
     }
+}
+
+private val MinutesSecondsValueFormatter = CartesianValueFormatter { _, value, _ ->
+    val totalSeconds = value.toLong()
+    "%dm %02ds".format(totalSeconds / 60, totalSeconds % 60)
 }
 
 @Composable

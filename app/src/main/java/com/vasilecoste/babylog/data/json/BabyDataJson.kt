@@ -4,6 +4,7 @@ import com.vasilecoste.babylog.data.model.ExportedBabyData
 import com.vasilecoste.babylog.data.model.ImportedBabyData
 import com.vasilecoste.babylog.data.model.ImportedDiaperSummary
 import com.vasilecoste.babylog.data.model.ImportedEntry
+import com.vasilecoste.babylog.data.model.ImportedTummyTime
 import com.vasilecoste.babylog.data.model.ImportedWeight
 import java.time.LocalDate
 import java.time.LocalTime
@@ -50,7 +51,15 @@ object BabyDataJson {
             )
         }
 
-        return ImportedBabyData(babyName, entries, weights, diaperSummaries)
+        val tummyTimeEntries = root.optJSONArray("tummyTimeEntries").orEmpty().map { obj ->
+            ImportedTummyTime(
+                date = LocalDate.parse(obj.getString("date")),
+                startTime = LocalTime.parse(obj.getString("startTime")),
+                durationSeconds = obj.optInt("durationSeconds", 0),
+            )
+        }
+
+        return ImportedBabyData(babyName, entries, weights, diaperSummaries, tummyTimeEntries)
     }
 
     fun serialize(data: ExportedBabyData): String {
@@ -94,6 +103,18 @@ object BabyDataJson {
                         .put("puke", e.puke)
                         .put("vitamin", e.vitamin)
                         .put("breastfed", e.breastfed)
+                },
+            ),
+        )
+
+        root.put(
+            "tummyTimeEntries",
+            JSONArray(
+                data.tummyTimeEntries.map { t ->
+                    JSONObject()
+                        .put("date", t.date.toString())
+                        .put("startTime", t.startTime.toString())
+                        .put("durationSeconds", t.durationSeconds)
                 },
             ),
         )
