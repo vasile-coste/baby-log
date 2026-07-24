@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -48,7 +48,7 @@ fun TummyTimerButton(
         shape = CircleShape,
         color = if (isRunning) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.primaryContainer,
         modifier = modifier
-            .size(180.dp)
+            .requiredSize(180.dp)
             .clickable(onClick = if (isRunning) onStop else onStart),
     ) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {

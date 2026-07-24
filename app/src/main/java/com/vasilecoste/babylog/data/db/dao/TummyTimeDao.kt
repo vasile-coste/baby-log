@@ -28,7 +28,7 @@ interface TummyTimeDao {
     @Query("DELETE FROM tummy_time_entries WHERE babyId = :babyId")
     suspend fun deleteAllForBaby(babyId: Long)
 
-    @Query("SELECT * FROM tummy_time_entries WHERE babyId = :babyId AND date = :date ORDER BY startTime ASC")
+    @Query("SELECT * FROM tummy_time_entries WHERE babyId = :babyId AND date = :date ORDER BY startTime DESC")
     fun getForDay(babyId: Long, date: LocalDate): Flow<List<TummyTimeEntry>>
 
     @Query("SELECT * FROM tummy_time_entries WHERE babyId = :babyId ORDER BY date ASC, startTime ASC")

@@ -73,7 +73,7 @@ fun TummyTimeScreen(
                 startEpochMillis = uiState.tummyTimerStartEpochMillis,
                 onStart = { viewModel.startTummyTimer() },
                 onStop = { viewModel.stopTummyTimer() },
-                modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp),
+                modifier = Modifier.padding(vertical = 16.dp),
             )
 
             if (uiState.tummyTimeEntries.isEmpty()) {
