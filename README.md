@@ -121,3 +121,61 @@ app/build/outputs/apk/debug/app-debug.apk
 ```
 
 Install it on a connected device or emulator with `adb install -r app/build/outputs/apk/debug/app-debug.apk`.
+
+To build a **signed release** instead, use:
+
+```bash
+./gradlew assembleRelease   # signed release APK
+./gradlew bundleRelease     # signed Android App Bundle (.aab), for Play Store upload
+```
+
+This requires a `keystore.properties` file with your signing key set up first — see [Signing a release build](#signing-a-release-build) below.
+
+### Signing a release build
+
+Release builds (`assembleRelease` / `bundleRelease`) are only signed if a `keystore.properties` file is present at the project root — without it, the release build type is left unsigned (it still builds, just can't be installed as-is or uploaded to Play). Debug builds are unaffected either way.
+
+**1. Generate an upload keystore** (skip if you already have one):
+
+```bash
+keytool -genkey -v -keystore ~/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-key-alias
+```
+
+Store the resulting `.jks` file **outside the project directory** (e.g. your home folder, as above) and keep it — and its passwords — backed up somewhere durable. If you lose it, you can no longer publish updates to an existing Play Store listing signed with it.
+
+**2. Configure the credentials locally:**
+
+```bash
+cp keystore.properties.example keystore.properties
+```
+
+Edit `keystore.properties` with your real values:
+
+```properties
+storeFile=/Users/you/upload-keystore.jks
+storePassword=your-keystore-password
+keyAlias=my-key-alias
+keyPassword=your-key-password
+```
+
+`keystore.properties` (and any `.jks`/`.keystore` file) is gitignored — never commit real signing credentials. This file is per-machine, similar to `local.properties`.
+
+**3. Build a signed release:**
+
+```bash
+./gradlew assembleRelease   # signed release APK
+./gradlew bundleRelease     # signed Android App Bundle (.aab), for Play Store upload
+```
+
+Outputs land at:
+
+```
+app/build/outputs/apk/release/app-release.apk
+app/build/outputs/bundle/release/app-release.aab
+```
+
+You can confirm an APK is properly signed with `apksigner` (bundled with the Android SDK build-tools):
+
+```bash
+$ANDROID_HOME/build-tools/<version>/apksigner verify --print-certs app/build/outputs/apk/release/app-release.apk
+```

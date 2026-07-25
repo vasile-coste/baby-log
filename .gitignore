@@ -11,3 +11,7 @@ local.properties
 /app/build
 /app/schemas
 log.txt
+key.txt
+keystore.properties
+*.jks
+*.keystore

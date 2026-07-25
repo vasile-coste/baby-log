@@ -53,10 +53,6 @@ fun BabyLogApp() {
 
     val onMenuClick: () -> Unit = { scope.launch { drawerState.open() } }
 
-    BackHandler(enabled = screen != AppScreen.MAIN) {
-        screen = AppScreen.MAIN
-    }
-
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
@@ -111,6 +107,14 @@ fun BabyLogApp() {
             }
         },
     ) {
+        // Placed inside ModalNavigationDrawer's content (rather than as a sibling above it) so this
+        // handler is registered after — and takes priority over — the drawer's own internal
+        // BackHandler, which would otherwise just close the drawer without resetting the screen.
+        BackHandler(enabled = drawerState.isOpen || screen != AppScreen.MAIN) {
+            scope.launch { drawerState.close() }
+            screen = AppScreen.MAIN
+        }
+
         when (screen) {
             AppScreen.MAIN -> MainScreen(onMenuClick = onMenuClick, viewModel = viewModel)
             AppScreen.TUMMY_TIME -> TummyTimeScreen(onMenuClick = onMenuClick, viewModel = viewModel)
