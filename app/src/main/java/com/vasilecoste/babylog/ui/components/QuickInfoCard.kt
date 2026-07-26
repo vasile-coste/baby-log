@@ -2,6 +2,7 @@ package com.vasilecoste.babylog.ui.components
 
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -30,43 +31,46 @@ import com.vasilecoste.babylog.ui.main.QuickStats
 
 @Composable
 fun QuickInfoCard(stats: QuickStats, modifier: Modifier = Modifier) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .horizontalScroll(rememberScrollState())
-            .padding(horizontal = 16.dp, vertical = 8.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        QuickStatCard(
-            icon = Icons.Filled.Restaurant,
-            text = stringResource(R.string.quick_total_food, stats.totalFoodMl)
-        )
+    Card(modifier = modifier.fillMaxWidth().padding(8.dp)) {
+        Column(modifier = Modifier.padding(6.dp), verticalArrangement = Arrangement.spacedBy(3.dp)) {
+            QuickStatCard(
+                icon = Icons.Filled.Restaurant,
+                text = stringResource(R.string.quick_total_food, stats.totalFoodMl)
+            )
+        }
+        Row(
+            modifier = modifier
+                .fillMaxWidth()
+                .horizontalScroll(rememberScrollState())
+                .padding(horizontal = 6.dp, vertical = 3.dp),
+            horizontalArrangement = Arrangement.spacedBy(3.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            QuickStatCard(
+                icon = Icons.Filled.Medication,
+                text = stringResource(
+                    R.string.quick_vitamin,
+                    stringResource(if (stats.vitaminTaken) R.string.label_yes else R.string.label_no),
+                ),
+                tint = if (stats.vitaminTaken) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline
+            )
 
-        QuickStatCard(
-            icon = Icons.Filled.Medication,
-            text = stringResource(
-                R.string.quick_vitamin,
-                stringResource(if (stats.vitaminTaken) R.string.label_yes else R.string.label_no),
-            ),
-            tint = if (stats.vitaminTaken) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline
-        )
+            QuickStatCard(
+                icon = Icons.Filled.WaterDrop,
+                text = stringResource(R.string.quick_poops, stats.poopCount)
+            )
 
-        QuickStatCard(
-            icon = Icons.Filled.WaterDrop,
-            text = stringResource(R.string.quick_poops, stats.poopCount)
-        )
+            QuickStatCard(
+                icon = Icons.Filled.LocalDrink,
+                text = stringResource(R.string.quick_pees, stats.peeCount)
+            )
 
-        QuickStatCard(
-            icon = Icons.Filled.LocalDrink,
-            text = stringResource(R.string.quick_pees, stats.peeCount)
-        )
-
-        QuickStatCard(
-            icon = Icons.Filled.Sick,
-            text = stringResource(R.string.quick_pukes, stats.pukeCount),
-            tint = if (stats.pukeCount == 0) Color(0xFF2E7D32) else MaterialTheme.colorScheme.error
-        )
+            QuickStatCard(
+                icon = Icons.Filled.Sick,
+                text = stringResource(R.string.quick_pukes, stats.pukeCount),
+                tint = if (stats.pukeCount == 0) Color(0xFF2E7D32) else MaterialTheme.colorScheme.error
+            )
+        }
     }
 }
 
@@ -83,7 +87,7 @@ private fun QuickStatCard(
         )
     ) {
         Row(
-            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+            modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
