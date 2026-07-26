@@ -9,6 +9,7 @@
     <string name="action_close">Close</string>
     <string name="label_yes">Yes</string>
     <string name="label_no">No</string>
+    <string name="sort">Sort entries</string>
 
     <!-- Empty state -->
     <string name="empty_state_message">Add your baby\'s profile to get started</string>

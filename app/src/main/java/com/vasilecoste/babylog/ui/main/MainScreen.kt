@@ -4,10 +4,16 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDownward
+import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -49,6 +55,7 @@ fun MainScreen(
     var showAddWeight by remember { mutableStateOf(false) }
     var showBabySwitcher by remember { mutableStateOf(false) }
     var showAddBaby by remember { mutableStateOf(false) }
+    var sortAscending by remember { mutableStateOf(false) }
 
     if (!uiState.hasBabies) {
         Scaffold(topBar = { SimpleTopBar(title = stringResource(R.string.app_name), onMenuClick = onMenuClick) }) { padding ->
@@ -100,8 +107,27 @@ fun MainScreen(
                     Text(stringResource(R.string.no_entries_today), style = MaterialTheme.typography.bodyLarge)
                 }
             } else {
+                val sortedEntries = if (sortAscending) {
+                    uiState.entries.sortedBy { it.time }
+                } else {
+                    uiState.entries.sortedByDescending { it.time }
+                }
                 LazyColumn(modifier = Modifier.fillMaxSize()) {
-                    items(uiState.entries) { entry ->
+                    item {
+                        Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
+                            IconButton(
+                                onClick = { sortAscending = !sortAscending },
+                                modifier = Modifier.align(Alignment.CenterEnd),
+                            ) {
+                                Icon(
+                                    imageVector = if (sortAscending) Icons.Filled.ArrowUpward else Icons.Filled.ArrowDownward,
+                                    contentDescription = stringResource(R.string.sort),
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
+                        }
+                    }
+                    items(sortedEntries) { entry ->
                         TimelineItem(entry = entry, onLongPress = { editingEntry = entry })
                     }
                 }

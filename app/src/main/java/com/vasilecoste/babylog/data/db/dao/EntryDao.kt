@@ -28,7 +28,7 @@ interface EntryDao {
     @Query("DELETE FROM entries WHERE babyId = :babyId")
     suspend fun deleteAllForBaby(babyId: Long)
 
-    @Query("SELECT * FROM entries WHERE babyId = :babyId AND date = :date ORDER BY time ASC")
+    @Query("SELECT * FROM entries WHERE babyId = :babyId AND date = :date ORDER BY time DESC")
     fun getForDay(babyId: Long, date: LocalDate): Flow<List<Entry>>
 
     @Query("SELECT * FROM entries WHERE babyId = :babyId ORDER BY date ASC, time ASC")

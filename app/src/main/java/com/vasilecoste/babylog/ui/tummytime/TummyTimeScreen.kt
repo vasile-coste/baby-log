@@ -9,8 +9,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowDownward
+import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -45,6 +48,7 @@ fun TummyTimeScreen(
     var showAddBaby by remember { mutableStateOf(false) }
     var showAddManual by remember { mutableStateOf(false) }
     var editingEntry by remember { mutableStateOf<TummyTimeEntry?>(null) }
+    var sortAscending by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -81,8 +85,27 @@ fun TummyTimeScreen(
                     Text(stringResource(R.string.tummy_time_no_entries), style = MaterialTheme.typography.bodyLarge)
                 }
             } else {
+                val sortedEntries = if (sortAscending) {
+                    uiState.tummyTimeEntries.sortedBy { it.startTime }
+                } else {
+                    uiState.tummyTimeEntries.sortedByDescending { it.startTime }
+                }
                 LazyColumn(modifier = Modifier.weight(1f).fillMaxWidth()) {
-                    items(uiState.tummyTimeEntries) { entry ->
+                    item {
+                        Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
+                            IconButton(
+                                onClick = { sortAscending = !sortAscending },
+                                modifier = Modifier.align(Alignment.CenterEnd),
+                            ) {
+                                Icon(
+                                    imageVector = if (sortAscending) Icons.Filled.ArrowUpward else Icons.Filled.ArrowDownward,
+                                    contentDescription = stringResource(R.string.sort),
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
+                        }
+                    }
+                    items(sortedEntries) { entry ->
                         TummyTimeTimelineItem(entry = entry, onLongPress = { editingEntry = entry })
                     }
                 }

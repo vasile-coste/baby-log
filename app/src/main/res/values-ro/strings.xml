@@ -9,6 +9,7 @@
     <string name="action_close">Închide</string>
     <string name="label_yes">Da</string>
     <string name="label_no">Nu</string>
+    <string name="sort">Sortare</string>
 
     <!-- Empty state -->
     <string name="empty_state_message">Adaugă profilul bebelușului pentru a începe</string>
