@@ -7,6 +7,7 @@
     <string name="action_delete">Șterge</string>
     <string name="action_add">Adaugă</string>
     <string name="action_close">Închide</string>
+    <string name="action_edit">Editează</string>
     <string name="label_yes">Da</string>
     <string name="label_no">Nu</string>
     <string name="sort">Sortare</string>
@@ -18,7 +19,12 @@
     <!-- Baby profile switcher -->
     <string name="switch_baby_title">Schimbă bebelușul</string>
     <string name="add_baby_profile_title">Adaugă profil bebeluș</string>
+    <string name="edit_baby_profile_title">Editează profil bebeluș</string>
     <string name="baby_name_label">Nume</string>
+    <string name="gender_label">Gen</string>
+    <string name="gender_unspecified">Nespecificat</string>
+    <string name="gender_male">Masculin</string>
+    <string name="gender_female">Feminin</string>
 
     <!-- Header -->
     <string name="day_today">Astăzi</string>

@@ -3,16 +3,18 @@ package com.vasilecoste.babylog.ui.profile
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -26,7 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.vasilecoste.babylog.R
 import com.vasilecoste.babylog.data.repository.DailyAggregate
-import com.vasilecoste.babylog.ui.components.DatePickerDialogHost
+import com.vasilecoste.babylog.ui.components.AddEditBabyDialog
 import com.vasilecoste.babylog.ui.components.SimpleTopBar
 import com.vasilecoste.babylog.ui.main.MainViewModel
 import java.time.LocalDate
@@ -40,8 +42,23 @@ import kotlin.math.roundToInt
 fun ProfileScreen(onMenuClick: () -> Unit, viewModel: MainViewModel) {
     val uiState by viewModel.uiState.collectAsState()
     val baby = uiState.selectedBaby
+    var showEditDialog by remember { mutableStateOf(false) }
 
-    Scaffold(topBar = { SimpleTopBar(title = stringResource(R.string.profile_title), onMenuClick = onMenuClick) }) { padding ->
+    Scaffold(
+        topBar = {
+            SimpleTopBar(
+                title = stringResource(R.string.profile_title),
+                onMenuClick = onMenuClick,
+                actions = {
+                    if (baby != null) {
+                        IconButton(onClick = { showEditDialog = true }) {
+                            Icon(Icons.Filled.Edit, contentDescription = stringResource(R.string.action_edit))
+                        }
+                    }
+                }
+            )
+        }
+    ) { padding ->
         if (baby == null) {
             Box(modifier = Modifier.padding(padding).fillMaxSize()) {
                 Text(stringResource(R.string.profile_no_data), modifier = Modifier.padding(16.dp))
@@ -49,7 +66,6 @@ fun ProfileScreen(onMenuClick: () -> Unit, viewModel: MainViewModel) {
             return@Scaffold
         }
 
-        var showDatePicker by remember(baby.id) { mutableStateOf(false) }
         val birthDate = baby.birthDate
 
         Column(
@@ -62,31 +78,14 @@ fun ProfileScreen(onMenuClick: () -> Unit, viewModel: MainViewModel) {
         ) {
             Text(baby.name, style = MaterialTheme.typography.headlineSmall)
 
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text(
-                    stringResource(
-                        R.string.profile_birth_date_label,
-                        birthDate?.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
-                            ?: stringResource(R.string.profile_birth_date_not_set),
-                    ),
-                    style = MaterialTheme.typography.bodyLarge,
-                )
-                TextButton(onClick = { showDatePicker = true }) {
-                    Text(
-                        stringResource(
-                            if (birthDate == null) R.string.profile_set_birth_date else R.string.profile_edit_birth_date,
-                        ),
-                    )
-                }
-            }
-
-            if (showDatePicker) {
-                DatePickerDialogHost(
-                    initialDate = birthDate,
-                    onConfirm = { viewModel.updateBabyBirthDate(baby.id, it) },
-                    onDismiss = { showDatePicker = false },
-                )
-            }
+            Text(
+                stringResource(
+                    R.string.profile_birth_date_label,
+                    birthDate?.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
+                        ?: stringResource(R.string.profile_birth_date_not_set),
+                ),
+                style = MaterialTheme.typography.bodyLarge,
+            )
 
             if (birthDate != null) {
                 AgeSection(birthDate)
@@ -96,6 +95,17 @@ fun ProfileScreen(onMenuClick: () -> Unit, viewModel: MainViewModel) {
 
             GrowthAndFeedingSection(uiState.chartData)
         }
+    }
+
+    if (showEditDialog && baby != null) {
+        AddEditBabyDialog(
+            baby = baby,
+            onConfirm = { name, birthDate, gender ->
+                viewModel.updateBabyProfile(baby.id, name, birthDate, gender)
+                showEditDialog = false
+            },
+            onDismiss = { showEditDialog = false }
+        )
     }
 }
 

@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vasilecoste.babylog.R
 import com.vasilecoste.babylog.data.db.entity.TummyTimeEntry
-import com.vasilecoste.babylog.ui.components.AddBabyDialog
+import com.vasilecoste.babylog.ui.components.AddEditBabyDialog
 import com.vasilecoste.babylog.ui.components.BabyProfileSwitcherDialog
 import com.vasilecoste.babylog.ui.components.HeaderBar
 import com.vasilecoste.babylog.ui.daypicker.DayPickerSheet
@@ -136,9 +136,9 @@ fun TummyTimeScreen(
     }
 
     if (showAddBaby) {
-        AddBabyDialog(
-            onConfirm = { name, birthDate ->
-                viewModel.addBabyProfile(name, birthDate)
+        AddEditBabyDialog(
+            onConfirm = { name, birthDate, gender ->
+                viewModel.addBabyProfile(name, birthDate, gender)
                 showAddBaby = false
             },
             onDismiss = { showAddBaby = false },

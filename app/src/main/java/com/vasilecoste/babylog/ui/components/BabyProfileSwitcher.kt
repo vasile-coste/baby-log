@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
@@ -65,12 +66,30 @@ fun BabyProfileSwitcherDialog(
 }
 
 @Composable
-fun AddBabyDialog(onConfirm: (String, LocalDate?) -> Unit, onDismiss: () -> Unit) {
-    var name by remember { mutableStateOf("") }
-    var birthDate by remember { mutableStateOf<LocalDate?>(null) }
+fun AddEditBabyDialog(
+    baby: BabyProfile? = null,
+    onConfirm: (name: String, birthDate: LocalDate?, gender: String?) -> Unit,
+    onDismiss: () -> Unit
+) {
+    var name by remember { mutableStateOf(baby?.name ?: "") }
+    var birthDate by remember { mutableStateOf<LocalDate?>(baby?.birthDate) }
+    var gender by remember { mutableStateOf<String?>(baby?.gender) }
+
+    val genderOptions = listOf(
+        null to stringResource(R.string.gender_unspecified),
+        "male" to stringResource(R.string.gender_male),
+        "female" to stringResource(R.string.gender_female)
+    )
+
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(stringResource(R.string.add_baby_profile_title)) },
+        title = {
+            Text(
+                stringResource(
+                    if (baby == null) R.string.add_baby_profile_title else R.string.edit_baby_profile_title
+                )
+            )
+        },
         text = {
             Column {
                 OutlinedTextField(
@@ -78,20 +97,51 @@ fun AddBabyDialog(onConfirm: (String, LocalDate?) -> Unit, onDismiss: () -> Unit
                     onValueChange = { name = it },
                     label = { Text(stringResource(R.string.baby_name_label)) },
                     singleLine = true,
+                    modifier = Modifier.fillMaxWidth()
                 )
                 DatePickerField(
                     label = stringResource(R.string.birth_date_optional_label),
                     selectedDate = birthDate,
                     onDateSelected = { birthDate = it },
-                    modifier = Modifier.padding(top = 8.dp),
+                    modifier = Modifier
+                        .padding(top = 8.dp)
+                        .fillMaxWidth(),
                 )
+
+                Text(
+                    text = stringResource(R.string.gender_label),
+                    style = MaterialTheme.typography.labelLarge,
+                    modifier = Modifier.padding(top = 16.dp, bottom = 4.dp)
+                )
+
+                genderOptions.forEach { (value, label) ->
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .selectable(
+                                selected = gender == value,
+                                onClick = { gender = value }
+                            ),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        RadioButton(
+                            selected = gender == value,
+                            onClick = { gender = value }
+                        )
+                        Text(
+                            text = label,
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.padding(start = 8.dp)
+                        )
+                    }
+                }
             }
         },
         confirmButton = {
             TextButton(
-                onClick = { if (name.isNotBlank()) onConfirm(name.trim(), birthDate) },
+                onClick = { if (name.isNotBlank()) onConfirm(name.trim(), birthDate, gender) },
                 enabled = name.isNotBlank(),
-            ) { Text(stringResource(R.string.action_add)) }
+            ) { Text(stringResource(if (baby == null) R.string.action_add else R.string.action_save)) }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) }

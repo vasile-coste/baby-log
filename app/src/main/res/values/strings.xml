@@ -7,6 +7,7 @@
     <string name="action_delete">Delete</string>
     <string name="action_add">Add</string>
     <string name="action_close">Close</string>
+    <string name="action_edit">Edit</string>
     <string name="label_yes">Yes</string>
     <string name="label_no">No</string>
     <string name="sort">Sort entries</string>
@@ -18,7 +19,12 @@
     <!-- Baby profile switcher -->
     <string name="switch_baby_title">Switch baby</string>
     <string name="add_baby_profile_title">Add baby profile</string>
+    <string name="edit_baby_profile_title">Edit baby profile</string>
     <string name="baby_name_label">Name</string>
+    <string name="gender_label">Gender</string>
+    <string name="gender_unspecified">Unspecified</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
 
     <!-- Header -->
     <string name="day_today">Today</string>

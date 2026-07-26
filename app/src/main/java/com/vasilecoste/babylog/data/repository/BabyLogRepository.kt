@@ -38,14 +38,18 @@ class BabyLogRepository(
 ) {
     val babies: Flow<List<BabyProfile>> = babyProfileDao.getAll()
 
-    suspend fun addBabyProfile(name: String, birthDate: LocalDate? = null): Long = babyProfileDao.insert(
-        BabyProfile(name = name, birthDate = birthDate, createdAtEpochMillis = System.currentTimeMillis()),
+    suspend fun getBabyById(id: Long): BabyProfile? = babyProfileDao.getById(id)
+
+    suspend fun addBabyProfile(name: String, birthDate: LocalDate? = null, gender: String? = null): Long = babyProfileDao.insert(
+        BabyProfile(
+            name = name,
+            birthDate = birthDate,
+            gender = gender,
+            createdAtEpochMillis = System.currentTimeMillis()
+        ),
     )
 
-    suspend fun updateBabyBirthDate(babyId: Long, birthDate: LocalDate) {
-        val baby = babyProfileDao.getById(babyId) ?: return
-        babyProfileDao.update(baby.copy(birthDate = birthDate))
-    }
+    suspend fun updateBabyProfile(profile: BabyProfile) = babyProfileDao.update(profile)
 
     fun entriesForDay(babyId: Long, date: LocalDate): Flow<List<Entry>> =
         entryDao.getForDay(babyId, date)

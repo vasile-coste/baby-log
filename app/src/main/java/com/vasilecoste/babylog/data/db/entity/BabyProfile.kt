@@ -9,5 +9,6 @@ data class BabyProfile(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val name: String,
     val birthDate: LocalDate? = null,
+    val gender: String? = null,
     val createdAtEpochMillis: Long,
 )

@@ -118,15 +118,24 @@ class MainViewModel(
         viewModelScope.launch { selectedBabyStore.setSelectedBabyId(babyId) }
     }
 
-    fun addBabyProfile(name: String, birthDate: LocalDate? = null) {
+    fun addBabyProfile(name: String, birthDate: LocalDate? = null, gender: String? = null) {
         viewModelScope.launch {
-            val id = repository.addBabyProfile(name, birthDate)
+            val id = repository.addBabyProfile(name, birthDate, gender)
             selectedBabyStore.setSelectedBabyId(id)
         }
     }
 
-    fun updateBabyBirthDate(babyId: Long, birthDate: LocalDate) {
-        viewModelScope.launch { repository.updateBabyBirthDate(babyId, birthDate) }
+    fun updateBabyProfile(id: Long, name: String, birthDate: LocalDate?, gender: String?) {
+        viewModelScope.launch {
+            val existing = repository.getBabyById(id) ?: return@launch
+            repository.updateBabyProfile(
+                existing.copy(
+                    name = name,
+                    birthDate = birthDate,
+                    gender = gender
+                )
+            )
+        }
     }
 
     fun addEntry(time: LocalTime, foodMl: Int?, poop: Boolean, pee: Boolean, puke: Boolean, vitamin: Boolean, breastfed: Boolean) {

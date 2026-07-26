@@ -1,5 +1,6 @@
 package com.vasilecoste.babylog.ui.components
 
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -13,7 +14,11 @@ import com.vasilecoste.babylog.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SimpleTopBar(title: String, onMenuClick: () -> Unit) {
+fun SimpleTopBar(
+    title: String,
+    onMenuClick: () -> Unit,
+    actions: @Composable RowScope.() -> Unit = {}
+) {
     TopAppBar(
         title = { Text(title) },
         navigationIcon = {
@@ -21,5 +26,6 @@ fun SimpleTopBar(title: String, onMenuClick: () -> Unit) {
                 Icon(Icons.Filled.Menu, contentDescription = stringResource(R.string.cd_open_menu))
             }
         },
+        actions = actions
     )
 }
