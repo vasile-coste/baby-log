@@ -65,7 +65,11 @@ fun TimelineItem(entry: Entry, onLongPress: () -> Unit, modifier: Modifier = Mod
                 )
             }
             if (entry.vitamin) {
-                Icon(Icons.Filled.Medication, contentDescription = stringResource(R.string.cd_vitamin))
+                Icon(
+                    Icons.Filled.Medication,
+                    contentDescription = stringResource(R.string.cd_vitamin),
+                    tint = MaterialTheme.colorScheme.primary
+                )
             }
             if (entry.breastfed) {
                 Icon(Icons.Filled.ChildCare, contentDescription = stringResource(R.string.checkbox_breastfed))

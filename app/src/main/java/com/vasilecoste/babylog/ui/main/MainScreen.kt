@@ -114,7 +114,7 @@ fun MainScreen(
                 }
                 LazyColumn(modifier = Modifier.fillMaxSize()) {
                     item {
-                        Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
+                        Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 2.dp)) {
                             IconButton(
                                 onClick = { sortAscending = !sortAscending },
                                 modifier = Modifier.align(Alignment.CenterEnd),

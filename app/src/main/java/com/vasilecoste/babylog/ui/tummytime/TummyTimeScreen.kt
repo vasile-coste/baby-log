@@ -77,7 +77,7 @@ fun TummyTimeScreen(
                 startEpochMillis = uiState.tummyTimerStartEpochMillis,
                 onStart = { viewModel.startTummyTimer() },
                 onStop = { viewModel.stopTummyTimer() },
-                modifier = Modifier.padding(vertical = 16.dp),
+                modifier = Modifier.padding(vertical = 8.dp),
             )
 
             if (uiState.tummyTimeEntries.isEmpty()) {
@@ -92,7 +92,7 @@ fun TummyTimeScreen(
                 }
                 LazyColumn(modifier = Modifier.weight(1f).fillMaxWidth()) {
                     item {
-                        Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
+                        Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 2.dp)) {
                             IconButton(
                                 onClick = { sortAscending = !sortAscending },
                                 modifier = Modifier.align(Alignment.CenterEnd),
