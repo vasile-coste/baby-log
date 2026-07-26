@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ChildCare
 import androidx.compose.material.icons.filled.LocalDrink
 import androidx.compose.material.icons.filled.Medication
 import androidx.compose.material.icons.filled.Sick
@@ -67,7 +68,7 @@ fun TimelineItem(entry: Entry, onLongPress: () -> Unit, modifier: Modifier = Mod
                 Icon(Icons.Filled.Medication, contentDescription = stringResource(R.string.cd_vitamin))
             }
             if (entry.breastfed) {
-                Text(stringResource(R.string.checkbox_breastfed), style = MaterialTheme.typography.labelMedium)
+                Icon(Icons.Filled.ChildCare, contentDescription = stringResource(R.string.checkbox_breastfed))
             }
         }
     }
