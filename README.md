@@ -100,6 +100,13 @@ Any OS: verify with `java -version` and `./gradlew -v` before building. Building
 Exact coordinates live in [`gradle/libs.versions.toml`](gradle/libs.versions.toml).
 
 ### Build commands
+
+Configure local properties
+
+```bash
+cp local.properties.example local.properties
+```
+
 Run from the project root:
 
 ```bash

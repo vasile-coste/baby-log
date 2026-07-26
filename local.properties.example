@@ -1,0 +1,6 @@
+# Location of the SDK. This is only used by Gradle.
+
+# Linux
+# sdk.dir=/home/<user>/Android/Sdk
+# MacOS
+# sdk.dir=/Users/<user>/Library/Android/sdk
