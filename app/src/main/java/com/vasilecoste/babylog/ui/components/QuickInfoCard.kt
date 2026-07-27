@@ -9,11 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.LocalDrink
-import androidx.compose.material.icons.filled.Medication
 import androidx.compose.material.icons.filled.Restaurant
-import androidx.compose.material.icons.filled.Sick
-import androidx.compose.material.icons.filled.WaterDrop
+import androidx.compose.material.icons.outlined.Sick
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -23,7 +20,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.vasilecoste.babylog.R
@@ -37,7 +36,7 @@ fun QuickInfoCard(stats: QuickStats, modifier: Modifier = Modifier) {
     ) {
         Column(modifier = Modifier.padding(6.dp), verticalArrangement = Arrangement.spacedBy(3.dp)) {
             QuickStatCard(
-                icon = Icons.Filled.Restaurant,
+                painter = rememberVectorPainter(Icons.Filled.Restaurant),
                 text = stringResource(R.string.quick_total_food, stats.totalFoodMl)
             )
         }
@@ -50,7 +49,7 @@ fun QuickInfoCard(stats: QuickStats, modifier: Modifier = Modifier) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             QuickStatCard(
-                icon = Icons.Filled.Medication,
+                painter = painterResource(R.drawable.id_vitamins),
                 text = stringResource(
                     R.string.quick_vitamin,
                     stringResource(if (stats.vitaminTaken) R.string.label_yes else R.string.label_no),
@@ -59,17 +58,17 @@ fun QuickInfoCard(stats: QuickStats, modifier: Modifier = Modifier) {
             )
 
             QuickStatCard(
-                icon = Icons.Filled.WaterDrop,
+                painter = painterResource(R.drawable.ic_poop),
                 text = stringResource(R.string.quick_poops, stats.poopCount)
             )
 
             QuickStatCard(
-                icon = Icons.Filled.LocalDrink,
+                painter = painterResource(R.drawable.ic_pee),
                 text = stringResource(R.string.quick_pees, stats.peeCount)
             )
 
             QuickStatCard(
-                icon = Icons.Filled.Sick,
+                painter = rememberVectorPainter(Icons.Outlined.Sick),
                 text = stringResource(R.string.quick_pukes, stats.pukeCount),
                 tint = if (stats.pukeCount == 0) Color(0xFF2E7D32) else MaterialTheme.colorScheme.error
             )
@@ -79,7 +78,7 @@ fun QuickInfoCard(stats: QuickStats, modifier: Modifier = Modifier) {
 
 @Composable
 private fun QuickStatCard(
-    icon: ImageVector,
+    painter: Painter,
     text: String,
     tint: Color = MaterialTheme.colorScheme.onSurfaceVariant
 ) {
@@ -94,7 +93,7 @@ private fun QuickStatCard(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Icon(icon, contentDescription = null, tint = tint)
+            Icon(painter, contentDescription = null, tint = tint)
             Text(text, style = MaterialTheme.typography.bodyMedium)
         }
     }

@@ -7,11 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ChildCare
-import androidx.compose.material.icons.filled.LocalDrink
-import androidx.compose.material.icons.filled.Medication
-import androidx.compose.material.icons.filled.Sick
-import androidx.compose.material.icons.filled.WaterDrop
+import androidx.compose.material.icons.outlined.Sick
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -20,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.vasilecoste.babylog.R
@@ -54,27 +51,23 @@ fun TimelineItem(entry: Entry, onLongPress: () -> Unit, modifier: Modifier = Mod
                 )
             }
             if (entry.poop) {
-                Icon(Icons.Filled.WaterDrop, contentDescription = stringResource(R.string.cd_poop))
+                Icon(painterResource(R.drawable.ic_poop), contentDescription = stringResource(R.string.cd_poop))
             }
             if (entry.pee) {
-                Icon(Icons.Filled.LocalDrink, contentDescription = stringResource(R.string.cd_pee))
+                Icon(painterResource(R.drawable.ic_pee), contentDescription = stringResource(R.string.cd_pee))
             }
             if (entry.puke) {
                 Icon(
-                    Icons.Filled.Sick,
+                    Icons.Outlined.Sick,
                     contentDescription = stringResource(R.string.cd_puke),
                     tint = MaterialTheme.colorScheme.error,
                 )
             }
             if (entry.vitamin) {
-                Icon(
-                    Icons.Filled.Medication,
-                    contentDescription = stringResource(R.string.cd_vitamin),
-                    tint = MaterialTheme.colorScheme.primary
-                )
+                Icon(painterResource(R.drawable.id_vitamins), contentDescription = stringResource(R.string.cd_vitamin))
             }
             if (entry.breastfed) {
-                Icon(Icons.Filled.ChildCare, contentDescription = stringResource(R.string.checkbox_breastfed))
+                Icon(painterResource(R.drawable.id_breastfeed), contentDescription = stringResource(R.string.checkbox_breastfed))
             }
         }
     }

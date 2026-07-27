@@ -9,11 +9,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ChildCare
-import androidx.compose.material.icons.filled.LocalDrink
-import androidx.compose.material.icons.filled.Medication
-import androidx.compose.material.icons.filled.Sick
-import androidx.compose.material.icons.filled.WaterDrop
+import androidx.compose.material.icons.outlined.Sick
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -31,7 +27,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -87,32 +85,32 @@ fun AddEditEntryDialog(
                 )
 
                 CheckboxRow(
-                    icon = Icons.Filled.WaterDrop,
+                    painter = painterResource(R.drawable.ic_poop),
                     label = stringResource(R.string.checkbox_poop),
                     checked = poop,
                     onCheckedChange = { poop = it },
                 )
                 CheckboxRow(
-                    icon = Icons.Filled.LocalDrink,
+                    painter = painterResource(R.drawable.ic_pee),
                     label = stringResource(R.string.checkbox_pee),
                     checked = pee,
                     onCheckedChange = { pee = it },
                 )
                 CheckboxRow(
-                    icon = Icons.Filled.Sick,
+                    painter = rememberVectorPainter(Icons.Outlined.Sick),
                     label = stringResource(R.string.checkbox_puke),
                     checked = puke,
                     onCheckedChange = { puke = it },
                 )
                 CheckboxRow(
-                    icon = Icons.Filled.ChildCare,
+                    painter = painterResource(R.drawable.id_breastfeed),
                     label = stringResource(R.string.checkbox_breastfed),
                     checked = breastfed,
                     onCheckedChange = { breastfed = it },
                 )
                 if (showVitaminOption) {
                     CheckboxRow(
-                        icon = Icons.Filled.Medication,
+                        painter = painterResource(R.drawable.id_vitamins),
                         label = stringResource(R.string.checkbox_vitamins),
                         checked = vitamin,
                         onCheckedChange = { vitamin = it },
@@ -151,10 +149,10 @@ fun AddEditEntryDialog(
 }
 
 @Composable
-private fun CheckboxRow(icon: ImageVector, label: String, checked: Boolean, onCheckedChange: (Boolean) -> Unit) {
+private fun CheckboxRow(painter: Painter, label: String, checked: Boolean, onCheckedChange: (Boolean) -> Unit) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Checkbox(checked = checked, onCheckedChange = onCheckedChange)
-        Icon(icon, contentDescription = null, modifier = Modifier.padding(end = 8.dp))
+        Icon(painter, contentDescription = null, modifier = Modifier.padding(end = 8.dp))
         Text(label)
     }
 }
