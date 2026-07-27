@@ -134,6 +134,8 @@
     <string name="profile_theme_default">Default</string>
     <string name="profile_theme_blue">Blue</string>
     <string name="profile_theme_pink">Pink</string>
+    <string name="profile_delete_baby_title">Delete baby profile?</string>
+    <string name="profile_delete_baby_message">This will permanently delete %1$s\'s profile along with all associated data. This cannot be undone.</string>
 
     <!-- Import / export screen -->
     <string name="import_export_title">Import / export data</string>

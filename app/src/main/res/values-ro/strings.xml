@@ -134,6 +134,8 @@
     <string name="profile_theme_default">Implicită</string>
     <string name="profile_theme_blue">Albastru</string>
     <string name="profile_theme_pink">Roz</string>
+    <string name="profile_delete_baby_title">Ștergi profilul bebelușului?</string>
+    <string name="profile_delete_baby_message">Aceasta va șterge definitiv profilul lui %1$s, împreună cu toate înregistrările asociate. Această acțiune nu poate fi anulată.</string>
 
     <!-- Import / export screen -->
     <string name="import_export_title">Import / export date</string>

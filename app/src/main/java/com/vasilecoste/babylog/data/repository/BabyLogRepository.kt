@@ -58,6 +58,8 @@ class BabyLogRepository(
 
     suspend fun updateBabyProfile(profile: BabyProfile) = babyProfileDao.update(profile)
 
+    suspend fun deleteBabyProfile(profile: BabyProfile) = babyProfileDao.delete(profile)
+
     fun themeOverride(babyId: Long): Flow<String?> =
         babyThemePreferenceDao.getByBabyId(babyId).map { it?.overrideTheme }
 

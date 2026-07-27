@@ -1,6 +1,7 @@
 package com.vasilecoste.babylog.data.db.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
@@ -14,6 +15,9 @@ interface BabyProfileDao {
 
     @Update
     suspend fun update(profile: BabyProfile)
+
+    @Delete
+    suspend fun delete(profile: BabyProfile)
 
     @Query("SELECT * FROM baby_profiles ORDER BY createdAtEpochMillis ASC")
     fun getAll(): Flow<List<BabyProfile>>

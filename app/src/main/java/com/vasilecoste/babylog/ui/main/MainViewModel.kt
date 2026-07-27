@@ -160,6 +160,10 @@ class MainViewModel(
         }
     }
 
+    fun deleteBabyProfile(baby: BabyProfile) {
+        viewModelScope.launch { repository.deleteBabyProfile(baby) }
+    }
+
     fun addEntry(time: LocalTime, foodMl: Int?, poop: Boolean, pee: Boolean, puke: Boolean, vitamin: Boolean, breastfed: Boolean) {
         val babyId = selectedBabyId.value ?: return
         viewModelScope.launch {

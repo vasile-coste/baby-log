@@ -12,6 +12,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
@@ -53,6 +54,7 @@ fun ProfileScreen(onMenuClick: () -> Unit, viewModel: MainViewModel) {
     val uiState by viewModel.uiState.collectAsState()
     val baby = uiState.selectedBaby
     var showEditDialog by remember { mutableStateOf(false) }
+    var showDeleteDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -85,8 +87,16 @@ fun ProfileScreen(onMenuClick: () -> Unit, viewModel: MainViewModel) {
                 .padding(16.dp)
                 .verticalScroll(rememberScrollState()),
         ) {
-            Text(baby.name, style = MaterialTheme.typography.headlineSmall)
-
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(baby.name, style = MaterialTheme.typography.headlineSmall)
+                IconButton(onClick = { showDeleteDialog = true }) {
+                    Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.action_delete))
+                }
+            }
 
             Card(
                 modifier = Modifier.fillMaxWidth().padding(16.dp),
@@ -132,6 +142,23 @@ fun ProfileScreen(onMenuClick: () -> Unit, viewModel: MainViewModel) {
                 showEditDialog = false
             },
             onDismiss = { showEditDialog = false }
+        )
+    }
+
+    if (showDeleteDialog && baby != null) {
+        AlertDialog(
+            onDismissRequest = { showDeleteDialog = false },
+            title = { Text(stringResource(R.string.profile_delete_baby_title)) },
+            text = { Text(stringResource(R.string.profile_delete_baby_message, baby.name)) },
+            confirmButton = {
+                TextButton(onClick = {
+                    viewModel.deleteBabyProfile(baby)
+                    showDeleteDialog = false
+                }) { Text(stringResource(R.string.action_delete)) }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDeleteDialog = false }) { Text(stringResource(R.string.action_cancel)) }
+            },
         )
     }
 }
