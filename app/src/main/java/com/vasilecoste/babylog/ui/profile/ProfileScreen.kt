@@ -1,5 +1,6 @@
 package com.vasilecoste.babylog.ui.profile
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,6 +13,7 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -19,6 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -197,28 +200,56 @@ private fun GrowthAndFeedingSection(chartData: List<DailyAggregate>) {
 
 @Composable
 private fun ThemeSection(selectedOverride: AppTheme?, onSelect: (AppTheme?) -> Unit) {
+    var showDialog by remember { mutableStateOf(false) }
     val themeOptions = listOf(
         null to stringResource(R.string.profile_theme_automatic),
         AppTheme.DEFAULT to stringResource(R.string.profile_theme_default),
         AppTheme.BLUE to stringResource(R.string.profile_theme_blue),
         AppTheme.PINK to stringResource(R.string.profile_theme_pink),
     )
+    val currentLabel = themeOptions.first { it.first == selectedOverride }.second
 
-    Text(stringResource(R.string.profile_theme_label), style = MaterialTheme.typography.titleMedium)
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { showDialog = true },
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(stringResource(R.string.profile_theme_label), style = MaterialTheme.typography.titleMedium)
+        Text(currentLabel, style = MaterialTheme.typography.bodyLarge)
+    }
 
-    themeOptions.forEach { (value, label) ->
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .selectable(
-                    selected = selectedOverride == value,
-                    onClick = { onSelect(value) },
-                ),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            RadioButton(selected = selectedOverride == value, onClick = { onSelect(value) })
-            Text(text = label, modifier = Modifier.padding(start = 8.dp))
-        }
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = { showDialog = false },
+            title = { Text(stringResource(R.string.profile_theme_label)) },
+            text = {
+                Column {
+                    themeOptions.forEach { (value, label) ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .selectable(
+                                    selected = selectedOverride == value,
+                                    onClick = {
+                                        onSelect(value)
+                                        showDialog = false
+                                    },
+                                ),
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            RadioButton(selected = selectedOverride == value, onClick = null)
+                            Text(text = label, modifier = Modifier.padding(start = 8.dp))
+                        }
+                    }
+                }
+            },
+            confirmButton = {},
+            dismissButton = {
+                TextButton(onClick = { showDialog = false }) { Text(stringResource(R.string.action_close)) }
+            },
+        )
     }
 }
 
