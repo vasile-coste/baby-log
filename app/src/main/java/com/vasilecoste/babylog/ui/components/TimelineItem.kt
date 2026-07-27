@@ -13,6 +13,7 @@ import androidx.compose.material.icons.filled.Medication
 import androidx.compose.material.icons.filled.Sick
 import androidx.compose.material.icons.filled.WaterDrop
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -37,6 +38,7 @@ fun TimelineItem(entry: Entry, onLongPress: () -> Unit, modifier: Modifier = Mod
                 onClick = {},
                 onLongClick = onLongPress,
             ),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
     ) {
         Row(
             modifier = Modifier.padding(12.dp),

@@ -31,7 +31,10 @@ import com.vasilecoste.babylog.ui.main.QuickStats
 
 @Composable
 fun QuickInfoCard(stats: QuickStats, modifier: Modifier = Modifier) {
-    Card(modifier = modifier.fillMaxWidth().padding(8.dp)) {
+    Card(
+        modifier = modifier.fillMaxWidth().padding(16.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+    ) {
         Column(modifier = Modifier.padding(6.dp), verticalArrangement = Arrangement.spacedBy(3.dp)) {
             QuickStatCard(
                 icon = Icons.Filled.Restaurant,
