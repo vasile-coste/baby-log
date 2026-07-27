@@ -1,5 +1,6 @@
 package com.vasilecoste.babylog.ui.components
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
@@ -30,6 +31,9 @@ fun HeaderBar(
     onDayClick: () -> Unit,
     onTitleClick: () -> Unit,
 ) {
+    val containerColor = if (isSystemInDarkTheme()) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.secondary
+    val contentColor = if (isSystemInDarkTheme()) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSecondary
+
     TopAppBar(
         navigationIcon = {
             IconButton(onClick = onMenuClick) {
@@ -40,7 +44,7 @@ fun HeaderBar(
             Row(modifier = Modifier.fillMaxWidth()) {
                 TextButton(
                     onClick = onTitleClick,
-                    colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colorScheme.onPrimaryContainer),
+                    colors = ButtonDefaults.textButtonColors(contentColor = contentColor),
                 ) {
                     Text(babyName)
                 }
@@ -49,16 +53,16 @@ fun HeaderBar(
         actions = {
             TextButton(
                 onClick = onDayClick,
-                colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colorScheme.onPrimaryContainer),
+                colors = ButtonDefaults.textButtonColors(contentColor = contentColor),
             ) {
                 Text(formatDayLabel(selectedDate))
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-            navigationIconContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-            actionIconContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            containerColor = containerColor,
+            titleContentColor = contentColor,
+            navigationIconContentColor = contentColor,
+            actionIconContentColor = contentColor,
         ),
     )
 }
