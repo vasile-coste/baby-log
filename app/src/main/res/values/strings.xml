@@ -103,7 +103,7 @@
     <!-- Navigation drawer -->
     <string name="cd_open_menu">Open menu</string>
     <string name="drawer_title">Menu</string>
-    <string name="drawer_main_app">Main app</string>
+    <string name="drawer_main_app">Main page</string>
     <string name="drawer_tummy_time">Tummy time</string>
     <string name="drawer_statistics">Statistics</string>
     <string name="drawer_baby_profile">Baby profile</string>

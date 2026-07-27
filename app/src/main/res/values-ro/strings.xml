@@ -103,7 +103,7 @@
     <!-- Navigation drawer -->
     <string name="cd_open_menu">Deschide meniul</string>
     <string name="drawer_title">Meniu</string>
-    <string name="drawer_main_app">Aplicația principală</string>
+    <string name="drawer_main_app">Pagina principală</string>
     <string name="drawer_tummy_time">Timp pe burtică</string>
     <string name="drawer_statistics">Statistici</string>
     <string name="drawer_baby_profile">Profil bebeluș</string>
