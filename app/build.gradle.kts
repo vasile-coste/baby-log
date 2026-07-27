@@ -40,6 +40,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            applicationIdSuffix = ".debug"
+            resValue("string", "app_name", "Baby Log Debug")
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
@@ -56,6 +60,7 @@ android {
 
     buildFeatures {
         compose = true
+        resValues = true
     }
 
     ksp {
