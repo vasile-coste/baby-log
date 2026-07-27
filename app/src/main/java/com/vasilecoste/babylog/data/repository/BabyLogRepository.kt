@@ -1,6 +1,7 @@
 package com.vasilecoste.babylog.data.repository
 
 import com.vasilecoste.babylog.data.db.dao.BabyProfileDao
+import com.vasilecoste.babylog.data.db.dao.BabyThemePreferenceDao
 import com.vasilecoste.babylog.data.db.dao.DailyFoodTotal
 import com.vasilecoste.babylog.data.db.dao.DailyTummyTimeTotal
 import com.vasilecoste.babylog.data.db.dao.DiaperSummaryDao
@@ -8,6 +9,7 @@ import com.vasilecoste.babylog.data.db.dao.EntryDao
 import com.vasilecoste.babylog.data.db.dao.TummyTimeDao
 import com.vasilecoste.babylog.data.db.dao.WeightDao
 import com.vasilecoste.babylog.data.db.entity.BabyProfile
+import com.vasilecoste.babylog.data.db.entity.BabyThemePreference
 import com.vasilecoste.babylog.data.db.entity.DiaperSummary
 import com.vasilecoste.babylog.data.db.entity.Entry
 import com.vasilecoste.babylog.data.db.entity.TummyTimeEntry
@@ -18,6 +20,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
 
 data class DailyAggregate(
     val date: LocalDate,
@@ -35,6 +38,7 @@ class BabyLogRepository(
     private val weightDao: WeightDao,
     private val diaperSummaryDao: DiaperSummaryDao,
     private val tummyTimeDao: TummyTimeDao,
+    private val babyThemePreferenceDao: BabyThemePreferenceDao,
 ) {
     val babies: Flow<List<BabyProfile>> = babyProfileDao.getAll()
 
@@ -50,6 +54,13 @@ class BabyLogRepository(
     )
 
     suspend fun updateBabyProfile(profile: BabyProfile) = babyProfileDao.update(profile)
+
+    fun themeOverride(babyId: Long): Flow<String?> =
+        babyThemePreferenceDao.getByBabyId(babyId).map { it?.overrideTheme }
+
+    suspend fun setThemeOverride(babyId: Long, overrideTheme: String?) {
+        babyThemePreferenceDao.upsert(BabyThemePreference(babyId = babyId, overrideTheme = overrideTheme))
+    }
 
     fun entriesForDay(babyId: Long, date: LocalDate): Flow<List<Entry>> =
         entryDao.getForDay(babyId, date)

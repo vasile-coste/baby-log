@@ -13,6 +13,8 @@ import com.vasilecoste.babylog.data.db.entity.TummyTimeEntry
 import com.vasilecoste.babylog.data.prefs.SelectedBabyStore
 import com.vasilecoste.babylog.data.repository.BabyLogRepository
 import com.vasilecoste.babylog.data.repository.DailyAggregate
+import com.vasilecoste.babylog.ui.theme.AppTheme
+import com.vasilecoste.babylog.ui.theme.resolveAppTheme
 import java.time.LocalDate
 import java.time.LocalTime
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -23,6 +25,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -38,6 +41,8 @@ private data class DayState(
 )
 
 private data class TummyTimerStart(val epochMillis: Long, val date: LocalDate, val time: LocalTime)
+
+private data class ThemeState(val override: AppTheme?, val active: AppTheme)
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class MainViewModel(
@@ -56,6 +61,16 @@ class MainViewModel(
         combine(repository.babies, selectedBabyId) { babies, selectedId ->
             ProfilesState(babies, babies.find { it.id == selectedId })
         }
+
+    private val themeOverride: Flow<AppTheme?> = selectedBabyId.flatMapLatest { id ->
+        if (id == null) flowOf(null) else repository.themeOverride(id).map { raw ->
+            raw?.let { runCatching { AppTheme.valueOf(it) }.getOrNull() }
+        }
+    }
+
+    private val themeState: Flow<ThemeState> = combine(profilesState, themeOverride) { profiles, override ->
+        ThemeState(override, resolveAppTheme(profiles.selectedBaby?.gender, override))
+    }
 
     private val entries = combine(selectedBabyId, selectedDate) { id, date -> id to date }
         .flatMapLatest { (id, date) ->
@@ -95,20 +110,23 @@ class MainViewModel(
             DayState(date, entries, summary, allPickerDates, chart, tummy)
         }
 
-    val uiState: StateFlow<MainUiState> = combine(profilesState, dayState, tummyTimerStart) { profiles, day, timer ->
-        MainUiState(
-            babies = profiles.babies,
-            selectedBaby = profiles.selectedBaby,
-            selectedDate = day.selectedDate,
-            entries = day.entries,
-            diaperSummary = day.diaperSummary,
-            pickerDates = day.pickerDates,
-            chartData = day.chartData,
-            tummyTimeEntries = day.tummyTimeEntries,
-            tummyTimerRunning = timer != null,
-            tummyTimerStartEpochMillis = timer?.epochMillis,
-        )
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), MainUiState())
+    val uiState: StateFlow<MainUiState> =
+        combine(profilesState, dayState, tummyTimerStart, themeState) { profiles, day, timer, theme ->
+            MainUiState(
+                babies = profiles.babies,
+                selectedBaby = profiles.selectedBaby,
+                selectedDate = day.selectedDate,
+                entries = day.entries,
+                diaperSummary = day.diaperSummary,
+                pickerDates = day.pickerDates,
+                chartData = day.chartData,
+                tummyTimeEntries = day.tummyTimeEntries,
+                tummyTimerRunning = timer != null,
+                tummyTimerStartEpochMillis = timer?.epochMillis,
+                activeTheme = theme.active,
+                themeOverride = theme.override,
+            )
+        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), MainUiState())
 
     fun selectDate(date: LocalDate) {
         selectedDate.value = date
@@ -123,6 +141,10 @@ class MainViewModel(
             val id = repository.addBabyProfile(name, birthDate, gender)
             selectedBabyStore.setSelectedBabyId(id)
         }
+    }
+
+    fun setThemeOverride(babyId: Long, theme: AppTheme?) {
+        viewModelScope.launch { repository.setThemeOverride(babyId, theme?.name) }
     }
 
     fun updateBabyProfile(id: Long, name: String, birthDate: LocalDate?, gender: String?) {

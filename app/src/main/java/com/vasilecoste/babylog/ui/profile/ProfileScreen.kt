@@ -3,9 +3,12 @@ package com.vasilecoste.babylog.ui.profile
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
@@ -13,6 +16,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,6 +35,7 @@ import com.vasilecoste.babylog.data.repository.DailyAggregate
 import com.vasilecoste.babylog.ui.components.AddEditBabyDialog
 import com.vasilecoste.babylog.ui.components.SimpleTopBar
 import com.vasilecoste.babylog.ui.main.MainViewModel
+import com.vasilecoste.babylog.ui.theme.AppTheme
 import java.time.LocalDate
 import java.time.Period
 import java.time.format.DateTimeFormatter
@@ -94,6 +99,13 @@ fun ProfileScreen(onMenuClick: () -> Unit, viewModel: MainViewModel) {
             HorizontalDivider()
 
             GrowthAndFeedingSection(uiState.chartData)
+
+            HorizontalDivider()
+
+            ThemeSection(
+                selectedOverride = uiState.themeOverride,
+                onSelect = { override -> viewModel.setThemeOverride(baby.id, override) },
+            )
         }
     }
 
@@ -181,6 +193,33 @@ private fun GrowthAndFeedingSection(chartData: List<DailyAggregate>) {
             stringResource(R.string.profile_no_data)
         },
     )
+}
+
+@Composable
+private fun ThemeSection(selectedOverride: AppTheme?, onSelect: (AppTheme?) -> Unit) {
+    val themeOptions = listOf(
+        null to stringResource(R.string.profile_theme_automatic),
+        AppTheme.DEFAULT to stringResource(R.string.profile_theme_default),
+        AppTheme.BLUE to stringResource(R.string.profile_theme_blue),
+        AppTheme.PINK to stringResource(R.string.profile_theme_pink),
+    )
+
+    Text(stringResource(R.string.profile_theme_label), style = MaterialTheme.typography.titleMedium)
+
+    themeOptions.forEach { (value, label) ->
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .selectable(
+                    selected = selectedOverride == value,
+                    onClick = { onSelect(value) },
+                ),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            RadioButton(selected = selectedOverride == value, onClick = { onSelect(value) })
+            Text(text = label, modifier = Modifier.padding(start = 8.dp))
+        }
+    }
 }
 
 private fun formatDecimal(value: Double, decimals: Int): String {

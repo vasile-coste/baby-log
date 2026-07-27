@@ -5,6 +5,7 @@ import com.vasilecoste.babylog.data.db.entity.DiaperSummary
 import com.vasilecoste.babylog.data.db.entity.Entry
 import com.vasilecoste.babylog.data.db.entity.TummyTimeEntry
 import com.vasilecoste.babylog.data.repository.DailyAggregate
+import com.vasilecoste.babylog.ui.theme.AppTheme
 import java.time.LocalDate
 
 data class QuickStats(
@@ -26,6 +27,8 @@ data class MainUiState(
     val tummyTimeEntries: List<TummyTimeEntry> = emptyList(),
     val tummyTimerRunning: Boolean = false,
     val tummyTimerStartEpochMillis: Long? = null,
+    val activeTheme: AppTheme = AppTheme.DEFAULT,
+    val themeOverride: AppTheme? = null,
 ) {
     val quickStats: QuickStats
         get() = QuickStats(

@@ -129,6 +129,11 @@
     <string name="profile_min_food_7d">Min. food (last 7 days): %1$s ml/day</string>
     <string name="profile_max_food_7d">Max. food (last 7 days): %1$s ml/day</string>
     <string name="profile_no_data">Not enough data yet</string>
+    <string name="profile_theme_label">Theme</string>
+    <string name="profile_theme_automatic">Automatic (based on gender)</string>
+    <string name="profile_theme_default">Default</string>
+    <string name="profile_theme_blue">Blue</string>
+    <string name="profile_theme_pink">Pink</string>
 
     <!-- Import / export screen -->
     <string name="import_export_title">Import / export data</string>

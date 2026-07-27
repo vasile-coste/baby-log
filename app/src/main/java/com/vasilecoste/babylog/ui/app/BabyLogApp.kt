@@ -26,7 +26,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vasilecoste.babylog.R
 import com.vasilecoste.babylog.ui.about.AboutScreen
 import com.vasilecoste.babylog.ui.chart.StatisticsScreen
@@ -40,8 +39,7 @@ import kotlinx.coroutines.launch
 private enum class AppScreen { MAIN, TUMMY_TIME, STATISTICS, PROFILE, IMPORT_EXPORT, ABOUT }
 
 @Composable
-fun BabyLogApp() {
-    val viewModel: MainViewModel = viewModel(factory = MainViewModel.Factory)
+fun BabyLogApp(viewModel: MainViewModel) {
     var screen by remember { mutableStateOf(AppScreen.MAIN) }
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
