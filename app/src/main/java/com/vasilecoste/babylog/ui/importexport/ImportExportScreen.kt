@@ -19,6 +19,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -66,8 +67,12 @@ fun ImportExportScreen(
     }
 
     fun runImport(data: ImportedBabyData, existingBabyId: Long?, mode: ImportMode) {
-        scope.launch {
-            viewModel.importData(data, existingBabyId, mode).fold(
+        viewModel.importData(data, existingBabyId, mode)
+    }
+
+    LaunchedEffect(viewModel) {
+        viewModel.importResult.collect { result ->
+            result.fold(
                 onSuccess = { (name, count) ->
                     val entriesLabel = resources.getQuantityString(R.plurals.plural_entries, count, count)
                     Toast.makeText(context, resources.getString(R.string.import_success, name, entriesLabel), Toast.LENGTH_LONG).show()

@@ -14,6 +14,7 @@ class AppContainer(context: Context) {
     ).fallbackToDestructiveMigration(dropAllTables = true).build()
 
     val repository: BabyLogRepository = BabyLogRepository(
+        database = database,
         babyProfileDao = database.babyProfileDao(),
         entryDao = database.entryDao(),
         weightDao = database.weightDao(),

@@ -1,5 +1,7 @@
 package com.vasilecoste.babylog.data.repository
 
+import androidx.room.withTransaction
+import com.vasilecoste.babylog.data.db.AppDatabase
 import com.vasilecoste.babylog.data.db.dao.BabyProfileDao
 import com.vasilecoste.babylog.data.db.dao.BabyThemePreferenceDao
 import com.vasilecoste.babylog.data.db.dao.DailyFoodTotal
@@ -33,6 +35,7 @@ data class DailyAggregate(
 enum class ImportMode { REPLACE, MERGE }
 
 class BabyLogRepository(
+    private val database: AppDatabase,
     private val babyProfileDao: BabyProfileDao,
     private val entryDao: EntryDao,
     private val weightDao: WeightDao,
@@ -146,7 +149,7 @@ class BabyLogRepository(
         data: ImportedBabyData,
         existingBabyId: Long? = null,
         mode: ImportMode = ImportMode.MERGE,
-    ): Long {
+    ): Long = database.withTransaction {
         val babyId = existingBabyId ?: addBabyProfile(data.babyName, data.birthDate, data.gender)
         if (existingBabyId != null) {
             val existing = babyProfileDao.getById(existingBabyId)
@@ -193,7 +196,7 @@ class BabyLogRepository(
                 TummyTimeEntry(babyId = babyId, date = t.date, startTime = t.startTime, durationSeconds = t.durationSeconds)
             },
         )
-        return babyId
+        babyId
     }
 
     suspend fun exportBabyData(babyId: Long): ExportedBabyData? {
