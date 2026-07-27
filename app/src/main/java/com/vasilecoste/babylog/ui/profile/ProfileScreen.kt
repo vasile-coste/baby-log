@@ -14,6 +14,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -82,26 +84,36 @@ fun ProfileScreen(onMenuClick: () -> Unit, viewModel: MainViewModel) {
                 .fillMaxSize()
                 .padding(16.dp)
                 .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Text(baby.name, style = MaterialTheme.typography.headlineSmall)
 
-            Text(
-                stringResource(
-                    R.string.profile_birth_date_label,
-                    birthDate?.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
-                        ?: stringResource(R.string.profile_birth_date_not_set),
-                ),
-                style = MaterialTheme.typography.bodyLarge,
-            )
 
-            if (birthDate != null) {
-                AgeSection(birthDate)
+            Card(
+                modifier = Modifier.fillMaxWidth().padding(16.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+            ) {
+                Text(
+                    stringResource(
+                        R.string.profile_birth_date_label,
+                        birthDate?.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
+                            ?: stringResource(R.string.profile_birth_date_not_set),
+                    ),
+                    style = MaterialTheme.typography.bodyLarge,
+                )
+
+                if (birthDate != null) {
+                    AgeSection(birthDate)
+                }
             }
 
             HorizontalDivider()
 
-            GrowthAndFeedingSection(uiState.chartData)
+            Card(
+                modifier = Modifier.fillMaxWidth().padding(16.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+            ) {
+                GrowthAndFeedingSection(uiState.chartData)
+            }
 
             HorizontalDivider()
 
@@ -225,7 +237,7 @@ private fun ThemeSection(selectedOverride: AppTheme?, onSelect: (AppTheme?) -> U
             onDismissRequest = { showDialog = false },
             title = { Text(stringResource(R.string.profile_theme_label)) },
             text = {
-                Column {
+                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                     themeOptions.forEach { (value, label) ->
                         Row(
                             modifier = Modifier
