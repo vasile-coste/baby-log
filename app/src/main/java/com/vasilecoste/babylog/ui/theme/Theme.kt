@@ -30,6 +30,9 @@ private val BlueDarkColorScheme = darkColorScheme(
     secondary = BlueDarkSecondary,
     secondaryContainer = BlueDarkSecondaryContainer,
     tertiary = BlueDarkTertiary,
+    background = BlueDarkBackground,
+    surfaceVariant = BlueDarkSurfaceVariant,
+    onSurfaceVariant = BlueDarkOnSurfaceVariant,
 )
 
 private val BlueLightColorScheme = lightColorScheme(
@@ -40,6 +43,9 @@ private val BlueLightColorScheme = lightColorScheme(
     secondary = BlueLightSecondary,
     secondaryContainer = BlueLightSecondaryContainer,
     tertiary = BlueLightTertiary,
+    background = BlueLightBackground,
+    surfaceVariant = BlueLightSurfaceVariant,
+    onSurfaceVariant = BlueLightOnSurfaceVariant,
 )
 
 private val PinkDarkColorScheme = darkColorScheme(
@@ -50,6 +56,9 @@ private val PinkDarkColorScheme = darkColorScheme(
     secondary = PinkDarkSecondary,
     secondaryContainer = PinkDarkSecondaryContainer,
     tertiary = PinkDarkTertiary,
+    background = PinkDarkBackground,
+    surfaceVariant = PinkDarkSurfaceVariant,
+    onSurfaceVariant = PinkDarkOnSurfaceVariant,
 )
 
 private val PinkLightColorScheme = lightColorScheme(
@@ -60,6 +69,9 @@ private val PinkLightColorScheme = lightColorScheme(
     secondary = PinkLightSecondary,
     secondaryContainer = PinkLightSecondaryContainer,
     tertiary = PinkLightTertiary,
+    background = PinkLightBackground,
+    surfaceVariant = PinkLightSurfaceVariant,
+    onSurfaceVariant = PinkLightOnSurfaceVariant,
 )
 
 @Composable
