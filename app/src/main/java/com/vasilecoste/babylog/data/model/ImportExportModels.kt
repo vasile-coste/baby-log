@@ -26,6 +26,8 @@ data class ImportedTummyTime(val date: LocalDate, val startTime: LocalTime, val 
 
 data class ImportedBabyData(
     val babyName: String,
+    val birthDate: LocalDate? = null,
+    val gender: String? = null,
     val entries: List<ImportedEntry>,
     val weights: List<ImportedWeight>,
     val diaperSummaries: List<ImportedDiaperSummary>,
@@ -34,6 +36,8 @@ data class ImportedBabyData(
 
 data class ExportedBabyData(
     val babyName: String,
+    val birthDate: LocalDate? = null,
+    val gender: String? = null,
     val entries: List<Entry>,
     val weights: List<WeightRecord>,
     val diaperSummaries: List<DiaperSummary>,

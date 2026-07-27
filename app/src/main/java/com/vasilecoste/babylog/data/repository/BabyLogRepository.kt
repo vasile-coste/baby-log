@@ -147,7 +147,18 @@ class BabyLogRepository(
         existingBabyId: Long? = null,
         mode: ImportMode = ImportMode.MERGE,
     ): Long {
-        val babyId = existingBabyId ?: addBabyProfile(data.babyName)
+        val babyId = existingBabyId ?: addBabyProfile(data.babyName, data.birthDate, data.gender)
+        if (existingBabyId != null) {
+            val existing = babyProfileDao.getById(existingBabyId)
+            if (existing != null && (data.birthDate != null || data.gender != null)) {
+                babyProfileDao.update(
+                    existing.copy(
+                        birthDate = data.birthDate ?: existing.birthDate,
+                        gender = data.gender ?: existing.gender,
+                    ),
+                )
+            }
+        }
         if (existingBabyId != null && mode == ImportMode.REPLACE) {
             entryDao.deleteAllForBaby(babyId)
             weightDao.deleteAllForBaby(babyId)
@@ -189,6 +200,8 @@ class BabyLogRepository(
         val baby = babyProfileDao.getById(babyId) ?: return null
         return ExportedBabyData(
             babyName = baby.name,
+            birthDate = baby.birthDate,
+            gender = baby.gender,
             entries = entryDao.getAllForBaby(babyId),
             weights = weightDao.getAllForBaby(babyId),
             diaperSummaries = diaperSummaryDao.getAllForBaby(babyId),

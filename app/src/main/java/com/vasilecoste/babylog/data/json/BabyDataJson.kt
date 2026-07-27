@@ -19,8 +19,10 @@ object BabyDataJson {
 
     fun parse(jsonText: String): ImportedBabyData {
         val root = JSONObject(jsonText)
-        val babyName = root.optJSONObject("baby")?.optString("name")?.takeIf { it.isNotBlank() }
-            ?: "Imported baby"
+        val babyObj = root.optJSONObject("baby")
+        val babyName = babyObj?.optString("name")?.takeIf { it.isNotBlank() } ?: "Imported baby"
+        val birthDate = babyObj?.optString("birthDate")?.takeIf { it.isNotBlank() }?.let { LocalDate.parse(it) }
+        val gender = babyObj?.optString("gender")?.takeIf { it.isNotBlank() }
 
         val entries = root.optJSONArray("entries").orEmpty().map { obj ->
             ImportedEntry(
@@ -59,12 +61,26 @@ object BabyDataJson {
             )
         }
 
-        return ImportedBabyData(babyName, entries, weights, diaperSummaries, tummyTimeEntries)
+        return ImportedBabyData(
+            babyName = babyName,
+            birthDate = birthDate,
+            gender = gender,
+            entries = entries,
+            weights = weights,
+            diaperSummaries = diaperSummaries,
+            tummyTimeEntries = tummyTimeEntries,
+        )
     }
 
     fun serialize(data: ExportedBabyData): String {
         val root = JSONObject()
-        root.put("baby", JSONObject().put("name", data.babyName))
+        root.put(
+            "baby",
+            JSONObject()
+                .put("name", data.babyName)
+                .put("birthDate", data.birthDate?.toString())
+                .put("gender", data.gender),
+        )
 
         root.put(
             "weights",
