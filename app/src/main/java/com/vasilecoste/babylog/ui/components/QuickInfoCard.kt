@@ -94,7 +94,7 @@ private fun QuickStatCard(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Icon(painter, contentDescription = null, tint = tint)
-            Text(text, style = MaterialTheme.typography.bodyMedium)
+            Text(text, style = MaterialTheme.typography.titleMedium)
         }
     }
 }
