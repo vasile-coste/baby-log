@@ -105,10 +105,25 @@ fun StatisticsScreen(
                 return@Scaffold
             }
 
-            val weightPoints = data.mapNotNull { d -> d.weightKg?.let { if (it > 0) d.date to it else null } }
-            val heightPoints = data.mapNotNull { d -> d.heightCm?.let { if (it > 0) d.date to it else null } }
-            val foodPoints = data.mapNotNull { d -> if (d.totalFoodMl > 0) d.date to d.totalFoodMl.toDouble() else null }
-            val tummyTimePoints = data.mapNotNull { d -> if (d.tummyTimeSeconds > 0) d.date to d.tummyTimeSeconds.toDouble() else null }
+            val weightPoints = data
+                .dropWhile { (it.weightKg ?: 0.0) <= 0 }
+                .dropLastWhile { (it.weightKg ?: 0.0) <= 0 }
+                .mapNotNull { d -> d.weightKg?.let { d.date to it } }
+
+            val heightPoints = data
+                .dropWhile { (it.heightCm ?: 0.0) <= 0 }
+                .dropLastWhile { (it.heightCm ?: 0.0) <= 0 }
+                .mapNotNull { d -> d.heightCm?.let { d.date to it } }
+
+            val foodPoints = data
+                .dropWhile { it.totalFoodMl <= 0 }
+                .dropLastWhile { it.totalFoodMl <= 0 }
+                .map { it.date to it.totalFoodMl.toDouble() }
+
+            val tummyTimePoints = data
+                .dropWhile { it.tummyTimeSeconds <= 0 }
+                .dropLastWhile { it.tummyTimeSeconds <= 0 }
+                .map { it.date to it.tummyTimeSeconds.toDouble() }
 
             Column(modifier = Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState())) {
                 Text(
