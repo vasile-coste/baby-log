@@ -36,7 +36,7 @@ fun QuickInfoCard(stats: QuickStats, modifier: Modifier = Modifier) {
     ) {
         Column(modifier = Modifier.padding(6.dp), verticalArrangement = Arrangement.spacedBy(3.dp)) {
             QuickStatCard(
-                painter = rememberVectorPainter(Icons.Filled.Restaurant),
+                painter = painterResource(R.drawable.id_feed),
                 text = stringResource(R.string.quick_total_food, stats.totalFoodMl)
             )
         }
