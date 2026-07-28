@@ -24,6 +24,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.vasilecoste.babylog.R
 import com.vasilecoste.babylog.ui.main.QuickStats
@@ -37,7 +38,8 @@ fun QuickInfoCard(stats: QuickStats, modifier: Modifier = Modifier) {
         Column(modifier = Modifier.padding(6.dp), verticalArrangement = Arrangement.spacedBy(3.dp)) {
             QuickStatCard(
                 painter = painterResource(R.drawable.id_feed),
-                text = stringResource(R.string.quick_total_food, stats.totalFoodMl)
+                text = stringResource(R.string.quick_total_food, stats.totalFoodMl),
+                textStyle = MaterialTheme.typography.titleMedium
             )
         }
         Row(
@@ -80,7 +82,8 @@ fun QuickInfoCard(stats: QuickStats, modifier: Modifier = Modifier) {
 private fun QuickStatCard(
     painter: Painter,
     text: String,
-    tint: Color = MaterialTheme.colorScheme.onSurfaceVariant
+    tint: Color = MaterialTheme.colorScheme.onSurfaceVariant,
+    textStyle: TextStyle = MaterialTheme.typography.bodyMedium
 ) {
     Card(
         shape = RoundedCornerShape(16.dp),
@@ -94,7 +97,7 @@ private fun QuickStatCard(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Icon(painter, contentDescription = null, tint = tint)
-            Text(text, style = MaterialTheme.typography.titleMedium)
+            Text(text, style = textStyle)
         }
     }
 }

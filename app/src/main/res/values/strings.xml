@@ -87,6 +87,9 @@
     <string name="chart_no_data">No data yet</string>
     <string name="chart_growth_title">Growth</string>
     <string name="chart_no_weight_data">No weight data yet</string>
+    <string name="chart_no_height_data">No height data yet</string>
+    <string name="chart_no_food_data">No food data yet</string>
+    <string name="chart_no_tummy_time_data">No tummy time data yet</string>
     <string name="chart_food_title">Food</string>
     <string name="chart_tummy_time_title">Tummy time</string>
     <string name="chart_legend_weight_kg">Weight (kg)</string>

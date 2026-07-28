@@ -105,10 +105,10 @@ fun StatisticsScreen(
                 return@Scaffold
             }
 
-            val weightPoints = data.mapNotNull { d -> d.weightKg?.let { d.date to it } }
-            val heightPoints = data.mapNotNull { d -> d.heightCm?.let { d.date to it } }
-            val foodPoints = data.map { it.date to it.totalFoodMl.toDouble() }
-            val tummyTimePoints = data.map { it.date to it.tummyTimeSeconds.toDouble() }
+            val weightPoints = data.mapNotNull { d -> d.weightKg?.let { if (it > 0) d.date to it else null } }
+            val heightPoints = data.mapNotNull { d -> d.heightCm?.let { if (it > 0) d.date to it else null } }
+            val foodPoints = data.mapNotNull { d -> if (d.totalFoodMl > 0) d.date to d.totalFoodMl.toDouble() else null }
+            val tummyTimePoints = data.mapNotNull { d -> if (d.tummyTimeSeconds > 0) d.date to d.tummyTimeSeconds.toDouble() else null }
 
             Column(modifier = Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState())) {
                 Text(
@@ -116,9 +116,9 @@ fun StatisticsScreen(
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
                 )
-                if (weightPoints.isEmpty()) {
+                if (weightPoints.isEmpty() && heightPoints.isEmpty()) {
                     Text(
-                        stringResource(R.string.chart_no_weight_data),
+                        stringResource(R.string.chart_no_data),
                         modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
                     )
                 } else {
@@ -132,7 +132,9 @@ fun StatisticsScreen(
                     Legend(
                         modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
                         items = buildList {
-                            add(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_weight_kg))
+                            if (weightPoints.isNotEmpty()) {
+                                add(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_weight_kg))
+                            }
                             if (heightPoints.isNotEmpty()) {
                                 add(MaterialTheme.colorScheme.tertiary to stringResource(R.string.chart_legend_height_cm))
                             }
@@ -145,34 +147,48 @@ fun StatisticsScreen(
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
                 )
-                DualLineChart(
-                    primaryPoints = foodPoints,
-                    primaryFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_ml)),
-                    secondaryPoints = null,
-                    secondaryFormatter = null,
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp).fillMaxWidth(),
-                )
-                Legend(
-                    modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
-                    items = listOf(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_total_food_ml)),
-                )
+                if (foodPoints.isEmpty()) {
+                    Text(
+                        stringResource(R.string.chart_no_food_data),
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                    )
+                } else {
+                    DualLineChart(
+                        primaryPoints = foodPoints,
+                        primaryFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_ml)),
+                        secondaryPoints = null,
+                        secondaryFormatter = null,
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp).fillMaxWidth(),
+                    )
+                    Legend(
+                        modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
+                        items = listOf(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_total_food_ml)),
+                    )
+                }
 
                 Text(
                     stringResource(R.string.chart_tummy_time_title),
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
                 )
-                DualLineChart(
-                    primaryPoints = tummyTimePoints,
-                    primaryFormatter = MinutesSecondsValueFormatter,
-                    secondaryPoints = null,
-                    secondaryFormatter = null,
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp).fillMaxWidth(),
-                )
-                Legend(
-                    modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
-                    items = listOf(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_tummy_time)),
-                )
+                if (tummyTimePoints.isEmpty()) {
+                    Text(
+                        stringResource(R.string.chart_no_tummy_time_data),
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                    )
+                } else {
+                    DualLineChart(
+                        primaryPoints = tummyTimePoints,
+                        primaryFormatter = MinutesSecondsValueFormatter,
+                        secondaryPoints = null,
+                        secondaryFormatter = null,
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp).fillMaxWidth(),
+                    )
+                    Legend(
+                        modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
+                        items = listOf(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_tummy_time)),
+                    )
+                }
             }
         }
     }
