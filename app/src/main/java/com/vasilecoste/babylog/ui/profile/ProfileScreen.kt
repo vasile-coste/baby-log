@@ -17,7 +17,6 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -33,6 +32,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -86,6 +88,7 @@ fun ProfileScreen(onMenuClick: () -> Unit, viewModel: MainViewModel) {
                 .fillMaxSize()
                 .padding(16.dp)
                 .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -99,38 +102,38 @@ fun ProfileScreen(onMenuClick: () -> Unit, viewModel: MainViewModel) {
             }
 
             Card(
-                modifier = Modifier.fillMaxWidth().padding(16.dp),
+                modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
             ) {
-                Text(
-                    stringResource(
-                        R.string.profile_birth_date_label,
-                        birthDate?.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
-                            ?: stringResource(R.string.profile_birth_date_not_set),
-                    ),
-                    style = MaterialTheme.typography.bodyLarge,
-                )
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(
+                        stringResource(
+                            R.string.profile_birth_date_label,
+                            birthDate?.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
+                                ?: stringResource(R.string.profile_birth_date_not_set),
+                        ),
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
 
-                if (birthDate != null) {
-                    AgeSection(birthDate)
+                    if (birthDate != null) {
+                        AgeSection(birthDate)
+                    }
                 }
             }
 
-            HorizontalDivider()
+            GrowthAndFeedingSection(uiState.chartData)
 
             Card(
-                modifier = Modifier.fillMaxWidth().padding(16.dp),
+                modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
             ) {
-                GrowthAndFeedingSection(uiState.chartData)
+                Box(modifier = Modifier.padding(16.dp)) {
+                    ThemeSection(
+                        selectedOverride = uiState.themeOverride,
+                        onSelect = { override -> viewModel.setThemeOverride(baby.id, override) },
+                    )
+                }
             }
-
-            HorizontalDivider()
-
-            ThemeSection(
-                selectedOverride = uiState.themeOverride,
-                onSelect = { override -> viewModel.setThemeOverride(baby.id, override) },
-            )
         }
     }
 
@@ -167,31 +170,23 @@ fun ProfileScreen(onMenuClick: () -> Unit, viewModel: MainViewModel) {
 private fun AgeSection(birthDate: LocalDate) {
     val today = LocalDate.now()
     val period = Period.between(birthDate, today)
-    val totalMonths = ChronoUnit.MONTHS.between(birthDate, today)
     val totalDays = ChronoUnit.DAYS.between(birthDate, today)
+    val totalDaysText = pluralStringResource(R.plurals.plural_days, totalDays.toInt(), totalDays.toInt())
 
+
+    val yearsText = pluralStringResource(R.plurals.plural_years, period.years, period.years)
     val monthsText = pluralStringResource(R.plurals.plural_months, period.months, period.months)
+    val daysText = pluralStringResource(R.plurals.plural_days, period.days, period.days)
+
     val ageText = if (period.years > 0) {
-        val yearsText = pluralStringResource(R.plurals.plural_years, period.years, period.years)
-        "$yearsText, $monthsText"
+        "$yearsText, $monthsText, $daysText"
+    } else if (period.months > 0) {
+        "$monthsText, $daysText"
     } else {
-        monthsText
+        daysText
     }
 
-    Text(stringResource(R.string.profile_age_label), style = MaterialTheme.typography.titleMedium)
-    Text(ageText)
-    Text(
-        stringResource(
-            R.string.profile_total_months,
-            pluralStringResource(R.plurals.plural_months, totalMonths.toInt(), totalMonths.toInt()),
-        ),
-    )
-    Text(
-        stringResource(
-            R.string.profile_total_days,
-            pluralStringResource(R.plurals.plural_days, totalDays.toInt(), totalDays.toInt()),
-        ),
-    )
+    Text(stringResource(R.string.profile_age_label, "$ageText ($totalDaysText)"))
 }
 
 @Composable
@@ -206,35 +201,55 @@ private fun GrowthAndFeedingSection(chartData: List<DailyAggregate>) {
     val minFoodMl = last7Days.minOfOrNull { it.totalFoodMl }
     val maxFoodMl = last7Days.maxOfOrNull { it.totalFoodMl }
 
-    Text(
-        if (latestWeightKg != null) {
-            stringResource(R.string.profile_latest_weight, formatDecimal(latestWeightKg, 2))
-        } else {
-            stringResource(R.string.profile_no_data)
-        },
-    )
-    Text(
-        if (latestHeightCm != null) {
-            stringResource(R.string.profile_latest_height, formatDecimal(latestHeightCm, 1))
-        } else {
-            stringResource(R.string.profile_no_data)
-        },
-    )
-    Text(stringResource(R.string.profile_avg_food_7d, avgFoodMl.roundToInt().toString()))
-    Text(
-        if (minFoodMl != null) {
-            stringResource(R.string.profile_min_food_7d, minFoodMl.toString())
-        } else {
-            stringResource(R.string.profile_no_data)
-        },
-    )
-    Text(
-        if (maxFoodMl != null) {
-            stringResource(R.string.profile_max_food_7d, maxFoodMl.toString())
-        } else {
-            stringResource(R.string.profile_no_data)
-        },
-    )
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            TitleCard(painterResource(R.drawable.id_growth), stringResource(R.string.profile_growth))
+
+            Text(
+                if (latestWeightKg != null) {
+                    stringResource(R.string.profile_latest_weight, formatDecimal(latestWeightKg, 2))
+                } else {
+                    stringResource(R.string.profile_no_data)
+                },
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Text(
+                if (latestHeightCm != null) {
+                    stringResource(R.string.profile_latest_height, formatDecimal(latestHeightCm, 1))
+                } else {
+                    stringResource(R.string.profile_no_data)
+                },
+                style = MaterialTheme.typography.bodyMedium
+            )
+        }
+    }
+
+    val medFood = if (minFoodMl != null) {
+        stringResource(R.string.profile_min_food_7d, minFoodMl.toString())
+    } else {
+        stringResource(R.string.profile_no_data)
+    }
+
+    val maxFood = if (maxFoodMl != null) {
+        stringResource(R.string.profile_max_food_7d, maxFoodMl.toString())
+    } else {
+        stringResource(R.string.profile_no_data)
+    }
+
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            TitleCard(painterResource(R.drawable.id_feed), stringResource(R.string.profile_food))
+            Text(stringResource(R.string.profile_avg_food_7d, avgFoodMl.roundToInt().toString()), style = MaterialTheme.typography.bodyMedium)
+            Text(medFood, style = MaterialTheme.typography.bodyMedium)
+            Text(maxFood, style = MaterialTheme.typography.bodyMedium)
+        }
+    }
 }
 
 @Composable
@@ -255,8 +270,8 @@ private fun ThemeSection(selectedOverride: AppTheme?, onSelect: (AppTheme?) -> U
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Text(stringResource(R.string.profile_theme_label), style = MaterialTheme.typography.titleMedium)
-        Text(currentLabel, style = MaterialTheme.typography.bodyLarge)
+        TitleCard(painterResource(R.drawable.id_theme), stringResource(R.string.profile_theme_label))
+        Text(currentLabel, style = MaterialTheme.typography.bodyMedium)
     }
 
     if (showDialog) {
@@ -296,4 +311,19 @@ private fun formatDecimal(value: Double, decimals: Int): String {
     val factor = Math.pow(10.0, decimals.toDouble())
     val rounded = Math.round(value * factor) / factor
     return if (decimals == 0) rounded.toInt().toString() else rounded.toString()
+}
+
+@Composable
+private fun TitleCard(
+    painter: Painter,
+    text: String,
+    tint: Color = MaterialTheme.colorScheme.onSurfaceVariant
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        Icon(painter, contentDescription = null, tint = tint)
+        Text(text, style = MaterialTheme.typography.titleMedium)
+    }
 }
