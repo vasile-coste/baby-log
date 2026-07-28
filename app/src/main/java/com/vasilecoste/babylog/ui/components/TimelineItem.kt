@@ -3,6 +3,7 @@ package com.vasilecoste.babylog.ui.components
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -50,6 +51,7 @@ fun TimelineItem(entry: Entry, onLongPress: () -> Unit, modifier: Modifier = Mod
                     modifier = Modifier.width(72.dp),
                 )
             }
+            Spacer(modifier = Modifier.weight(1f))
             if (entry.poop) {
                 Icon(painterResource(R.drawable.ic_poop), contentDescription = stringResource(R.string.cd_poop))
             }
