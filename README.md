@@ -37,4 +37,4 @@ An Android app (Jetpack Compose, Material 3) for logging a baby's day-to-day car
 | ![](/images/home04.jpg) | ![](/images/home05.jpg) | ![](/images/tummy01.jpg) |
 | ![](/images/tummy02.jpg) | ![](/images/stats01.jpg) | ![](/images/stats02.jpg) |
 | ![](/images/profile01.jpg) | ![](/images/profile02.jpg) | ![](/images/import01.jpg) |
-| ![](/images/import02.jpg) |  |  |
+| ![](/images/import02.jpg) | ![](/images/theme01.jpg) | ![](/images/theme02.jpg) |
