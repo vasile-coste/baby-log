@@ -38,6 +38,7 @@ import com.vasilecoste.babylog.ui.profile.ProfileScreen
 import com.vasilecoste.babylog.ui.tummytime.TummyTimeScreen
 import com.vasilecoste.babylog.ui.growth.GrowthScreen
 import java.time.LocalDate
+import java.time.YearMonth
 import kotlinx.coroutines.launch
 
 private enum class AppScreen { MAIN, TUMMY_TIME, GROWTH, STATISTICS, PROFILE, IMPORT_EXPORT, ABOUT }
@@ -118,14 +119,18 @@ fun BabyLogApp(viewModel: MainViewModel) {
         },
     ) {
         val today = LocalDate.now()
+        val currentMonth = YearMonth.now()
         val isNotToday = uiState.selectedDate != today
+        val isNotCurrentMonth = uiState.selectedMonth != currentMonth
 
         // Placed inside ModalNavigationDrawer's content (rather than as a sibling above it) so this
         // handler is registered after — and takes priority over — the drawer's own internal
         // BackHandler, which would otherwise just close the drawer without resetting the screen.
-        BackHandler(enabled = drawerState.isOpen || screen != AppScreen.MAIN || isNotToday) {
+        BackHandler(enabled = drawerState.isOpen || screen != AppScreen.MAIN || isNotToday || (screen == AppScreen.GROWTH && isNotCurrentMonth)) {
             if (drawerState.isOpen) {
                 scope.launch { drawerState.close() }
+            } else if (screen == AppScreen.GROWTH && isNotCurrentMonth) {
+                viewModel.selectMonth(currentMonth)
             } else if (isNotToday) {
                 viewModel.selectDate(today)
             } else if (screen != AppScreen.MAIN) {

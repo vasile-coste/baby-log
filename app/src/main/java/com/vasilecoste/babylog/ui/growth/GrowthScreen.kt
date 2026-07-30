@@ -50,10 +50,9 @@ fun GrowthScreen(
     var showAddRecord by remember { mutableStateOf(false) }
     var editingRecord by remember { mutableStateOf<WeightRecord?>(null) }
     var sortAscending by remember { mutableStateOf(false) }
-    var selectedMonth by remember { mutableStateOf(YearMonth.now()) }
     var showMonthPicker by remember { mutableStateOf(false) }
 
-    val monthRecords = uiState.weightRecords.filter { YearMonth.from(it.date) == selectedMonth }
+    val monthRecords = uiState.weightRecords.filter { YearMonth.from(it.date) == uiState.selectedMonth }
 
     Scaffold(
         topBar = {
@@ -62,7 +61,7 @@ fun GrowthScreen(
                     onClick = { showMonthPicker = true },
                     colors = ButtonDefaults.textButtonColors(contentColor = LocalContentColor.current),
                 ) {
-                    Text(selectedMonth.format(monthYearFormatter))
+                    Text(uiState.selectedMonth.format(monthYearFormatter))
                 }
             }
         },
@@ -144,9 +143,9 @@ fun GrowthScreen(
 
     if (showMonthPicker) {
         MonthPickerDialog(
-            selected = selectedMonth,
+            selected = uiState.selectedMonth,
             onSelect = {
-                selectedMonth = it
+                viewModel.selectMonth(it)
                 showMonthPicker = false
             },
             onDismiss = { showMonthPicker = false },

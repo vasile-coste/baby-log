@@ -18,6 +18,7 @@ import com.vasilecoste.babylog.ui.theme.AppTheme
 import com.vasilecoste.babylog.ui.theme.resolveAppTheme
 import java.time.LocalDate
 import java.time.LocalTime
+import java.time.YearMonth
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -52,6 +53,7 @@ class MainViewModel(
 ) : ViewModel() {
 
     private val selectedDate = MutableStateFlow(LocalDate.now())
+    private val selectedMonth = MutableStateFlow(YearMonth.now())
 
     private val selectedBabyId: StateFlow<Long?> =
         combine(repository.babies, selectedBabyStore.selectedBabyId) { babies, stored ->
@@ -116,7 +118,10 @@ class MainViewModel(
         }
 
     val uiState: StateFlow<MainUiState> =
-        combine(profilesState, dayState, tummyTimerStart, themeState, weightRecords) { profiles, day, timer, theme, weights ->
+        combine(
+            combine(profilesState, dayState, tummyTimerStart) { profiles, day, timer -> Triple(profiles, day, timer) },
+            combine(themeState, weightRecords, selectedMonth) { theme, weights, month -> Triple(theme, weights, month) }
+        ) { (profiles, day, timer), (theme, weights, month) ->
             MainUiState(
                 babies = profiles.babies,
                 selectedBaby = profiles.selectedBaby,
@@ -131,11 +136,16 @@ class MainViewModel(
                 activeTheme = theme.active,
                 themeOverride = theme.override,
                 weightRecords = weights,
+                selectedMonth = month,
             )
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), MainUiState())
 
     fun selectDate(date: LocalDate) {
         selectedDate.value = date
+    }
+
+    fun selectMonth(month: YearMonth) {
+        selectedMonth.value = month
     }
 
     fun selectBaby(babyId: Long) {

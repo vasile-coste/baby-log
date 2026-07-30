@@ -8,6 +8,7 @@ import com.vasilecoste.babylog.data.db.entity.WeightRecord
 import com.vasilecoste.babylog.data.repository.DailyAggregate
 import com.vasilecoste.babylog.ui.theme.AppTheme
 import java.time.LocalDate
+import java.time.YearMonth
 
 data class QuickStats(
     val totalFoodMl: Int,
@@ -31,6 +32,7 @@ data class MainUiState(
     val activeTheme: AppTheme = AppTheme.DEFAULT,
     val themeOverride: AppTheme? = null,
     val weightRecords: List<WeightRecord> = emptyList(),
+    val selectedMonth: YearMonth = YearMonth.now(),
 ) {
     val quickStats: QuickStats
         get() = QuickStats(
