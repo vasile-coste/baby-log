@@ -25,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.vasilecoste.babylog.R
@@ -35,10 +36,11 @@ import com.vasilecoste.babylog.ui.main.MainScreen
 import com.vasilecoste.babylog.ui.main.MainViewModel
 import com.vasilecoste.babylog.ui.profile.ProfileScreen
 import com.vasilecoste.babylog.ui.tummytime.TummyTimeScreen
+import com.vasilecoste.babylog.ui.weight.GrowthScreen
 import java.time.LocalDate
 import kotlinx.coroutines.launch
 
-private enum class AppScreen { MAIN, TUMMY_TIME, STATISTICS, PROFILE, IMPORT_EXPORT, ABOUT }
+private enum class AppScreen { MAIN, TUMMY_TIME, GROWTH, STATISTICS, PROFILE, IMPORT_EXPORT, ABOUT }
 
 @Composable
 fun BabyLogApp(viewModel: MainViewModel) {
@@ -75,6 +77,13 @@ fun BabyLogApp(viewModel: MainViewModel) {
                     icon = { Icon(Icons.Filled.Timer, contentDescription = null) },
                     selected = screen == AppScreen.TUMMY_TIME,
                     onClick = { navigateTo(AppScreen.TUMMY_TIME) },
+                    modifier = Modifier.padding(horizontal = 12.dp),
+                )
+                NavigationDrawerItem(
+                    label = { Text(stringResource(R.string.drawer_growth)) },
+                    icon = { Icon(painterResource(R.drawable.id_growth), contentDescription = null) },
+                    selected = screen == AppScreen.GROWTH,
+                    onClick = { navigateTo(AppScreen.GROWTH) },
                     modifier = Modifier.padding(horizontal = 12.dp),
                 )
                 NavigationDrawerItem(
@@ -127,6 +136,7 @@ fun BabyLogApp(viewModel: MainViewModel) {
         when (screen) {
             AppScreen.MAIN -> MainScreen(onMenuClick = onMenuClick, viewModel = viewModel)
             AppScreen.TUMMY_TIME -> TummyTimeScreen(onMenuClick = onMenuClick, viewModel = viewModel)
+            AppScreen.GROWTH -> GrowthScreen(onMenuClick = onMenuClick, viewModel = viewModel)
             AppScreen.STATISTICS -> StatisticsScreen(onMenuClick = onMenuClick, viewModel = viewModel)
             AppScreen.PROFILE -> ProfileScreen(onMenuClick = onMenuClick, viewModel = viewModel)
             AppScreen.IMPORT_EXPORT -> ImportExportScreen(onMenuClick = onMenuClick)

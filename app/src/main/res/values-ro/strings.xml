@@ -70,6 +70,28 @@
     <string name="weight_kg_label">Greutate (kg)</string>
     <string name="height_cm_label">Înălțime (cm, opțional)</string>
 
+    <!-- Growth timeline -->
+    <string name="growth_title">Creștere</string>
+    <string name="growth_add_cd">Adaugă înregistrare de creștere</string>
+    <string name="growth_no_records">Nicio greutate sau înălțime înregistrată încă</string>
+    <string name="growth_add_title">Adaugă înregistrare de creștere</string>
+    <string name="growth_edit_title">Editează înregistrarea de creștere</string>
+    <string name="growth_date_label">Data</string>
+    <string name="growth_weight_value">%.1f kg</string>
+    <string name="growth_height_value">%.1f cm</string>
+    <string name="growth_current_weight">Greutate curentă: %.1f kg</string>
+    <string name="growth_current_weight_insufficient">Greutate curentă: date insuficiente</string>
+    <string name="growth_current_height">Înălțime curentă: %.1f cm</string>
+    <string name="growth_current_height_insufficient">Înălțime curentă: date insuficiente</string>
+    <string name="growth_change_increase_kg">(creștere de %.1f kg)</string>
+    <string name="growth_change_decrease_kg">(scădere de %.1f kg)</string>
+    <string name="growth_change_increase_cm">(creștere de %.1f cm)</string>
+    <string name="growth_change_decrease_cm">(scădere de %.1f cm)</string>
+    <string name="growth_no_records_month">Nicio greutate sau înălțime înregistrată în această lună</string>
+    <string name="growth_select_month_title">Selectează luna</string>
+    <string name="growth_previous_year_cd">Anul anterior</string>
+    <string name="growth_next_year_cd">Anul următor</string>
+
     <!-- Tummy time -->
     <string name="tummy_time_total_today">Timp total pe burtică: %1$dm %2$ds</string>
     <string name="tummy_time_start">Start</string>
@@ -108,6 +130,7 @@
     <string name="drawer_title">Meniu</string>
     <string name="drawer_main_app">Pagina principală</string>
     <string name="drawer_tummy_time">Timp pe burtică</string>
+    <string name="drawer_growth">Creștere</string>
     <string name="drawer_statistics">Statistici</string>
     <string name="drawer_baby_profile">Profil bebeluș</string>
     <string name="drawer_import_export">Import / export date</string>

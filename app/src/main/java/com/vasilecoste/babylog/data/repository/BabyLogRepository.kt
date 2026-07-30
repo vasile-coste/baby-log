@@ -107,6 +107,10 @@ class BabyLogRepository(
         weightDao.insert(WeightRecord(babyId = babyId, date = date, weightKg = weightKg, heightCm = heightCm))
     }
 
+    suspend fun updateWeightRecord(record: WeightRecord) = weightDao.update(record)
+
+    suspend fun deleteWeightRecord(record: WeightRecord) = weightDao.delete(record)
+
     fun weightsForBaby(babyId: Long): Flow<List<WeightRecord>> = weightDao.getForBaby(babyId)
 
     fun tummyTimeForDay(babyId: Long, date: LocalDate): Flow<List<TummyTimeEntry>> =

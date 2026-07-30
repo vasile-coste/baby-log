@@ -1,8 +1,10 @@
 package com.vasilecoste.babylog.data.db.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.vasilecoste.babylog.data.db.entity.WeightRecord
 import java.time.LocalDate
 import kotlinx.coroutines.flow.Flow
@@ -14,6 +16,12 @@ interface WeightDao {
 
     @Insert
     suspend fun insertAll(records: List<WeightRecord>)
+
+    @Update
+    suspend fun update(record: WeightRecord)
+
+    @Delete
+    suspend fun delete(record: WeightRecord)
 
     @Query("DELETE FROM weight_records WHERE babyId = :babyId")
     suspend fun deleteAllForBaby(babyId: Long)

@@ -70,6 +70,28 @@
     <string name="weight_kg_label">Weight (kg)</string>
     <string name="height_cm_label">Height (cm, optional)</string>
 
+    <!-- Growth timeline -->
+    <string name="growth_title">Growth</string>
+    <string name="growth_add_cd">Add growth record</string>
+    <string name="growth_no_records">No weight or height logged yet</string>
+    <string name="growth_add_title">Add growth record</string>
+    <string name="growth_edit_title">Edit growth record</string>
+    <string name="growth_date_label">Date</string>
+    <string name="growth_weight_value">%.1f kg</string>
+    <string name="growth_height_value">%.1f cm</string>
+    <string name="growth_current_weight">Current weight: %.1f kg</string>
+    <string name="growth_current_weight_insufficient">Current weight: Insufficient data</string>
+    <string name="growth_current_height">Current height: %.1f cm</string>
+    <string name="growth_current_height_insufficient">Current height: Insufficient data</string>
+    <string name="growth_change_increase_kg">(%.1f kg increase)</string>
+    <string name="growth_change_decrease_kg">(%.1f kg decrease)</string>
+    <string name="growth_change_increase_cm">(%.1f cm increase)</string>
+    <string name="growth_change_decrease_cm">(%.1f cm decrease)</string>
+    <string name="growth_no_records_month">No weight or height logged this month</string>
+    <string name="growth_select_month_title">Select month</string>
+    <string name="growth_previous_year_cd">Previous year</string>
+    <string name="growth_next_year_cd">Next year</string>
+
     <!-- Tummy time -->
     <string name="tummy_time_total_today">Total tummy time: %1$dm %2$ds</string>
     <string name="tummy_time_start">Start</string>
@@ -108,6 +130,7 @@
     <string name="drawer_title">Menu</string>
     <string name="drawer_main_app">Main page</string>
     <string name="drawer_tummy_time">Tummy time</string>
+    <string name="drawer_growth">Growth</string>
     <string name="drawer_statistics">Statistics</string>
     <string name="drawer_baby_profile">Baby profile</string>
     <string name="drawer_import_export">Import / export data</string>

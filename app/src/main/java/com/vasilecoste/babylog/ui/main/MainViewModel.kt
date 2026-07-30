@@ -10,6 +10,7 @@ import com.vasilecoste.babylog.data.db.entity.BabyProfile
 import com.vasilecoste.babylog.data.db.entity.DiaperSummary
 import com.vasilecoste.babylog.data.db.entity.Entry
 import com.vasilecoste.babylog.data.db.entity.TummyTimeEntry
+import com.vasilecoste.babylog.data.db.entity.WeightRecord
 import com.vasilecoste.babylog.data.prefs.SelectedBabyStore
 import com.vasilecoste.babylog.data.repository.BabyLogRepository
 import com.vasilecoste.babylog.data.repository.DailyAggregate
@@ -101,6 +102,10 @@ class MainViewModel(
 
     private val tummyTimerStart = MutableStateFlow<TummyTimerStart?>(null)
 
+    private val weightRecords = selectedBabyId.flatMapLatest { id ->
+        if (id == null) flowOf(emptyList()) else repository.weightsForBaby(id)
+    }
+
     private val dayState: Flow<DayState> =
         combine(
             combine(selectedDate, entries, diaperSummary) { date, entries, summary -> Triple(date, entries, summary) },
@@ -111,7 +116,7 @@ class MainViewModel(
         }
 
     val uiState: StateFlow<MainUiState> =
-        combine(profilesState, dayState, tummyTimerStart, themeState) { profiles, day, timer, theme ->
+        combine(profilesState, dayState, tummyTimerStart, themeState, weightRecords) { profiles, day, timer, theme, weights ->
             MainUiState(
                 babies = profiles.babies,
                 selectedBaby = profiles.selectedBaby,
@@ -125,6 +130,7 @@ class MainViewModel(
                 tummyTimerStartEpochMillis = timer?.epochMillis,
                 activeTheme = theme.active,
                 themeOverride = theme.override,
+                weightRecords = weights,
             )
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), MainUiState())
 
@@ -184,6 +190,21 @@ class MainViewModel(
         viewModelScope.launch {
             repository.addWeight(babyId, selectedDate.value, weightKg, heightCm)
         }
+    }
+
+    fun addWeightRecord(date: LocalDate, weightKg: Double?, heightCm: Double?) {
+        val babyId = selectedBabyId.value ?: return
+        viewModelScope.launch {
+            repository.addWeight(babyId, date, weightKg, heightCm)
+        }
+    }
+
+    fun updateWeightRecord(record: WeightRecord) {
+        viewModelScope.launch { repository.updateWeightRecord(record) }
+    }
+
+    fun deleteWeightRecord(record: WeightRecord) {
+        viewModelScope.launch { repository.deleteWeightRecord(record) }
     }
 
     fun startTummyTimer() {
