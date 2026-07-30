@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Restaurant
 import androidx.compose.material.icons.outlined.Sick
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -60,12 +59,12 @@ fun QuickInfoCard(stats: QuickStats, modifier: Modifier = Modifier) {
             )
 
             QuickStatCard(
-                painter = painterResource(R.drawable.ic_poop),
+                painter = painterResource(R.drawable.id_poop),
                 text = stringResource(R.string.quick_poops, stats.poopCount)
             )
 
             QuickStatCard(
-                painter = painterResource(R.drawable.ic_pee),
+                painter = painterResource(R.drawable.id_pee),
                 text = stringResource(R.string.quick_pees, stats.peeCount)
             )
 

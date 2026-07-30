@@ -39,7 +39,7 @@ import com.vasilecoste.babylog.ui.components.SimpleTopBar
 import com.vasilecoste.babylog.ui.components.TimelineItem
 import com.vasilecoste.babylog.ui.daypicker.DayPickerSheet
 import com.vasilecoste.babylog.ui.entry.AddEditEntryDialog
-import com.vasilecoste.babylog.ui.weight.AddWeightDialog
+import com.vasilecoste.babylog.ui.growth.AddWeightDialog
 
 @Composable
 fun MainScreen(

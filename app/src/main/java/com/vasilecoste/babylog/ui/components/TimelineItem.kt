@@ -53,10 +53,10 @@ fun TimelineItem(entry: Entry, onLongPress: () -> Unit, modifier: Modifier = Mod
             }
             Spacer(modifier = Modifier.weight(1f))
             if (entry.poop) {
-                Icon(painterResource(R.drawable.ic_poop), contentDescription = stringResource(R.string.cd_poop))
+                Icon(painterResource(R.drawable.id_poop), contentDescription = stringResource(R.string.cd_poop))
             }
             if (entry.pee) {
-                Icon(painterResource(R.drawable.ic_pee), contentDescription = stringResource(R.string.cd_pee))
+                Icon(painterResource(R.drawable.id_pee), contentDescription = stringResource(R.string.cd_pee))
             }
             if (entry.puke) {
                 Icon(

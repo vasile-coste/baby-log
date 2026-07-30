@@ -1,4 +1,4 @@
-package com.vasilecoste.babylog.ui.weight
+package com.vasilecoste.babylog.ui.growth
 
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement

@@ -68,7 +68,7 @@
     <string name="add_weight_title">Add growth</string>
     <string name="add_weight_hint">Enter weight and/or height</string>
     <string name="weight_kg_label">Weight (kg)</string>
-    <string name="height_cm_label">Height (cm, optional)</string>
+    <string name="height_cm_label">Height (cm)</string>
 
     <!-- Growth timeline -->
     <string name="growth_title">Growth</string>

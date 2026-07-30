@@ -85,13 +85,13 @@ fun AddEditEntryDialog(
                 )
 
                 CheckboxRow(
-                    painter = painterResource(R.drawable.ic_poop),
+                    painter = painterResource(R.drawable.id_poop),
                     label = stringResource(R.string.checkbox_poop),
                     checked = poop,
                     onCheckedChange = { poop = it },
                 )
                 CheckboxRow(
-                    painter = painterResource(R.drawable.ic_pee),
+                    painter = painterResource(R.drawable.id_pee),
                     label = stringResource(R.string.checkbox_pee),
                     checked = pee,
                     onCheckedChange = { pee = it },

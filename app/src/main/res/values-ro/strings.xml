@@ -68,7 +68,7 @@
     <string name="add_weight_title">Adaugă creștere</string>
     <string name="add_weight_hint">Introdu greutatea și/sau înălțimea</string>
     <string name="weight_kg_label">Greutate (kg)</string>
-    <string name="height_cm_label">Înălțime (cm, opțional)</string>
+    <string name="height_cm_label">Înălțime (cm)</string>
 
     <!-- Growth timeline -->
     <string name="growth_title">Creștere</string>

@@ -36,7 +36,7 @@ import com.vasilecoste.babylog.ui.main.MainScreen
 import com.vasilecoste.babylog.ui.main.MainViewModel
 import com.vasilecoste.babylog.ui.profile.ProfileScreen
 import com.vasilecoste.babylog.ui.tummytime.TummyTimeScreen
-import com.vasilecoste.babylog.ui.weight.GrowthScreen
+import com.vasilecoste.babylog.ui.growth.GrowthScreen
 import java.time.LocalDate
 import kotlinx.coroutines.launch
 
@@ -81,14 +81,14 @@ fun BabyLogApp(viewModel: MainViewModel) {
                 )
                 NavigationDrawerItem(
                     label = { Text(stringResource(R.string.drawer_growth)) },
-                    icon = { Icon(painterResource(R.drawable.id_growth), contentDescription = null) },
+                    icon = { Icon(painterResource(R.drawable.id_growth_filled), contentDescription = null) },
                     selected = screen == AppScreen.GROWTH,
                     onClick = { navigateTo(AppScreen.GROWTH) },
                     modifier = Modifier.padding(horizontal = 12.dp),
                 )
                 NavigationDrawerItem(
                     label = { Text(stringResource(R.string.drawer_statistics)) },
-                    icon = { Icon(Icons.AutoMirrored.Filled.ShowChart, contentDescription = null) },
+                    icon = { Icon(painterResource(R.drawable.id_pie_filled), contentDescription = null) },
                     selected = screen == AppScreen.STATISTICS,
                     onClick = { navigateTo(AppScreen.STATISTICS) },
                     modifier = Modifier.padding(horizontal = 12.dp),
