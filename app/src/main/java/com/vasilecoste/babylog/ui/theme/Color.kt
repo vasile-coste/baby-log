@@ -2,14 +2,6 @@ package com.vasilecoste.babylog.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
-
-val Purple40 = Color(0xFF6750A4)
-val PurpleGrey40 = Color(0xFF625B71)
-val Pink40 = Color(0xFF7D5260)
-
 // "Ocean" blue theme — deep, saturated blue, with a visible blue wash on backgrounds/cards
 val BlueLightPrimary = Color(0xFF0D47A1)
 val BlueLightOnPrimary = Color(0xFFFFFFFF)
@@ -55,3 +47,26 @@ val PinkDarkTertiary = Color(0xFFFF8A65)
 val PinkDarkBackground = Color(0xFF2A0A16)
 val PinkDarkSurfaceVariant = Color(0xFF3D1120)
 val PinkDarkOnSurfaceVariant = Color(0xFFFFCDD8)
+
+// Grayscale "Default" theme
+val GrayLightPrimary = Color(0xFF424242)
+val GrayLightOnPrimary = Color(0xFFFFFFFF)
+val GrayLightPrimaryContainer = Color(0xFFE0E0E0)
+val GrayLightOnPrimaryContainer = Color(0xFF212121)
+val GrayLightSecondary = Color(0xFF616161)
+val GrayLightSecondaryContainer = Color(0xFFF5F5F5)
+val GrayLightTertiary = Color(0xFF757575)
+val GrayLightBackground = Color(0xFFFAFAFA)
+val GrayLightSurfaceVariant = Color(0xFFEEEEEE)
+val GrayLightOnSurfaceVariant = Color(0xFF424242)
+
+val GrayDarkPrimary = Color(0xFFE0E0E0)
+val GrayDarkOnPrimary = Color(0xFF212121)
+val GrayDarkPrimaryContainer = Color(0xFF424242)
+val GrayDarkOnPrimaryContainer = Color(0xFFF5F5F5)
+val GrayDarkSecondary = Color(0xFFBDBDBD)
+val GrayDarkSecondaryContainer = Color(0xFF323232)
+val GrayDarkTertiary = Color(0xFF9E9E9E)
+val GrayDarkBackground = Color(0xFF121212)
+val GrayDarkSurfaceVariant = Color(0xFF1E1E1E)
+val GrayDarkOnSurfaceVariant = Color(0xFFE0E0E0)
