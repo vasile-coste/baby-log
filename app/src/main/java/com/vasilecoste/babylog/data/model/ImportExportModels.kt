@@ -25,7 +25,7 @@ data class ImportedDiaperSummary(val date: LocalDate, val poopCount: Int, val pe
 
 data class ImportedTummyTime(val date: LocalDate, val startTime: LocalTime, val durationSeconds: Int)
 
-data class ImportedSleep(val date: LocalDate, val startTime: LocalTime, val durationMinutes: Int)
+data class ImportedSleep(val date: LocalDate, val startTime: LocalTime, val endTime: LocalTime)
 
 data class ImportedBabyData(
     val babyName: String,

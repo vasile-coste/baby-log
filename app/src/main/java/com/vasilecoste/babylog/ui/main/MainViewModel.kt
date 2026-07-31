@@ -265,10 +265,10 @@ class MainViewModel(
         viewModelScope.launch { repository.deleteTummyTimeEntry(entry) }
     }
 
-    fun addManualSleep(date: LocalDate, startTime: LocalTime, durationMinutes: Int) {
+    fun addManualSleep(date: LocalDate, startTime: LocalTime, endTime: LocalTime) {
         val babyId = selectedBabyId.value ?: return
         viewModelScope.launch {
-            repository.addSleepEntry(babyId, date, startTime, durationMinutes)
+            repository.addSleepEntry(babyId, date, startTime, endTime)
         }
     }
 

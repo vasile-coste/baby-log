@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -34,14 +33,13 @@ fun SleepTimelineItem(entry: SleepEntry, onLongPress: () -> Unit, modifier: Modi
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
     ) {
         Row(
-            modifier = Modifier.padding(12.dp),
+            modifier = Modifier.padding(12.dp).fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
-                entry.startTime.format(timeFormatter),
+                "${entry.startTime.format(timeFormatter)} - ${entry.endTime.format(timeFormatter)}",
                 style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier.width(56.dp),
             )
             Text(formatDurationHoursMinutes(entry.durationMinutes), style = MaterialTheme.typography.bodyLarge)
         }

@@ -140,8 +140,8 @@ fun SleepScreen(
     if (showAddManual) {
         AddEditSleepDialog(
             entry = null,
-            onSave = { startTime, durationMinutes ->
-                viewModel.addManualSleep(uiState.selectedDate, startTime, durationMinutes)
+            onSave = { startTime, endTime ->
+                viewModel.addManualSleep(uiState.selectedDate, startTime, endTime)
                 showAddManual = false
             },
             onDismiss = { showAddManual = false },
@@ -151,8 +151,8 @@ fun SleepScreen(
     editingEntry?.let { entry ->
         AddEditSleepDialog(
             entry = entry,
-            onSave = { startTime, durationMinutes ->
-                viewModel.updateSleepEntry(entry.copy(startTime = startTime, durationMinutes = durationMinutes))
+            onSave = { startTime, endTime ->
+                viewModel.updateSleepEntry(entry.copy(startTime = startTime, endTime = endTime))
                 editingEntry = null
             },
             onDelete = {

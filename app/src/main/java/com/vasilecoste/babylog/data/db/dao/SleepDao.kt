@@ -9,8 +9,6 @@ import com.vasilecoste.babylog.data.db.entity.SleepEntry
 import java.time.LocalDate
 import kotlinx.coroutines.flow.Flow
 
-data class DailySleepTotal(val date: LocalDate, val totalMinutes: Int)
-
 @Dao
 interface SleepDao {
     @Insert
@@ -36,10 +34,4 @@ interface SleepDao {
 
     @Query("SELECT DISTINCT date FROM sleep_entries WHERE babyId = :babyId ORDER BY date DESC")
     fun getDistinctDates(babyId: Long): Flow<List<LocalDate>>
-
-    @Query(
-        "SELECT date, COALESCE(SUM(durationMinutes), 0) AS totalMinutes FROM sleep_entries " +
-            "WHERE babyId = :babyId GROUP BY date ORDER BY date ASC",
-    )
-    fun getDailyTotals(babyId: Long): Flow<List<DailySleepTotal>>
 }

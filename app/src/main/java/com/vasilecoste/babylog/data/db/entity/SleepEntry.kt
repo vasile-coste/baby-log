@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalTime
 
@@ -24,5 +25,9 @@ data class SleepEntry(
     val babyId: Long,
     val date: LocalDate,
     val startTime: LocalTime,
-    val durationMinutes: Int,
-)
+    val endTime: LocalTime,
+) {
+    // endTime before startTime means sleep crossed midnight into the next day.
+    val durationMinutes: Int
+        get() = Duration.between(startTime, endTime).toMinutes().let { if (it < 0) it + 24 * 60 else it }.toInt()
+}
