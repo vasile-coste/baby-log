@@ -104,6 +104,17 @@
     <string name="tummy_time_duration_minutes_label">Minute</string>
     <string name="tummy_time_duration_seconds_label">Secunde</string>
 
+    <!-- Sleep -->
+    <string name="sleep_total_today">Somn total: %1$dh %2$dm</string>
+    <string name="sleep_no_entries">Niciun somn înregistrat pentru această zi încă</string>
+    <string name="sleep_duration_format">%1$dh %2$dm</string>
+    <string name="sleep_add_manual_cd">Adaugă somn</string>
+    <string name="sleep_add_title">Adaugă somn</string>
+    <string name="sleep_edit_title">Editează somnul</string>
+    <string name="sleep_start_time_label">Ora la care a adormit</string>
+    <string name="sleep_duration_hours_label">Ore</string>
+    <string name="sleep_duration_minutes_label">Minute</string>
+
     <!-- Chart -->
     <string name="statistics_title">Statistici</string>
     <string name="chart_no_data">Nu există date încă</string>
@@ -130,6 +141,7 @@
     <string name="drawer_title">Meniu</string>
     <string name="drawer_main_app">Pagina principală</string>
     <string name="drawer_tummy_time">Timp pe burtică</string>
+    <string name="drawer_sleep">Somn</string>
     <string name="drawer_growth">Creștere</string>
     <string name="drawer_statistics">Statistici</string>
     <string name="drawer_baby_profile">Profil bebeluș</string>

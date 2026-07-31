@@ -3,6 +3,7 @@ package com.vasilecoste.babylog.ui.main
 import com.vasilecoste.babylog.data.db.entity.BabyProfile
 import com.vasilecoste.babylog.data.db.entity.DiaperSummary
 import com.vasilecoste.babylog.data.db.entity.Entry
+import com.vasilecoste.babylog.data.db.entity.SleepEntry
 import com.vasilecoste.babylog.data.db.entity.TummyTimeEntry
 import com.vasilecoste.babylog.data.db.entity.WeightRecord
 import com.vasilecoste.babylog.data.repository.DailyAggregate
@@ -29,6 +30,7 @@ data class MainUiState(
     val tummyTimeEntries: List<TummyTimeEntry> = emptyList(),
     val tummyTimerRunning: Boolean = false,
     val tummyTimerStartEpochMillis: Long? = null,
+    val sleepEntries: List<SleepEntry> = emptyList(),
     val activeTheme: AppTheme = AppTheme.DEFAULT,
     val themeOverride: AppTheme? = null,
     val weightRecords: List<WeightRecord> = emptyList(),
@@ -46,4 +48,6 @@ data class MainUiState(
     val hasBabies: Boolean get() = babies.isNotEmpty()
 
     val totalTummyTimeSecondsToday: Int get() = tummyTimeEntries.sumOf { it.durationSeconds }
+
+    val totalSleepMinutesToday: Int get() = sleepEntries.sumOf { it.durationMinutes }
 }

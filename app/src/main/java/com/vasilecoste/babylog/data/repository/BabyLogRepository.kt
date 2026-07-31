@@ -8,12 +8,14 @@ import com.vasilecoste.babylog.data.db.dao.DailyFoodTotal
 import com.vasilecoste.babylog.data.db.dao.DailyTummyTimeTotal
 import com.vasilecoste.babylog.data.db.dao.DiaperSummaryDao
 import com.vasilecoste.babylog.data.db.dao.EntryDao
+import com.vasilecoste.babylog.data.db.dao.SleepDao
 import com.vasilecoste.babylog.data.db.dao.TummyTimeDao
 import com.vasilecoste.babylog.data.db.dao.WeightDao
 import com.vasilecoste.babylog.data.db.entity.BabyProfile
 import com.vasilecoste.babylog.data.db.entity.BabyThemePreference
 import com.vasilecoste.babylog.data.db.entity.DiaperSummary
 import com.vasilecoste.babylog.data.db.entity.Entry
+import com.vasilecoste.babylog.data.db.entity.SleepEntry
 import com.vasilecoste.babylog.data.db.entity.TummyTimeEntry
 import com.vasilecoste.babylog.data.db.entity.WeightRecord
 import com.vasilecoste.babylog.data.model.ExportedBabyData
@@ -42,6 +44,7 @@ class BabyLogRepository(
     private val diaperSummaryDao: DiaperSummaryDao,
     private val tummyTimeDao: TummyTimeDao,
     private val babyThemePreferenceDao: BabyThemePreferenceDao,
+    private val sleepDao: SleepDao,
 ) {
     val babies: Flow<List<BabyProfile>> = babyProfileDao.getAll()
 
@@ -126,14 +129,28 @@ class BabyLogRepository(
 
     suspend fun deleteTummyTimeEntry(entry: TummyTimeEntry) = tummyTimeDao.delete(entry)
 
+    fun sleepForDay(babyId: Long, date: LocalDate): Flow<List<SleepEntry>> =
+        sleepDao.getForDay(babyId, date)
+
+    suspend fun addSleepEntry(babyId: Long, date: LocalDate, startTime: LocalTime, durationMinutes: Int) {
+        sleepDao.insert(
+            SleepEntry(babyId = babyId, date = date, startTime = startTime, durationMinutes = durationMinutes),
+        )
+    }
+
+    suspend fun updateSleepEntry(entry: SleepEntry) = sleepDao.update(entry)
+
+    suspend fun deleteSleepEntry(entry: SleepEntry) = sleepDao.delete(entry)
+
     fun datesWithData(babyId: Long): Flow<List<LocalDate>> =
         combine(
             entryDao.getDistinctDates(babyId),
             weightDao.getDistinctDates(babyId),
             diaperSummaryDao.getDistinctDates(babyId),
             tummyTimeDao.getDistinctDates(babyId),
-        ) { entryDates, weightDates, summaryDates, tummyDates ->
-            (entryDates + weightDates + summaryDates + tummyDates).distinct().sortedDescending()
+            sleepDao.getDistinctDates(babyId),
+        ) { entryDates, weightDates, summaryDates, tummyDates, sleepDates ->
+            (entryDates + weightDates + summaryDates + tummyDates + sleepDates).distinct().sortedDescending()
         }
 
     fun dailyChartData(babyId: Long): Flow<List<DailyAggregate>> =

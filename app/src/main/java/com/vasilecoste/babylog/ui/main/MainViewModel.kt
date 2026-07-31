@@ -9,6 +9,7 @@ import com.vasilecoste.babylog.BabyLogApplication
 import com.vasilecoste.babylog.data.db.entity.BabyProfile
 import com.vasilecoste.babylog.data.db.entity.DiaperSummary
 import com.vasilecoste.babylog.data.db.entity.Entry
+import com.vasilecoste.babylog.data.db.entity.SleepEntry
 import com.vasilecoste.babylog.data.db.entity.TummyTimeEntry
 import com.vasilecoste.babylog.data.db.entity.WeightRecord
 import com.vasilecoste.babylog.data.prefs.SelectedBabyStore
@@ -40,6 +41,14 @@ private data class DayState(
     val pickerDates: List<LocalDate>,
     val chartData: List<DailyAggregate>,
     val tummyTimeEntries: List<TummyTimeEntry>,
+    val sleepEntries: List<SleepEntry>,
+)
+
+private data class DaySecondaryState(
+    val pickerDates: List<LocalDate>,
+    val chartData: List<DailyAggregate>,
+    val tummyTimeEntries: List<TummyTimeEntry>,
+    val sleepEntries: List<SleepEntry>,
 )
 
 private data class TummyTimerStart(val epochMillis: Long, val date: LocalDate, val time: LocalTime)
@@ -104,6 +113,11 @@ class MainViewModel(
 
     private val tummyTimerStart = MutableStateFlow<TummyTimerStart?>(null)
 
+    private val sleepEntries = combine(selectedBabyId, selectedDate) { id, date -> id to date }
+        .flatMapLatest { (id, date) ->
+            if (id == null) flowOf(emptyList()) else repository.sleepForDay(id, date)
+        }
+
     private val weightRecords = selectedBabyId.flatMapLatest { id ->
         if (id == null) flowOf(emptyList()) else repository.weightsForBaby(id)
     }
@@ -111,10 +125,12 @@ class MainViewModel(
     private val dayState: Flow<DayState> =
         combine(
             combine(selectedDate, entries, diaperSummary) { date, entries, summary -> Triple(date, entries, summary) },
-            combine(pickerDates, chartData, tummyTimeEntries) { picker, chart, tummy -> Triple(picker, chart, tummy) },
-        ) { (date, entries, summary), (pickerDates, chart, tummy) ->
-            val allPickerDates = (pickerDates + LocalDate.now()).distinct().sortedDescending()
-            DayState(date, entries, summary, allPickerDates, chart, tummy)
+            combine(pickerDates, chartData, tummyTimeEntries, sleepEntries) { picker, chart, tummy, sleep ->
+                DaySecondaryState(picker, chart, tummy, sleep)
+            },
+        ) { (date, entries, summary), secondary ->
+            val allPickerDates = (secondary.pickerDates + LocalDate.now()).distinct().sortedDescending()
+            DayState(date, entries, summary, allPickerDates, secondary.chartData, secondary.tummyTimeEntries, secondary.sleepEntries)
         }
 
     val uiState: StateFlow<MainUiState> =
@@ -133,6 +149,7 @@ class MainViewModel(
                 tummyTimeEntries = day.tummyTimeEntries,
                 tummyTimerRunning = timer != null,
                 tummyTimerStartEpochMillis = timer?.epochMillis,
+                sleepEntries = day.sleepEntries,
                 activeTheme = theme.active,
                 themeOverride = theme.override,
                 weightRecords = weights,
@@ -246,6 +263,21 @@ class MainViewModel(
 
     fun deleteTummyTimeEntry(entry: TummyTimeEntry) {
         viewModelScope.launch { repository.deleteTummyTimeEntry(entry) }
+    }
+
+    fun addManualSleep(date: LocalDate, startTime: LocalTime, durationMinutes: Int) {
+        val babyId = selectedBabyId.value ?: return
+        viewModelScope.launch {
+            repository.addSleepEntry(babyId, date, startTime, durationMinutes)
+        }
+    }
+
+    fun updateSleepEntry(entry: SleepEntry) {
+        viewModelScope.launch { repository.updateSleepEntry(entry) }
+    }
+
+    fun deleteSleepEntry(entry: SleepEntry) {
+        viewModelScope.launch { repository.deleteSleepEntry(entry) }
     }
 
     companion object {

@@ -21,6 +21,7 @@ class AppContainer(context: Context) {
         diaperSummaryDao = database.diaperSummaryDao(),
         tummyTimeDao = database.tummyTimeDao(),
         babyThemePreferenceDao = database.babyThemePreferenceDao(),
+        sleepDao = database.sleepDao(),
     )
 
     val selectedBabyStore: SelectedBabyStore = SelectedBabyStore(context)
