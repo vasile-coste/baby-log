@@ -190,6 +190,7 @@ class BabyLogRepository(
             weightDao.deleteAllForBaby(babyId)
             diaperSummaryDao.deleteAllForBaby(babyId)
             tummyTimeDao.deleteAllForBaby(babyId)
+            sleepDao.deleteAllForBaby(babyId)
         }
         entryDao.insertAll(
             data.entries.map { e ->
@@ -219,6 +220,11 @@ class BabyLogRepository(
                 TummyTimeEntry(babyId = babyId, date = t.date, startTime = t.startTime, durationSeconds = t.durationSeconds)
             },
         )
+        sleepDao.insertAll(
+            data.sleepEntries.map { s ->
+                SleepEntry(babyId = babyId, date = s.date, startTime = s.startTime, durationMinutes = s.durationMinutes)
+            },
+        )
         babyId
     }
 
@@ -232,6 +238,7 @@ class BabyLogRepository(
             weights = weightDao.getAllForBaby(babyId),
             diaperSummaries = diaperSummaryDao.getAllForBaby(babyId),
             tummyTimeEntries = tummyTimeDao.getAllForBaby(babyId),
+            sleepEntries = sleepDao.getAllForBaby(babyId),
         )
     }
 }
