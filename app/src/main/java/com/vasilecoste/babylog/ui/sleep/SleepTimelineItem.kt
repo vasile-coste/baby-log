@@ -38,10 +38,16 @@ fun SleepTimelineItem(entry: SleepEntry, onLongPress: () -> Unit, modifier: Modi
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
-                "${entry.startTime.format(timeFormatter)} - ${entry.endTime.format(timeFormatter)}",
+                if (entry.endTime != null) {
+                    "${entry.startTime.format(timeFormatter)} - ${entry.endTime.format(timeFormatter)}"
+                } else {
+                    "${entry.startTime.format(timeFormatter)} - ${stringResource(R.string.sleep_ongoing)}"
+                },
                 style = MaterialTheme.typography.titleMedium,
             )
-            Text(formatDurationHoursMinutes(entry.durationMinutes), style = MaterialTheme.typography.bodyLarge)
+            if (entry.endTime != null) {
+                Text(formatDurationHoursMinutes(entry.durationMinutes), style = MaterialTheme.typography.bodyLarge)
+            }
         }
     }
 }

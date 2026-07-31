@@ -28,7 +28,7 @@ import com.vasilecoste.babylog.data.db.entity.WeightRecord
         BabyThemePreference::class,
         SleepEntry::class,
     ],
-    version = 7,
+    version = 8,
     exportSchema = true,
 )
 @TypeConverters(Converters::class)

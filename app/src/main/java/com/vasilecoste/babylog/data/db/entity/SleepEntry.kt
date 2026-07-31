@@ -25,9 +25,9 @@ data class SleepEntry(
     val babyId: Long,
     val date: LocalDate,
     val startTime: LocalTime,
-    val endTime: LocalTime,
+    val endTime: LocalTime?,
 ) {
     // endTime before startTime means sleep crossed midnight into the next day.
     val durationMinutes: Int
-        get() = Duration.between(startTime, endTime).toMinutes().let { if (it < 0) it + 24 * 60 else it }.toInt()
+        get() = if (endTime == null) 0 else Duration.between(startTime, endTime).toMinutes().let { if (it < 0) it + 24 * 60 else it }.toInt()
 }

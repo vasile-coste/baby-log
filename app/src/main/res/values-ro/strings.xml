@@ -113,6 +113,8 @@
     <string name="sleep_edit_title">Editează somnul</string>
     <string name="sleep_start_time_label">Ora la care a adormit</string>
     <string name="sleep_end_time_label">Ora la care s-a trezit</string>
+    <string name="sleep_ended_label">Somn finalizat</string>
+    <string name="sleep_ongoing">În desfășurare</string>
     <string name="sleep_duration_preview">Durată: %1$dh %2$dm</string>
 
     <!-- Chart -->

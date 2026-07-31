@@ -132,7 +132,7 @@ class BabyLogRepository(
     fun sleepForDay(babyId: Long, date: LocalDate): Flow<List<SleepEntry>> =
         sleepDao.getForDay(babyId, date)
 
-    suspend fun addSleepEntry(babyId: Long, date: LocalDate, startTime: LocalTime, endTime: LocalTime) {
+    suspend fun addSleepEntry(babyId: Long, date: LocalDate, startTime: LocalTime, endTime: LocalTime?) {
         sleepDao.insert(
             SleepEntry(babyId = babyId, date = date, startTime = startTime, endTime = endTime),
         )

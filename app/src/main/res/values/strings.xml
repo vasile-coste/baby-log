@@ -113,6 +113,8 @@
     <string name="sleep_edit_title">Edit sleep</string>
     <string name="sleep_start_time_label">Time went to sleep</string>
     <string name="sleep_end_time_label">Time woke up</string>
+    <string name="sleep_ended_label">Sleep ended</string>
+    <string name="sleep_ongoing">Ongoing</string>
     <string name="sleep_duration_preview">Duration: %1$dh %2$dm</string>
 
     <!-- Chart -->
