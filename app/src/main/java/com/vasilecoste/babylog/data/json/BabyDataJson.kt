@@ -66,7 +66,7 @@ object BabyDataJson {
             ImportedSleep(
                 date = LocalDate.parse(obj.getString("date")),
                 startTime = LocalTime.parse(obj.getString("startTime")),
-                endTime = LocalTime.parse(obj.getString("endTime")),
+                endTime = obj.optString("endTime").takeIf { it.isNotBlank() && it != "null" }?.let { LocalTime.parse(it) },
             )
         }
 
@@ -152,7 +152,7 @@ object BabyDataJson {
                     JSONObject()
                         .put("date", s.date.toString())
                         .put("startTime", s.startTime.toString())
-                        .put("endTime", s.endTime.toString())
+                        .put("endTime", s.endTime?.toString())
                 },
             ),
         )
