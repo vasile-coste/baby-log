@@ -7,16 +7,21 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ImportExport
 import androidx.compose.material.icons.outlined.Download
 import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material.icons.outlined.Upload
@@ -31,6 +36,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -43,10 +49,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -150,112 +158,120 @@ fun ImportExportScreen(
                 .padding(padding)
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+                .padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+            // Header Section
+            Surface(
+                modifier = Modifier
+                    .size(80.dp)
+                    .clip(CircleShape),
+                color = MaterialTheme.colorScheme.primaryContainer
             ) {
-                Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    ) {
-                        Icon(
-                            Icons.Outlined.Download,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                        Text(
-                            stringResource(R.string.import_section_title),
-                            style = MaterialTheme.typography.titleMedium
-                        )
-                    }
-                    Text(
-                        stringResource(R.string.import_description),
-                        style = MaterialTheme.typography.bodySmall
-                    )
-                    Button(onClick = { importLauncher.launch(arrayOf("*/*")) }) {
-                        Text(stringResource(R.string.action_choose_file))
-                    }
+                Icon(
+                    imageVector = Icons.Default.ImportExport,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Text(
+                stringResource(R.string.import_export_title),
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.Bold
+            )
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            // Import Card
+            SectionCard(
+                icon = Icons.Outlined.Download,
+                title = stringResource(R.string.import_section_title),
+                description = stringResource(R.string.import_description)
+            ) {
+                Button(
+                    onClick = { importLauncher.launch(arrayOf("*/*")) },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Icon(Icons.Outlined.Download, contentDescription = null, modifier = Modifier.size(ButtonDefaults.IconSize))
+                    Spacer(Modifier.width(ButtonDefaults.IconSpacing))
+                    Text(stringResource(R.string.action_choose_file))
                 }
             }
 
-            HorizontalDivider()
+            Spacer(modifier = Modifier.height(24.dp))
 
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+            // Export Card
+            SectionCard(
+                icon = Icons.Outlined.Upload,
+                title = stringResource(R.string.export_section_title),
+                description = stringResource(R.string.export_description)
             ) {
-                Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    ) {
-                        Icon(
-                            Icons.Outlined.Upload,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                        Text(
-                            stringResource(R.string.export_section_title),
-                            style = MaterialTheme.typography.titleMedium
-                        )
-                    }
+                if (babies.isEmpty()) {
                     Text(
-                        stringResource(R.string.export_description),
-                        style = MaterialTheme.typography.bodySmall
+                        stringResource(R.string.export_no_baby),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                } else {
+                    BabyRadioList(
+                        label = stringResource(R.string.export_choose_baby_label),
+                        babies = babies,
+                        selected = selectedBaby,
+                        onSelect = { selectedBaby = it },
                     )
 
-                    if (babies.isEmpty()) {
-                        Text(stringResource(R.string.export_no_baby))
-                    } else {
-                        BabyRadioList(
-                            label = stringResource(R.string.export_choose_baby_label),
-                            babies = babies,
-                            selected = selectedBaby,
-                            onSelect = { selectedBaby = it },
-                        )
-                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Button(
-                                onClick = {
-                                    val suggestedName = "babylog-${selectedBaby?.name.orEmpty()}-export.json"
-                                    exportLauncher.launch(suggestedName)
-                                },
-                            ) {
-                                Text(stringResource(R.string.action_export))
-                            }
+                    Spacer(modifier = Modifier.height(16.dp))
 
-                            Button(
-                                onClick = {
-                                    val babyId = selectedBaby?.id ?: return@Button
-                                    scope.launch {
-                                        viewModel.exportJson(babyId).fold(
-                                            onSuccess = { json ->
-                                                shareJson(context, selectedBaby?.name.orEmpty(), json)
-                                            },
-                                            onFailure = { e ->
-                                                status = StatusMessage.ExportError(e.message ?: e.toString())
-                                            }
-                                        )
-                                    }
-                                },
-                            ) {
-                                Icon(
-                                    Icons.Outlined.Share,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(ButtonDefaults.IconSize)
-                                )
-                                Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-                                Text(stringResource(R.string.action_share))
-                            }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Button(
+                            modifier = Modifier.weight(1f),
+                            onClick = {
+                                val suggestedName = "babylog-${selectedBaby?.name.orEmpty()}-export.json"
+                                exportLauncher.launch(suggestedName)
+                            },
+                        ) {
+                            Icon(Icons.Outlined.Upload, contentDescription = null, modifier = Modifier.size(ButtonDefaults.IconSize))
+                            Spacer(Modifier.width(ButtonDefaults.IconSpacing))
+                            Text(stringResource(R.string.action_export))
+                        }
+
+                        TextButton(
+                            modifier = Modifier.weight(1f),
+                            onClick = {
+                                val babyId = selectedBaby?.id ?: return@TextButton
+                                scope.launch {
+                                    viewModel.exportJson(babyId).fold(
+                                        onSuccess = { json ->
+                                            shareJson(context, selectedBaby?.name.orEmpty(), json)
+                                        },
+                                        onFailure = { e ->
+                                            status = StatusMessage.ExportError(e.message ?: e.toString())
+                                        }
+                                    )
+                                }
+                            },
+                        ) {
+                            Icon(Icons.Outlined.Share, contentDescription = null, modifier = Modifier.size(ButtonDefaults.IconSize))
+                            Spacer(Modifier.width(ButtonDefaults.IconSpacing))
+                            Text(stringResource(R.string.action_share))
                         }
                     }
                 }
             }
 
-            status?.let { StatusText(it) }
+            status?.let {
+                Spacer(modifier = Modifier.height(24.dp))
+                StatusText(it)
+            }
         }
     }
 
@@ -272,6 +288,43 @@ fun ImportExportScreen(
             },
             onCancel = { pendingImport = null },
         )
+    }
+}
+
+@Composable
+private fun SectionCard(
+    icon: ImageVector,
+    title: String,
+    description: String,
+    content: @Composable (ColumnScope.() -> Unit)
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)),
+    ) {
+        Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+            Text(
+                text = description,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            content()
+        }
     }
 }
 
