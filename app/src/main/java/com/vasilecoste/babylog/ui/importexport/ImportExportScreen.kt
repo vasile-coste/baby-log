@@ -1,23 +1,29 @@
 package com.vasilecoste.babylog.ui.importexport
 
+import android.content.ClipData
+import android.content.Intent
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Download
+import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material.icons.outlined.Upload
 import androidx.compose.material.icons.outlined.WarningAmber
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
@@ -42,12 +48,14 @@ import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.core.content.FileProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vasilecoste.babylog.R
 import com.vasilecoste.babylog.data.db.entity.BabyProfile
 import com.vasilecoste.babylog.data.model.ImportedBabyData
 import com.vasilecoste.babylog.data.repository.ImportMode
 import com.vasilecoste.babylog.ui.components.SimpleTopBar
+import java.io.File
 import kotlinx.coroutines.launch
 
 private sealed class StatusMessage {
@@ -209,13 +217,39 @@ fun ImportExportScreen(
                             selected = selectedBaby,
                             onSelect = { selectedBaby = it },
                         )
-                        Button(
-                            onClick = {
-                                val suggestedName = "babylog-${selectedBaby?.name.orEmpty()}-export.json"
-                                exportLauncher.launch(suggestedName)
-                            },
-                        ) {
-                            Text(stringResource(R.string.action_export))
+                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Button(
+                                onClick = {
+                                    val suggestedName = "babylog-${selectedBaby?.name.orEmpty()}-export.json"
+                                    exportLauncher.launch(suggestedName)
+                                },
+                            ) {
+                                Text(stringResource(R.string.action_export))
+                            }
+
+                            Button(
+                                onClick = {
+                                    val babyId = selectedBaby?.id ?: return@Button
+                                    scope.launch {
+                                        viewModel.exportJson(babyId).fold(
+                                            onSuccess = { json ->
+                                                shareJson(context, selectedBaby?.name.orEmpty(), json)
+                                            },
+                                            onFailure = { e ->
+                                                status = StatusMessage.ExportError(e.message ?: e.toString())
+                                            }
+                                        )
+                                    }
+                                },
+                            ) {
+                                Icon(
+                                    Icons.Outlined.Share,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(ButtonDefaults.IconSize)
+                                )
+                                Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+                                Text(stringResource(R.string.action_share))
+                            }
                         }
                     }
                 }
@@ -311,5 +345,30 @@ private fun BabyRadioList(
                 Text(baby.name, modifier = Modifier.padding(start = 8.dp))
             }
         }
+    }
+}
+
+private fun shareJson(context: android.content.Context, babyName: String, json: String) {
+    try {
+        val file = File(context.cacheDir, "babylog-$babyName-export.json")
+        file.writeText(json)
+        val uri = FileProvider.getUriForFile(
+            context,
+            "${context.packageName}.fileprovider",
+            file
+        )
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            type = "application/json"
+            putExtra(Intent.EXTRA_STREAM, uri)
+            clipData = ClipData.newRawUri("", uri)
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+        val chooser = Intent.createChooser(intent, context.getString(R.string.action_share))
+        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        context.startActivity(chooser)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        Toast.makeText(context, "Error sharing: ${e.message}", Toast.LENGTH_LONG).show()
     }
 }

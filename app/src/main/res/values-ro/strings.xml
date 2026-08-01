@@ -8,6 +8,7 @@
     <string name="action_add">Adaugă</string>
     <string name="action_close">Închide</string>
     <string name="action_edit">Editează</string>
+    <string name="action_share">Trimite</string>
     <string name="label_yes">Da</string>
     <string name="label_no">Nu</string>
     <string name="sort">Sortare</string>
