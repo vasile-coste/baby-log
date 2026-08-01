@@ -5,23 +5,32 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ChildCare
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -32,11 +41,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.vasilecoste.babylog.R
 import com.vasilecoste.babylog.data.repository.DailyAggregate
@@ -86,53 +98,78 @@ fun ProfileScreen(onMenuClick: () -> Unit, viewModel: MainViewModel) {
             modifier = Modifier
                 .padding(padding)
                 .fillMaxSize()
-                .padding(16.dp)
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+                .verticalScroll(rememberScrollState())
+                .padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
+            // Profile Header
+            Surface(
+                modifier = Modifier
+                    .size(100.dp)
+                    .clip(CircleShape),
+                color = MaterialTheme.colorScheme.primaryContainer
             ) {
-                Text(baby.name, style = MaterialTheme.typography.headlineSmall)
-                IconButton(onClick = { showDeleteDialog = true }) {
-                    Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.action_delete))
-                }
+                Icon(
+                    imageVector = Icons.Filled.ChildCare,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(20.dp)
+                )
             }
 
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Text(
+                baby.name,
+                style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.Bold
+            )
+
+            if (birthDate != null) {
+                AgeText(birthDate)
+            }
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            // Information Cards
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
             ) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Text(
-                        stringResource(
-                            R.string.profile_birth_date_label,
-                            birthDate?.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
-                                ?: stringResource(R.string.profile_birth_date_not_set),
-                        ),
-                        style = MaterialTheme.typography.bodyLarge,
+                Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                    // Birth Date Row
+                    InfoRow(
+                        icon = painterResource(R.drawable.id_cake),
+                        label = stringResource(R.string.growth_date_label),
+                        value = birthDate?.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
+                            ?: stringResource(R.string.profile_birth_date_not_set)
                     )
 
-                    if (birthDate != null) {
-                        AgeSection(birthDate)
-                    }
-                }
-            }
+                    HorizontalDivider(color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.1f))
 
-            GrowthAndFeedingSection(uiState.chartData)
-
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
-            ) {
-                Box(modifier = Modifier.padding(16.dp)) {
-                    ThemeSection(
+                    // Theme Row
+                    ThemeSectionRow(
                         selectedOverride = uiState.themeOverride,
                         onSelect = { override -> viewModel.setThemeOverride(baby.id, override) },
                     )
                 }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            GrowthAndFeedingSection(uiState.chartData)
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            TextButton(
+                onClick = { showDeleteDialog = true },
+                colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colorScheme.error)
+            ) {
+                Icon(Icons.Filled.Delete, contentDescription = null)
+                Spacer(modifier = Modifier.size(8.dp))
+                Text(stringResource(R.string.action_delete))
             }
         }
     }
@@ -167,12 +204,11 @@ fun ProfileScreen(onMenuClick: () -> Unit, viewModel: MainViewModel) {
 }
 
 @Composable
-private fun AgeSection(birthDate: LocalDate) {
+private fun AgeText(birthDate: LocalDate) {
     val today = LocalDate.now()
     val period = Period.between(birthDate, today)
     val totalDays = ChronoUnit.DAYS.between(birthDate, today)
     val totalDaysText = pluralStringResource(R.plurals.plural_days, totalDays.toInt(), totalDays.toInt())
-
 
     val yearsText = pluralStringResource(R.plurals.plural_years, period.years, period.years)
     val monthsText = pluralStringResource(R.plurals.plural_months, period.months, period.months)
@@ -186,7 +222,11 @@ private fun AgeSection(birthDate: LocalDate) {
         daysText
     }
 
-    Text(stringResource(R.string.profile_age_label, "$ageText ($totalDaysText)"))
+    Text(
+        text = "$ageText ($totalDaysText)",
+        style = MaterialTheme.typography.bodyLarge,
+        color = MaterialTheme.colorScheme.onSurfaceVariant
+    )
 }
 
 @Composable
@@ -197,63 +237,107 @@ private fun GrowthAndFeedingSection(chartData: List<DailyAggregate>) {
     val today = LocalDate.now()
     val rangeStart = today.minusDays(7)
     val last7Days = chartData.filter { it.date >= rangeStart && it.date < today }
-    val avgFoodMl = last7Days.sumOf { it.totalFoodMl } / 7.0
+    val avgFoodMl = if (last7Days.isNotEmpty()) last7Days.sumOf { it.totalFoodMl } / 7.0 else 0.0
     val minFoodMl = last7Days.minOfOrNull { it.totalFoodMl }
     val maxFoodMl = last7Days.maxOfOrNull { it.totalFoodMl }
 
+    // Growth Card
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            TitleCard(painterResource(R.drawable.id_growth), stringResource(R.string.profile_growth))
-
-            Text(
-                if (latestWeightKg != null) {
-                    stringResource(R.string.profile_latest_weight, formatDecimal(latestWeightKg, 2))
-                } else {
-                    stringResource(R.string.profile_no_data)
-                },
-                style = MaterialTheme.typography.bodyMedium
-            )
-            Text(
-                if (latestHeightCm != null) {
-                    stringResource(R.string.profile_latest_height, formatDecimal(latestHeightCm, 1))
-                } else {
-                    stringResource(R.string.profile_no_data)
-                },
-                style = MaterialTheme.typography.bodyMedium
-            )
+        Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            SectionTitle(painterResource(R.drawable.id_growth_filled), stringResource(R.string.profile_growth))
+            
+            Row(modifier = Modifier.fillMaxWidth()) {
+                InfoItem(
+                    modifier = Modifier.weight(1f),
+                    icon = painterResource(R.drawable.id_weight),
+                    label = stringResource(R.string.weight_kg_label),
+                    value = latestWeightKg?.let { formatDecimal(it, 2) + " kg" } ?: stringResource(R.string.profile_no_data)
+                )
+                InfoItem(
+                    modifier = Modifier.weight(1f),
+                    icon = painterResource(R.drawable.id_height),
+                    label = stringResource(R.string.height_cm_label),
+                    value = latestHeightCm?.let { formatDecimal(it, 1) + " cm" } ?: stringResource(R.string.profile_no_data)
+                )
+            }
         }
     }
 
-    val medFood = if (minFoodMl != null) {
-        stringResource(R.string.profile_min_food_7d, minFoodMl.toString())
-    } else {
-        stringResource(R.string.profile_no_data)
-    }
+    Spacer(modifier = Modifier.height(16.dp))
 
-    val maxFood = if (maxFoodMl != null) {
-        stringResource(R.string.profile_max_food_7d, maxFoodMl.toString())
-    } else {
-        stringResource(R.string.profile_no_data)
-    }
-
+    // Feeding Card
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            TitleCard(painterResource(R.drawable.id_feed), stringResource(R.string.profile_food))
-            Text(stringResource(R.string.profile_avg_food_7d, avgFoodMl.roundToInt().toString()), style = MaterialTheme.typography.bodyMedium)
-            Text(medFood, style = MaterialTheme.typography.bodyMedium)
-            Text(maxFood, style = MaterialTheme.typography.bodyMedium)
+        Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            SectionTitle(painterResource(R.drawable.id_feed), stringResource(R.string.profile_food))
+            
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                FeedingStatRow(
+                    label = stringResource(R.string.profile_avg_food_7d, "").replace(":", ""),
+                    value = "${avgFoodMl.roundToInt()} ml"
+                )
+                FeedingStatRow(
+                    label = stringResource(R.string.profile_min_food_7d, "").replace(":", ""),
+                    value = minFoodMl?.let { "$it ml" } ?: "—"
+                )
+                FeedingStatRow(
+                    label = stringResource(R.string.profile_max_food_7d, "").replace(":", ""),
+                    value = maxFoodMl?.let { "$it ml" } ?: "—"
+                )
+            }
         }
     }
 }
 
 @Composable
-private fun ThemeSection(selectedOverride: AppTheme?, onSelect: (AppTheme?) -> Unit) {
+private fun InfoRow(icon: Painter, label: String, value: String) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(24.dp))
+        Column {
+            Text(label, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(value, style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Medium)
+        }
+    }
+}
+
+@Composable
+private fun InfoItem(modifier: Modifier = Modifier, icon: Painter, label: String, value: String) {
+    Column(modifier = modifier, horizontalAlignment = Alignment.Start) {
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+            Icon(icon, contentDescription = null, modifier = Modifier.size(16.dp), tint = MaterialTheme.colorScheme.primary)
+            Text(label, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
+        Text(value, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+    }
+}
+
+@Composable
+private fun FeedingStatRow(label: String, value: String) {
+    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+        Text(label, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(value, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
+    }
+}
+
+@Composable
+private fun SectionTitle(painter: Painter, title: String) {
+    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        Icon(painter, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+        Text(title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+    }
+}
+
+@Composable
+private fun ThemeSectionRow(selectedOverride: AppTheme?, onSelect: (AppTheme?) -> Unit) {
     var showDialog by remember { mutableStateOf(false) }
     val themeOptions = listOf(
         null to stringResource(R.string.profile_theme_automatic),
@@ -267,11 +351,23 @@ private fun ThemeSection(selectedOverride: AppTheme?, onSelect: (AppTheme?) -> U
         modifier = Modifier
             .fillMaxWidth()
             .clickable { showDialog = true },
-        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        TitleCard(painterResource(R.drawable.id_theme), stringResource(R.string.profile_theme_label))
-        Text(currentLabel, style = MaterialTheme.typography.bodyMedium)
+        Icon(
+            painterResource(R.drawable.id_theme),
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.size(24.dp)
+        )
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                stringResource(R.string.profile_theme_label),
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Text(currentLabel, style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Medium)
+        }
     }
 
     if (showDialog) {
@@ -311,19 +407,4 @@ private fun formatDecimal(value: Double, decimals: Int): String {
     val factor = Math.pow(10.0, decimals.toDouble())
     val rounded = Math.round(value * factor) / factor
     return if (decimals == 0) rounded.toInt().toString() else rounded.toString()
-}
-
-@Composable
-private fun TitleCard(
-    painter: Painter,
-    text: String,
-    tint: Color = MaterialTheme.colorScheme.onSurfaceVariant
-) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        Icon(painter, contentDescription = null, tint = tint)
-        Text(text, style = MaterialTheme.typography.titleMedium)
-    }
 }
