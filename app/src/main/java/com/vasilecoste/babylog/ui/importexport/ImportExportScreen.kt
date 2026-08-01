@@ -9,10 +9,19 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Download
+import androidx.compose.material.icons.outlined.Upload
+import androidx.compose.material.icons.outlined.WarningAmber
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
@@ -30,6 +39,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -128,36 +138,86 @@ fun ImportExportScreen(
 
     Scaffold(topBar = { SimpleTopBar(title = stringResource(R.string.import_export_title), onMenuClick = onMenuClick) }) { padding ->
         Column(
-            modifier = Modifier.padding(padding).fillMaxSize().padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier
+                .padding(padding)
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Text(stringResource(R.string.import_section_title), style = MaterialTheme.typography.titleMedium)
-            Text(stringResource(R.string.import_description))
-            Button(onClick = { importLauncher.launch(arrayOf("*/*")) }) {
-                Text(stringResource(R.string.action_choose_file))
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+            ) {
+                Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    ) {
+                        Icon(
+                            Icons.Outlined.Download,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        Text(
+                            stringResource(R.string.import_section_title),
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                    }
+                    Text(
+                        stringResource(R.string.import_description),
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Button(onClick = { importLauncher.launch(arrayOf("*/*")) }) {
+                        Text(stringResource(R.string.action_choose_file))
+                    }
+                }
             }
 
             HorizontalDivider()
 
-            Text(stringResource(R.string.export_section_title), style = MaterialTheme.typography.titleMedium)
-            Text(stringResource(R.string.export_description))
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+            ) {
+                Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    ) {
+                        Icon(
+                            Icons.Outlined.Upload,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        Text(
+                            stringResource(R.string.export_section_title),
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                    }
+                    Text(
+                        stringResource(R.string.export_description),
+                        style = MaterialTheme.typography.bodySmall
+                    )
 
-            if (babies.isEmpty()) {
-                Text(stringResource(R.string.export_no_baby))
-            } else {
-                BabyRadioList(
-                    label = stringResource(R.string.export_choose_baby_label),
-                    babies = babies,
-                    selected = selectedBaby,
-                    onSelect = { selectedBaby = it },
-                )
-                Button(
-                    onClick = {
-                        val suggestedName = "babylog-${selectedBaby?.name.orEmpty()}-export.json"
-                        exportLauncher.launch(suggestedName)
-                    },
-                ) {
-                    Text(stringResource(R.string.action_export))
+                    if (babies.isEmpty()) {
+                        Text(stringResource(R.string.export_no_baby))
+                    } else {
+                        BabyRadioList(
+                            label = stringResource(R.string.export_choose_baby_label),
+                            babies = babies,
+                            selected = selectedBaby,
+                            onSelect = { selectedBaby = it },
+                        )
+                        Button(
+                            onClick = {
+                                val suggestedName = "babylog-${selectedBaby?.name.orEmpty()}-export.json"
+                                exportLauncher.launch(suggestedName)
+                            },
+                        ) {
+                            Text(stringResource(R.string.action_export))
+                        }
+                    }
                 }
             }
 
@@ -182,14 +242,30 @@ fun ImportExportScreen(
 }
 
 @Composable
-private fun StatusText(status: StatusMessage) {
+private fun StatusText(status: StatusMessage, modifier: Modifier = Modifier) {
     val text = when (status) {
         is StatusMessage.ImportError -> stringResource(R.string.import_error, status.reason)
         StatusMessage.ImportReadError -> stringResource(R.string.import_error, stringResource(R.string.error_could_not_read_file))
         is StatusMessage.ExportError -> stringResource(R.string.export_error, status.reason)
         StatusMessage.ExportWriteError -> stringResource(R.string.export_error, stringResource(R.string.error_could_not_write_file))
     }
-    Text(text)
+    Card(
+        modifier = modifier.fillMaxWidth().padding(16.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onSurfaceVariant),
+    ) {
+        Row(
+            modifier = Modifier.padding(6.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            Icon(
+                Icons.Outlined.WarningAmber,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.surfaceVariant
+            )
+            Text(text, color = MaterialTheme.colorScheme.surfaceVariant)
+        }
+    }
 }
 
 @Composable

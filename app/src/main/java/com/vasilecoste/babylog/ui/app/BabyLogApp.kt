@@ -1,7 +1,10 @@
 package com.vasilecoste.babylog.ui.app
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
@@ -61,67 +64,69 @@ fun BabyLogApp(viewModel: MainViewModel) {
         drawerState = drawerState,
         drawerContent = {
             ModalDrawerSheet {
-                Text(
-                    stringResource(R.string.drawer_title),
-                    style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier.padding(horizontal = 28.dp, vertical = 16.dp),
-                )
-                NavigationDrawerItem(
-                    label = { Text(stringResource(R.string.drawer_main_app)) },
-                    icon = { Icon(Icons.Filled.Home, contentDescription = null) },
-                    selected = screen == AppScreen.MAIN,
-                    onClick = { navigateTo(AppScreen.MAIN) },
-                    modifier = Modifier.padding(horizontal = 12.dp),
-                )
-                NavigationDrawerItem(
-                    label = { Text(stringResource(R.string.drawer_tummy_time)) },
-                    icon = { Icon(Icons.Filled.Timer, contentDescription = null) },
-                    selected = screen == AppScreen.TUMMY_TIME,
-                    onClick = { navigateTo(AppScreen.TUMMY_TIME) },
-                    modifier = Modifier.padding(horizontal = 12.dp),
-                )
-                NavigationDrawerItem(
-                    label = { Text(stringResource(R.string.drawer_sleep)) },
-                    icon = { Icon(painterResource(R.drawable.id_sleep_filled), contentDescription = null) },
-                    selected = screen == AppScreen.SLEEP,
-                    onClick = { navigateTo(AppScreen.SLEEP) },
-                    modifier = Modifier.padding(horizontal = 12.dp),
-                )
-                NavigationDrawerItem(
-                    label = { Text(stringResource(R.string.drawer_growth)) },
-                    icon = { Icon(painterResource(R.drawable.id_growth_filled), contentDescription = null) },
-                    selected = screen == AppScreen.GROWTH,
-                    onClick = { navigateTo(AppScreen.GROWTH) },
-                    modifier = Modifier.padding(horizontal = 12.dp),
-                )
-                NavigationDrawerItem(
-                    label = { Text(stringResource(R.string.drawer_statistics)) },
-                    icon = { Icon(painterResource(R.drawable.id_pie_filled), contentDescription = null) },
-                    selected = screen == AppScreen.STATISTICS,
-                    onClick = { navigateTo(AppScreen.STATISTICS) },
-                    modifier = Modifier.padding(horizontal = 12.dp),
-                )
-                NavigationDrawerItem(
-                    label = { Text(stringResource(R.string.drawer_baby_profile)) },
-                    icon = { Icon(Icons.Filled.AccountCircle, contentDescription = null) },
-                    selected = screen == AppScreen.PROFILE,
-                    onClick = { navigateTo(AppScreen.PROFILE) },
-                    modifier = Modifier.padding(horizontal = 12.dp),
-                )
-                NavigationDrawerItem(
-                    label = { Text(stringResource(R.string.drawer_import_export)) },
-                    icon = { Icon(Icons.Filled.ImportExport, contentDescription = null) },
-                    selected = screen == AppScreen.IMPORT_EXPORT,
-                    onClick = { navigateTo(AppScreen.IMPORT_EXPORT) },
-                    modifier = Modifier.padding(horizontal = 12.dp),
-                )
-                NavigationDrawerItem(
-                    label = { Text(stringResource(R.string.drawer_about)) },
-                    icon = { Icon(Icons.Filled.Info, contentDescription = null) },
-                    selected = screen == AppScreen.ABOUT,
-                    onClick = { navigateTo(AppScreen.ABOUT) },
-                    modifier = Modifier.padding(horizontal = 12.dp),
-                )
+                Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+                    Text(
+                        stringResource(R.string.drawer_title),
+                        style = MaterialTheme.typography.titleMedium,
+                        modifier = Modifier.padding(horizontal = 28.dp, vertical = 16.dp),
+                    )
+                    NavigationDrawerItem(
+                        label = { Text(stringResource(R.string.drawer_main_app)) },
+                        icon = { Icon(Icons.Filled.Home, contentDescription = null) },
+                        selected = screen == AppScreen.MAIN,
+                        onClick = { navigateTo(AppScreen.MAIN) },
+                        modifier = Modifier.padding(horizontal = 12.dp),
+                    )
+                    NavigationDrawerItem(
+                        label = { Text(stringResource(R.string.drawer_tummy_time)) },
+                        icon = { Icon(Icons.Filled.Timer, contentDescription = null) },
+                        selected = screen == AppScreen.TUMMY_TIME,
+                        onClick = { navigateTo(AppScreen.TUMMY_TIME) },
+                        modifier = Modifier.padding(horizontal = 12.dp),
+                    )
+                    NavigationDrawerItem(
+                        label = { Text(stringResource(R.string.drawer_sleep)) },
+                        icon = { Icon(painterResource(R.drawable.id_sleep_filled), contentDescription = null) },
+                        selected = screen == AppScreen.SLEEP,
+                        onClick = { navigateTo(AppScreen.SLEEP) },
+                        modifier = Modifier.padding(horizontal = 12.dp),
+                    )
+                    NavigationDrawerItem(
+                        label = { Text(stringResource(R.string.drawer_growth)) },
+                        icon = { Icon(painterResource(R.drawable.id_growth_filled), contentDescription = null) },
+                        selected = screen == AppScreen.GROWTH,
+                        onClick = { navigateTo(AppScreen.GROWTH) },
+                        modifier = Modifier.padding(horizontal = 12.dp),
+                    )
+                    NavigationDrawerItem(
+                        label = { Text(stringResource(R.string.drawer_statistics)) },
+                        icon = { Icon(painterResource(R.drawable.id_pie_filled), contentDescription = null) },
+                        selected = screen == AppScreen.STATISTICS,
+                        onClick = { navigateTo(AppScreen.STATISTICS) },
+                        modifier = Modifier.padding(horizontal = 12.dp),
+                    )
+                    NavigationDrawerItem(
+                        label = { Text(stringResource(R.string.drawer_baby_profile)) },
+                        icon = { Icon(Icons.Filled.AccountCircle, contentDescription = null) },
+                        selected = screen == AppScreen.PROFILE,
+                        onClick = { navigateTo(AppScreen.PROFILE) },
+                        modifier = Modifier.padding(horizontal = 12.dp),
+                    )
+                    NavigationDrawerItem(
+                        label = { Text(stringResource(R.string.drawer_import_export)) },
+                        icon = { Icon(Icons.Filled.ImportExport, contentDescription = null) },
+                        selected = screen == AppScreen.IMPORT_EXPORT,
+                        onClick = { navigateTo(AppScreen.IMPORT_EXPORT) },
+                        modifier = Modifier.padding(horizontal = 12.dp),
+                    )
+                    NavigationDrawerItem(
+                        label = { Text(stringResource(R.string.drawer_about)) },
+                        icon = { Icon(Icons.Filled.Info, contentDescription = null) },
+                        selected = screen == AppScreen.ABOUT,
+                        onClick = { navigateTo(AppScreen.ABOUT) },
+                        modifier = Modifier.padding(horizontal = 12.dp),
+                    )
+                }
             }
         },
     ) {

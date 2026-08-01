@@ -80,6 +80,7 @@ kotlin {
 
 dependencies {
     implementation(libs.core.ktx)
+    implementation(libs.foundation.layout)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.lifecycle.runtime.compose)
