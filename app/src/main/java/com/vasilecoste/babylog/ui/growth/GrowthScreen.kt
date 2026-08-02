@@ -33,6 +33,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vasilecoste.babylog.R
 import com.vasilecoste.babylog.data.db.entity.WeightRecord
+import com.vasilecoste.babylog.ui.components.AddEditBabyDialog
+import com.vasilecoste.babylog.ui.components.BabyProfileSwitcherDialog
 import com.vasilecoste.babylog.ui.components.SimpleTopBar
 import com.vasilecoste.babylog.ui.main.MainViewModel
 import java.time.YearMonth
@@ -51,19 +53,32 @@ fun GrowthScreen(
     var editingRecord by remember { mutableStateOf<WeightRecord?>(null) }
     var sortAscending by remember { mutableStateOf(false) }
     var showMonthPicker by remember { mutableStateOf(false) }
+    var showBabySwitcher by remember { mutableStateOf(false) }
+    var showAddBaby by remember { mutableStateOf(false) }
 
     val monthRecords = uiState.weightRecords.filter { YearMonth.from(it.date) == uiState.selectedMonth }
 
     Scaffold(
         topBar = {
-            SimpleTopBar(title = stringResource(R.string.growth_title), onMenuClick = onMenuClick) {
-                TextButton(
-                    onClick = { showMonthPicker = true },
-                    colors = ButtonDefaults.textButtonColors(contentColor = LocalContentColor.current),
-                ) {
-                    Text(uiState.selectedMonth.format(monthYearFormatter))
+            SimpleTopBar(
+                onMenuClick = onMenuClick,
+                titleContent = {
+                    TextButton(
+                        onClick = { showBabySwitcher = true },
+                        colors = ButtonDefaults.textButtonColors(contentColor = LocalContentColor.current),
+                    ) {
+                        Text(uiState.selectedBaby?.name ?: "")
+                    }
+                },
+                actions = {
+                    TextButton(
+                        onClick = { showMonthPicker = true },
+                        colors = ButtonDefaults.textButtonColors(contentColor = LocalContentColor.current),
+                    ) {
+                        Text(uiState.selectedMonth.format(monthYearFormatter))
+                    }
                 }
-            }
+            )
         },
         floatingActionButton = {
             FloatingActionButton(onClick = { showAddRecord = true }) {
@@ -149,6 +164,29 @@ fun GrowthScreen(
                 showMonthPicker = false
             },
             onDismiss = { showMonthPicker = false },
+        )
+    }
+
+    if (showBabySwitcher) {
+        BabyProfileSwitcherDialog(
+            babies = uiState.babies,
+            selectedBabyId = uiState.selectedBaby?.id,
+            onSelect = { viewModel.selectBaby(it) },
+            onAddNew = {
+                showBabySwitcher = false
+                showAddBaby = true
+            },
+            onDismiss = { showBabySwitcher = false },
+        )
+    }
+
+    if (showAddBaby) {
+        AddEditBabyDialog(
+            onConfirm = { name, birthDate, gender ->
+                viewModel.addBabyProfile(name, birthDate, gender)
+                showAddBaby = false
+            },
+            onDismiss = { showAddBaby = false },
         )
     }
 }

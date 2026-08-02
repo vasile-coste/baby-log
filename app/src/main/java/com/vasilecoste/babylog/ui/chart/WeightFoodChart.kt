@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -14,7 +16,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ShowChart
 import androidx.compose.material.icons.outlined.Timer
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -22,7 +27,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -32,9 +40,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.patrykandpatrick.vico.compose.cartesian.CartesianChartHost
@@ -56,6 +67,8 @@ import com.patrykandpatrick.vico.compose.common.component.ShapeComponent
 import com.patrykandpatrick.vico.compose.common.component.rememberLineComponent
 import com.vasilecoste.babylog.R
 import com.vasilecoste.babylog.data.repository.DailyAggregate
+import com.vasilecoste.babylog.ui.components.AddEditBabyDialog
+import com.vasilecoste.babylog.ui.components.BabyProfileSwitcherDialog
 import com.vasilecoste.babylog.ui.components.SimpleTopBar
 import com.vasilecoste.babylog.ui.main.MainViewModel
 import java.time.LocalDate
@@ -93,132 +106,250 @@ fun StatisticsScreen(
     val uiState by viewModel.uiState.collectAsState()
     var chartFilter by remember { mutableStateOf(ChartFilter.CURRENT_MONTH) }
     val data = remember(uiState.chartData, chartFilter) { uiState.chartData.filteredBy(chartFilter) }
+    var showBabySwitcher by remember { mutableStateOf(false) }
+    var showAddBaby by remember { mutableStateOf(false) }
 
-    Scaffold(topBar = { SimpleTopBar(title = stringResource(R.string.statistics_title), onMenuClick = onMenuClick) }) { padding ->
-        Column(modifier = Modifier.padding(padding).fillMaxSize()) {
+    Scaffold(
+        topBar = {
+            SimpleTopBar(
+                onMenuClick = onMenuClick,
+                titleContent = {
+                    TextButton(
+                        onClick = { showBabySwitcher = true },
+                        colors = androidx.compose.material3.ButtonDefaults.textButtonColors(
+                            contentColor = androidx.compose.material3.LocalContentColor.current
+                        ),
+                    ) {
+                        Text(uiState.selectedBaby?.name ?: "")
+                    }
+                }
+            )
+        }
+    ) { padding ->
+        Column(
+            modifier = Modifier
+                .padding(padding)
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(bottom = 24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            // Header Section
+            Spacer(modifier = Modifier.height(24.dp))
+            Surface(
+                modifier = Modifier
+                    .size(80.dp)
+                    .clip(CircleShape),
+                color = MaterialTheme.colorScheme.primaryContainer
+            ) {
+                Icon(
+                    painterResource(R.drawable.id_pie),
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Text(
+                stringResource(R.string.statistics_title),
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.Bold
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
+
             ChartFilterSelector(
                 selected = chartFilter,
                 onSelect = { chartFilter = it },
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp),
             )
 
+            Spacer(modifier = Modifier.height(32.dp))
+
             if (data.isEmpty()) {
-                Box(modifier = Modifier.weight(1f).fillMaxWidth(), contentAlignment = Alignment.Center) {
-                    Text(stringResource(R.string.chart_no_data), style = MaterialTheme.typography.titleMedium)
-                }
-                return@Scaffold
-            }
-
-            val weightPoints = data
-                .dropWhile { (it.weightKg ?: 0.0) <= 0 }
-                .dropLastWhile { (it.weightKg ?: 0.0) <= 0 }
-                .mapNotNull { d -> d.weightKg?.let { d.date to it } }
-
-            val heightPoints = data
-                .dropWhile { (it.heightCm ?: 0.0) <= 0 }
-                .dropLastWhile { (it.heightCm ?: 0.0) <= 0 }
-                .mapNotNull { d -> d.heightCm?.let { d.date to it } }
-
-            val foodPoints = data
-                .dropWhile { it.totalFoodMl <= 0 }
-                .dropLastWhile { it.totalFoodMl <= 0 }
-                .map { it.date to it.totalFoodMl.toDouble() }
-
-            val tummyTimePoints = data
-                .dropWhile { it.tummyTimeSeconds <= 0 }
-                .dropLastWhile { it.tummyTimeSeconds <= 0 }
-                .map { it.date to it.tummyTimeSeconds.toDouble() }
-
-            Column(modifier = Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState())) {
-                Row(
-                    modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Icon(painterResource(R.drawable.id_growth), contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
-                    Text(stringResource(R.string.chart_growth_title), style = MaterialTheme.typography.titleMedium)
-                }
-                if (weightPoints.isEmpty() && heightPoints.isEmpty()) {
+                Box(modifier = Modifier.height(300.dp).fillMaxWidth(), contentAlignment = Alignment.Center) {
                     Text(
                         stringResource(R.string.chart_no_data),
-                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-                    )
-                } else {
-                    GrowthChart(
-                        weightPoints = weightPoints,
-                        weightFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_kg)),
-                        heightPoints = heightPoints.ifEmpty { null },
-                        heightFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_cm)),
-                        modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
-                    )
-                    Legend(
-                        modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
-                        items = buildList {
-                            if (weightPoints.isNotEmpty()) {
-                                add(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_weight_kg))
-                            }
-                            if (heightPoints.isNotEmpty()) {
-                                add(MaterialTheme.colorScheme.tertiary to stringResource(R.string.chart_legend_height_cm))
-                            }
-                        },
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
+            } else {
+                val weightPoints = data
+                    .dropWhile { (it.weightKg ?: 0.0) <= 0 }
+                    .dropLastWhile { (it.weightKg ?: 0.0) <= 0 }
+                    .mapNotNull { d -> d.weightKg?.let { d.date to it } }
 
-                Row(
-                    modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Icon(painterResource(R.drawable.id_feed), contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
-                    Text(stringResource(R.string.chart_food_title), style = MaterialTheme.typography.titleMedium)
-                }
-                if (foodPoints.isEmpty()) {
-                    Text(
-                        stringResource(R.string.chart_no_food_data),
-                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-                    )
-                } else {
-                    DualLineChart(
-                        primaryPoints = foodPoints,
-                        primaryFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_ml)),
-                        secondaryPoints = null,
-                        secondaryFormatter = null,
-                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp).fillMaxWidth(),
-                    )
-                    Legend(
-                        modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
-                        items = listOf(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_total_food_ml)),
-                    )
-                }
+                val heightPoints = data
+                    .dropWhile { (it.heightCm ?: 0.0) <= 0 }
+                    .dropLastWhile { (it.heightCm ?: 0.0) <= 0 }
+                    .mapNotNull { d -> d.heightCm?.let { d.date to it } }
 
-                Row(
-                    modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                val foodPoints = data
+                    .dropWhile { it.totalFoodMl <= 0 }
+                    .dropLastWhile { it.totalFoodMl <= 0 }
+                    .map { it.date to it.totalFoodMl.toDouble() }
+
+                val tummyTimePoints = data
+                    .dropWhile { it.tummyTimeSeconds <= 0 }
+                    .dropLastWhile { it.tummyTimeSeconds <= 0 }
+                    .map { it.date to it.tummyTimeSeconds.toDouble() }
+
+                Column(
+                    modifier = Modifier.padding(horizontal = 24.dp),
+                    verticalArrangement = Arrangement.spacedBy(24.dp)
                 ) {
-                    Icon(Icons.Outlined.Timer, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
-                    Text(stringResource(R.string.chart_tummy_time_title), style = MaterialTheme.typography.titleMedium)
-                }
-                if (tummyTimePoints.isEmpty()) {
-                    Text(
-                        stringResource(R.string.chart_no_tummy_time_data),
-                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-                    )
-                } else {
-                    DualLineChart(
-                        primaryPoints = tummyTimePoints,
-                        primaryFormatter = MinutesSecondsValueFormatter,
-                        secondaryPoints = null,
-                        secondaryFormatter = null,
-                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp).fillMaxWidth(),
-                    )
-                    Legend(
-                        modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
-                        items = listOf(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_tummy_time)),
-                    )
+                    // Growth Card
+                    StatisticCard(
+                        icon = painterResource(R.drawable.id_growth),
+                        title = stringResource(R.string.chart_growth_title)
+                    ) {
+                        if (weightPoints.isEmpty() && heightPoints.isEmpty()) {
+                            NoDataPlaceholder(stringResource(R.string.chart_no_data))
+                        } else {
+                            GrowthChart(
+                                weightPoints = weightPoints,
+                                weightFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_kg)),
+                                heightPoints = heightPoints.ifEmpty { null },
+                                heightFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_cm)),
+                                modifier = Modifier.fillMaxWidth(),
+                            )
+                            Legend(
+                                modifier = Modifier.padding(top = 16.dp),
+                                items = buildList {
+                                    if (weightPoints.isNotEmpty()) {
+                                        add(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_weight_kg))
+                                    }
+                                    if (heightPoints.isNotEmpty()) {
+                                        add(MaterialTheme.colorScheme.tertiary to stringResource(R.string.chart_legend_height_cm))
+                                    }
+                                },
+                            )
+                        }
+                    }
+
+                    // Food Card
+                    StatisticCard(
+                        icon = painterResource(R.drawable.id_feed),
+                        title = stringResource(R.string.chart_food_title)
+                    ) {
+                        if (foodPoints.isEmpty()) {
+                            NoDataPlaceholder(stringResource(R.string.chart_no_food_data))
+                        } else {
+                            DualLineChart(
+                                primaryPoints = foodPoints,
+                                primaryFormatter = CartesianValueFormatter.decimal(suffix = stringResource(R.string.chart_axis_suffix_ml)),
+                                secondaryPoints = null,
+                                secondaryFormatter = null,
+                                modifier = Modifier.fillMaxWidth(),
+                            )
+                            Legend(
+                                modifier = Modifier.padding(top = 16.dp),
+                                items = listOf(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_total_food_ml)),
+                            )
+                        }
+                    }
+
+                    // Tummy Time Card
+                    StatisticCard(
+                        icon = Icons.Outlined.Timer,
+                        title = stringResource(R.string.chart_tummy_time_title)
+                    ) {
+                        if (tummyTimePoints.isEmpty()) {
+                            NoDataPlaceholder(stringResource(R.string.chart_no_tummy_time_data))
+                        } else {
+                            DualLineChart(
+                                primaryPoints = tummyTimePoints,
+                                primaryFormatter = MinutesSecondsValueFormatter,
+                                secondaryPoints = null,
+                                secondaryFormatter = null,
+                                modifier = Modifier.fillMaxWidth(),
+                            )
+                            Legend(
+                                modifier = Modifier.padding(top = 16.dp),
+                                items = listOf(MaterialTheme.colorScheme.primary to stringResource(R.string.chart_legend_tummy_time)),
+                            )
+                        }
+                    }
                 }
             }
         }
+    }
+
+    if (showBabySwitcher) {
+        BabyProfileSwitcherDialog(
+            babies = uiState.babies,
+            selectedBabyId = uiState.selectedBaby?.id,
+            onSelect = { viewModel.selectBaby(it) },
+            onAddNew = {
+                showBabySwitcher = false
+                showAddBaby = true
+            },
+            onDismiss = { showBabySwitcher = false },
+        )
+    }
+
+    if (showAddBaby) {
+        AddEditBabyDialog(
+            onConfirm = { name, birthDate, gender ->
+                viewModel.addBabyProfile(name, birthDate, gender)
+                showAddBaby = false
+            },
+            onDismiss = { showAddBaby = false },
+        )
+    }
+}
+
+@Composable
+private fun StatisticCard(
+    icon: Any, // painterResource or ImageVector
+    title: String,
+    content: @Composable ColumnScope.() -> Unit
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)),
+    ) {
+        Column(modifier = Modifier.padding(8.dp)) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                modifier = Modifier.padding(bottom = 20.dp)
+            ) {
+                when (icon) {
+                    is androidx.compose.ui.graphics.painter.Painter -> Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                    is ImageVector -> Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                }
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+            content()
+        }
+    }
+}
+
+@Composable
+private fun NoDataPlaceholder(message: String) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(150.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = message,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
     }
 }
 
@@ -236,7 +367,7 @@ private fun ChartFilterSelector(selected: ChartFilter, onSelect: (ChartFilter) -
                 selected = selected == option,
                 onClick = { onSelect(option) },
                 shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
-                label = { Text(stringResource(option.labelRes)) },
+                label = { Text(stringResource(option.labelRes), style = MaterialTheme.typography.bodySmall,) },
             )
         }
     }
