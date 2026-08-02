@@ -23,8 +23,16 @@ import com.vasilecoste.babylog.data.model.ImportedBabyData
 import java.time.LocalDate
 import java.time.LocalTime
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
+
+data class TummyTimerStart(
+    val babyId: Long,
+    val date: LocalDate,
+    val startTime: LocalTime,
+    val epochMillis: Long
+)
 
 data class DailyAggregate(
     val date: LocalDate,
@@ -47,6 +55,8 @@ class BabyLogRepository(
     private val sleepDao: SleepDao,
 ) {
     val babies: Flow<List<BabyProfile>> = babyProfileDao.getAll()
+
+    val runningTummyTimer = MutableStateFlow<TummyTimerStart?>(null)
 
     suspend fun getBabyById(id: Long): BabyProfile? = babyProfileDao.getById(id)
 

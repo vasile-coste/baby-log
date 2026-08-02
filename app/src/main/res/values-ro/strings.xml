@@ -105,6 +105,12 @@
     <string name="tummy_time_duration_minutes_label">Minute</string>
     <string name="tummy_time_duration_seconds_label">Secunde</string>
 
+    <!-- Tummy time notification -->
+    <string name="tummy_time_notification_channel_name">Cronometru timp pe burtică</string>
+    <string name="tummy_time_notification_title">Timp pe burtică în curs</string>
+    <string name="tummy_time_notification_text">Timp: %1$s</string>
+    <string name="tummy_time_notification_action_stop">Stop</string>
+
     <!-- Sleep -->
     <string name="sleep_total_today">Somn total: %1$dh %2$dm</string>
     <string name="sleep_no_entries">Niciun somn înregistrat pentru această zi încă</string>

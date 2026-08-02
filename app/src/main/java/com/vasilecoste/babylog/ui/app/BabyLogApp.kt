@@ -20,11 +20,13 @@ import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -44,12 +46,22 @@ import java.time.LocalDate
 import java.time.YearMonth
 import kotlinx.coroutines.launch
 
-private enum class AppScreen { MAIN, TUMMY_TIME, SLEEP, GROWTH, STATISTICS, PROFILE, IMPORT_EXPORT, ABOUT }
+enum class AppScreen { MAIN, TUMMY_TIME, SLEEP, GROWTH, STATISTICS, PROFILE, IMPORT_EXPORT, ABOUT }
 
 @Composable
 fun BabyLogApp(viewModel: MainViewModel) {
     val uiState by viewModel.uiState.collectAsState()
-    var screen by remember { mutableStateOf(AppScreen.MAIN) }
+    val navigateToScreen by viewModel.navigateToScreen.collectAsState()
+    var screen by rememberSaveable { 
+        mutableStateOf(viewModel.navigateToScreen.value ?: AppScreen.MAIN) 
+    }
+
+    LaunchedEffect(navigateToScreen) {
+        navigateToScreen?.let {
+            screen = it
+            viewModel.navigateTo(null)
+        }
+    }
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
 
@@ -79,7 +91,7 @@ fun BabyLogApp(viewModel: MainViewModel) {
                     )
                     NavigationDrawerItem(
                         label = { Text(stringResource(R.string.drawer_tummy_time)) },
-                        icon = { Icon(Icons.Filled.Timer, contentDescription = null) },
+                        icon = { Icon(painterResource(R.drawable.id_timer), contentDescription = null) },
                         selected = screen == AppScreen.TUMMY_TIME,
                         onClick = { navigateTo(AppScreen.TUMMY_TIME) },
                         modifier = Modifier.padding(horizontal = 12.dp),

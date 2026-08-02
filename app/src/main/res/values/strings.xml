@@ -105,6 +105,12 @@
     <string name="tummy_time_duration_minutes_label">Minutes</string>
     <string name="tummy_time_duration_seconds_label">Seconds</string>
 
+    <!-- Tummy time notification -->
+    <string name="tummy_time_notification_channel_name">Tummy Time Timer</string>
+    <string name="tummy_time_notification_title">Tummy time in progress</string>
+    <string name="tummy_time_notification_text">Time: %1$s</string>
+    <string name="tummy_time_notification_action_stop">Stop</string>
+
     <!-- Sleep -->
     <string name="sleep_total_today">Total sleep: %1$dh %2$dm</string>
     <string name="sleep_no_entries">No sleep logged for this day yet</string>

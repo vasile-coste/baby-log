@@ -1,5 +1,7 @@
 package com.vasilecoste.babylog.ui.main
 
+import android.content.Intent
+import android.os.Build
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
@@ -15,6 +17,9 @@ import com.vasilecoste.babylog.data.db.entity.WeightRecord
 import com.vasilecoste.babylog.data.prefs.SelectedBabyStore
 import com.vasilecoste.babylog.data.repository.BabyLogRepository
 import com.vasilecoste.babylog.data.repository.DailyAggregate
+import com.vasilecoste.babylog.data.repository.TummyTimerStart
+import com.vasilecoste.babylog.ui.app.AppScreen
+import com.vasilecoste.babylog.ui.tummytime.TummyTimeService
 import com.vasilecoste.babylog.ui.theme.AppTheme
 import com.vasilecoste.babylog.ui.theme.resolveAppTheme
 import java.time.LocalDate
@@ -51,18 +56,20 @@ private data class DaySecondaryState(
     val sleepEntries: List<SleepEntry>,
 )
 
-private data class TummyTimerStart(val epochMillis: Long, val date: LocalDate, val time: LocalTime)
-
 private data class ThemeState(val override: AppTheme?, val active: AppTheme)
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class MainViewModel(
+    private val application: BabyLogApplication,
     private val repository: BabyLogRepository,
     private val selectedBabyStore: SelectedBabyStore,
 ) : ViewModel() {
 
     private val selectedDate = MutableStateFlow(LocalDate.now())
     private val selectedMonth = MutableStateFlow(YearMonth.now())
+
+    private val _navigateToScreen = MutableStateFlow<AppScreen?>(null)
+    val navigateToScreen: StateFlow<AppScreen?> = _navigateToScreen
 
     private val selectedBabyId: StateFlow<Long?> =
         combine(repository.babies, selectedBabyStore.selectedBabyId) { babies, stored ->
@@ -111,7 +118,7 @@ class MainViewModel(
             if (id == null) flowOf(emptyList()) else repository.tummyTimeForDay(id, date)
         }
 
-    private val tummyTimerStart = MutableStateFlow<TummyTimerStart?>(null)
+    private val tummyTimerStart = repository.runningTummyTimer
 
     private val sleepEntries = combine(selectedBabyId, selectedDate) { id, date -> id to date }
         .flatMapLatest { (id, date) ->
@@ -163,6 +170,10 @@ class MainViewModel(
 
     fun selectMonth(month: YearMonth) {
         selectedMonth.value = month
+    }
+
+    fun navigateTo(screen: AppScreen?) {
+        _navigateToScreen.value = screen
     }
 
     fun selectBaby(babyId: Long) {
@@ -235,19 +246,32 @@ class MainViewModel(
     }
 
     fun startTummyTimer() {
+        val babyId = selectedBabyId.value ?: return
         if (tummyTimerStart.value != null) return
-        tummyTimerStart.value = TummyTimerStart(System.currentTimeMillis(), LocalDate.now(), LocalTime.now())
+        val now = System.currentTimeMillis()
+        val date = LocalDate.now()
+        val time = LocalTime.now()
+        
+        val intent = Intent(application, TummyTimeService::class.java).apply {
+            action = TummyTimeService.ACTION_START
+            putExtra(TummyTimeService.EXTRA_BABY_ID, babyId)
+            putExtra(TummyTimeService.EXTRA_DATE, date)
+            putExtra(TummyTimeService.EXTRA_START_TIME, time)
+            putExtra(TummyTimeService.EXTRA_EPOCH_MILLIS, now)
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            application.startForegroundService(intent)
+        } else {
+            application.startService(intent)
+        }
     }
 
     fun stopTummyTimer() {
-        val start = tummyTimerStart.value ?: return
-        tummyTimerStart.value = null
-        val babyId = selectedBabyId.value ?: return
-        val elapsedSeconds = ((System.currentTimeMillis() - start.epochMillis) / 1000).toInt().coerceAtLeast(0)
-        if (elapsedSeconds <= 0) return
-        viewModelScope.launch {
-            repository.addTummyTimeEntry(babyId, start.date, start.time, elapsedSeconds)
+        if (tummyTimerStart.value == null) return
+        val intent = Intent(application, TummyTimeService::class.java).apply {
+            action = TummyTimeService.ACTION_STOP
         }
+        application.startService(intent)
     }
 
     fun addManualTummyTime(date: LocalDate, startTime: LocalTime, durationSeconds: Int) {
@@ -284,7 +308,7 @@ class MainViewModel(
         val Factory = viewModelFactory {
             initializer {
                 val app = this[APPLICATION_KEY] as BabyLogApplication
-                MainViewModel(app.container.repository, app.container.selectedBabyStore)
+                MainViewModel(app, app.container.repository, app.container.selectedBabyStore)
             }
         }
     }

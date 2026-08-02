@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.vasilecoste.babylog.R
@@ -29,7 +30,7 @@ fun TummyTimeSummaryCard(totalSeconds: Int, modifier: Modifier = Modifier) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            Icon(Icons.Outlined.Timer, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+            Icon(painterResource(R.drawable.id_timer), contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
             Text(
                 stringResource(
                     R.string.tummy_time_total_today,

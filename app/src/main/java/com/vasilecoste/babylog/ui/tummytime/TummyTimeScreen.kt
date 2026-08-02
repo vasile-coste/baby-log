@@ -1,5 +1,10 @@
 package com.vasilecoste.babylog.ui.tummytime
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,8 +30,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vasilecoste.babylog.R
 import com.vasilecoste.babylog.data.db.entity.TummyTimeEntry
@@ -49,6 +56,18 @@ fun TummyTimeScreen(
     var showAddManual by remember { mutableStateOf(false) }
     var editingEntry by remember { mutableStateOf<TummyTimeEntry?>(null) }
     var sortAscending by remember { mutableStateOf(false) }
+
+    val context = LocalContext.current
+    val permissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            viewModel.startTummyTimer()
+        } else {
+            // Permission denied, we still start the timer but without notification
+            viewModel.startTummyTimer()
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -75,7 +94,18 @@ fun TummyTimeScreen(
             TummyTimerButton(
                 isRunning = uiState.tummyTimerRunning,
                 startEpochMillis = uiState.tummyTimerStartEpochMillis,
-                onStart = { viewModel.startTummyTimer() },
+                onStart = {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        val status = ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
+                        if (status != PackageManager.PERMISSION_GRANTED) {
+                            permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                        } else {
+                            viewModel.startTummyTimer()
+                        }
+                    } else {
+                        viewModel.startTummyTimer()
+                    }
+                },
                 onStop = { viewModel.stopTummyTimer() },
                 modifier = Modifier.padding(vertical = 8.dp),
             )
