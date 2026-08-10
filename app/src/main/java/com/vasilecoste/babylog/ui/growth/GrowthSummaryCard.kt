@@ -69,7 +69,7 @@ private fun weightSummary(values: List<Double>): GrowthMetricText {
     }
     val current = values.last()
     val diff = current - values[values.size - 2]
-    val roundedDiff = (diff * 10).roundToInt() / 10.0
+    val roundedDiff = (diff * 100).roundToInt() / 100.0
     val currentText = stringResource(R.string.growth_current_weight, current)
     val changeText = when {
         roundedDiff == 0.0 -> null
