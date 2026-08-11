@@ -209,5 +209,5 @@
     <string name="about_title">About</string>
     <string name="about_app_description">Baby Log helps you track your baby\'s feedings, diapers, vitamins, and growth — all stored locally on your device.</string>
     <string name="about_version_label">Version %1$s</string>
-    <string name="about_tech_stack">Built with Kotlin, Jetpack Compose, Material 3, Room, and Vico charts.</string>
+    <string name="about_tech_stack">Everything is local, no tracking and spyware.</string>
 </resources>

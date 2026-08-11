@@ -209,5 +209,5 @@
     <string name="about_title">Despre</string>
     <string name="about_app_description">Baby Log te ajută să urmărești mesele, scutecele, vitaminele și creșterea bebelușului tău — toate stocate local pe dispozitivul tău.</string>
     <string name="about_version_label">Versiunea %1$s</string>
-    <string name="about_tech_stack">Construit cu Kotlin, Jetpack Compose, Material 3, Room și grafice Vico.</string>
+    <string name="about_tech_stack">Totul este local, fără urmărire și spyware.</string>
 </resources>
