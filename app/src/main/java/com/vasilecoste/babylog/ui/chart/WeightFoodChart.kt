@@ -387,13 +387,15 @@ private fun GrowthChart(
 
     LaunchedEffect(weightPoints, heightPoints) {
         modelProducer.runTransaction {
-            lineModel {
-                series(
-                    x = weightPoints.map { it.first.toEpochDay().toDouble() },
-                    y = weightPoints.map { it.second },
-                )
+            if (weightPoints.isNotEmpty()) {
+                lineModel {
+                    series(
+                        x = weightPoints.map { it.first.toEpochDay().toDouble() },
+                        y = weightPoints.map { it.second },
+                    )
+                }
             }
-            if (heightPoints != null) {
+            if (heightPoints != null && heightPoints.isNotEmpty()) {
                 columnModel {
                     series(
                         x = heightPoints.map { it.first.toEpochDay().toDouble() },
@@ -404,20 +406,25 @@ private fun GrowthChart(
         }
     }
 
-    val lineLayer = rememberLineCartesianLayer(
-        lineProvider = LineCartesianLayer.LineProvider.series(
-            listOf(
-                LineCartesianLayer.rememberLine(
-                    fill = LineCartesianLayer.LineFill.single(Fill(weightColor)),
-                    pointProvider = LineCartesianLayer.PointProvider.single(
-                        LineCartesianLayer.Point(ShapeComponent(Fill(weightColor), CircleShape)),
+    val lineLayer = if (weightPoints.isNotEmpty()) {
+        rememberLineCartesianLayer(
+            lineProvider = LineCartesianLayer.LineProvider.series(
+                listOf(
+                    LineCartesianLayer.rememberLine(
+                        fill = LineCartesianLayer.LineFill.single(Fill(weightColor)),
+                        pointProvider = LineCartesianLayer.PointProvider.single(
+                            LineCartesianLayer.Point(ShapeComponent(Fill(weightColor), CircleShape)),
+                        ),
                     ),
                 ),
             ),
-        ),
-        verticalAxisPosition = Axis.Position.Vertical.Start,
-    )
-    val columnLayer = if (heightPoints != null) {
+            verticalAxisPosition = Axis.Position.Vertical.Start,
+        )
+    } else {
+        null
+    }
+
+    val columnLayer = if (heightPoints != null && heightPoints.isNotEmpty()) {
         rememberColumnCartesianLayer(
             columnProvider = ColumnCartesianLayer.ColumnProvider.series(
                 rememberLineComponent(fill = Fill(heightColor), thickness = 12.dp),
@@ -432,8 +439,12 @@ private fun GrowthChart(
     CartesianChartHost(
         chart = rememberCartesianChart(
             *layers,
-            startAxis = VerticalAxis.rememberStart(valueFormatter = weightFormatter),
-            endAxis = if (heightFormatter != null) VerticalAxis.rememberEnd(valueFormatter = heightFormatter) else null,
+            startAxis = if (weightPoints.isNotEmpty()) VerticalAxis.rememberStart(valueFormatter = weightFormatter) else null,
+            endAxis = if (!heightPoints.isNullOrEmpty() && heightFormatter != null) {
+                VerticalAxis.rememberEnd(valueFormatter = heightFormatter)
+            } else {
+                null
+            },
             bottomAxis = HorizontalAxis.rememberBottom(valueFormatter = BottomAxisFormatter),
         ),
         modelProducer = modelProducer,
@@ -455,13 +466,15 @@ private fun DualLineChart(
 
     LaunchedEffect(primaryPoints, secondaryPoints) {
         modelProducer.runTransaction {
-            lineModel {
-                series(
-                    x = primaryPoints.map { it.first.toEpochDay().toDouble() },
-                    y = primaryPoints.map { it.second },
-                )
+            if (primaryPoints.isNotEmpty()) {
+                lineModel {
+                    series(
+                        x = primaryPoints.map { it.first.toEpochDay().toDouble() },
+                        y = primaryPoints.map { it.second },
+                    )
+                }
             }
-            if (secondaryPoints != null) {
+            if (!secondaryPoints.isNullOrEmpty()) {
                 lineModel {
                     series(
                         x = secondaryPoints.map { it.first.toEpochDay().toDouble() },
@@ -472,20 +485,25 @@ private fun DualLineChart(
         }
     }
 
-    val primaryLayer = rememberLineCartesianLayer(
-        lineProvider = LineCartesianLayer.LineProvider.series(
-            listOf(
-                LineCartesianLayer.rememberLine(
-                    fill = LineCartesianLayer.LineFill.single(Fill(primaryColor)),
-                    pointProvider = LineCartesianLayer.PointProvider.single(
-                        LineCartesianLayer.Point(ShapeComponent(Fill(primaryColor), CircleShape)),
+    val primaryLayer = if (primaryPoints.isNotEmpty()) {
+        rememberLineCartesianLayer(
+            lineProvider = LineCartesianLayer.LineProvider.series(
+                listOf(
+                    LineCartesianLayer.rememberLine(
+                        fill = LineCartesianLayer.LineFill.single(Fill(primaryColor)),
+                        pointProvider = LineCartesianLayer.PointProvider.single(
+                            LineCartesianLayer.Point(ShapeComponent(Fill(primaryColor), CircleShape)),
+                        ),
                     ),
                 ),
             ),
-        ),
-        verticalAxisPosition = Axis.Position.Vertical.Start,
-    )
-    val secondaryLayer = if (secondaryPoints != null) {
+            verticalAxisPosition = Axis.Position.Vertical.Start,
+        )
+    } else {
+        null
+    }
+
+    val secondaryLayer = if (!secondaryPoints.isNullOrEmpty()) {
         rememberLineCartesianLayer(
             lineProvider = LineCartesianLayer.LineProvider.series(
                 listOf(
@@ -507,8 +525,12 @@ private fun DualLineChart(
     CartesianChartHost(
         chart = rememberCartesianChart(
             *layers,
-            startAxis = VerticalAxis.rememberStart(valueFormatter = primaryFormatter),
-            endAxis = if (secondaryFormatter != null) VerticalAxis.rememberEnd(valueFormatter = secondaryFormatter) else null,
+            startAxis = if (primaryPoints.isNotEmpty()) VerticalAxis.rememberStart(valueFormatter = primaryFormatter) else null,
+            endAxis = if (!secondaryPoints.isNullOrEmpty() && secondaryFormatter != null) {
+                VerticalAxis.rememberEnd(valueFormatter = secondaryFormatter)
+            } else {
+                null
+            },
             bottomAxis = HorizontalAxis.rememberBottom(valueFormatter = BottomAxisFormatter),
         ),
         modelProducer = modelProducer,
