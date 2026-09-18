@@ -1,0 +1,37 @@
+package com.vasilecoste.babylog.data.db.dao
+
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
+import com.vasilecoste.babylog.data.db.entity.WeightRecord
+import java.time.LocalDate
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface WeightDao {
+    @Insert
+    suspend fun insert(record: WeightRecord): Long
+
+    @Insert
+    suspend fun insertAll(records: List<WeightRecord>)
+
+    @Update
+    suspend fun update(record: WeightRecord)
+
+    @Delete
+    suspend fun delete(record: WeightRecord)
+
+    @Query("DELETE FROM weight_records WHERE babyId = :babyId")
+    suspend fun deleteAllForBaby(babyId: Long)
+
+    @Query("SELECT * FROM weight_records WHERE babyId = :babyId ORDER BY date ASC, id ASC")
+    fun getForBaby(babyId: Long): Flow<List<WeightRecord>>
+
+    @Query("SELECT * FROM weight_records WHERE babyId = :babyId ORDER BY date ASC, id ASC")
+    suspend fun getAllForBaby(babyId: Long): List<WeightRecord>
+
+    @Query("SELECT DISTINCT date FROM weight_records WHERE babyId = :babyId")
+    fun getDistinctDates(babyId: Long): Flow<List<LocalDate>>
+}

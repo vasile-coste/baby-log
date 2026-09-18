@@ -1,0 +1,229 @@
+<resources>
+    <string name="app_name">Baby Log</string>
+
+    <!-- Common actions -->
+    <string name="action_save">Salvează</string>
+    <string name="action_cancel">Anulează</string>
+    <string name="action_delete">Șterge</string>
+    <string name="action_add">Adaugă</string>
+    <string name="action_close">Închide</string>
+    <string name="action_edit">Editează</string>
+    <string name="action_share">Trimite</string>
+    <string name="label_yes">Da</string>
+    <string name="label_no">Nu</string>
+    <string name="sort">Sortare</string>
+
+    <!-- Empty state -->
+    <string name="empty_state_message">Adaugă profilul bebelușului pentru a începe</string>
+    <string name="action_add_baby">Adaugă bebeluș</string>
+
+    <!-- Baby profile switcher -->
+    <string name="switch_baby_title">Schimbă bebelușul</string>
+    <string name="add_baby_profile_title">Adaugă profil bebeluș</string>
+    <string name="edit_baby_profile_title">Editează profil bebeluș</string>
+    <string name="baby_name_label">Nume</string>
+    <string name="gender_label">Gen</string>
+    <string name="gender_unspecified">Nespecificat</string>
+    <string name="gender_male">Masculin</string>
+    <string name="gender_female">Feminin</string>
+
+    <!-- Header -->
+    <string name="day_today">Astăzi</string>
+    <string name="day_yesterday">Ieri</string>
+
+    <!-- Day picker -->
+    <string name="day_picker_title">Selectează o zi</string>
+
+    <!-- Quick info card -->
+    <string name="quick_total_food">Hrană totală: %1$d ml</string>
+    <string name="quick_vitamin">Vitamine: %1$s</string>
+    <string name="quick_poops">Scaun: %1$d</string>
+    <string name="quick_pees">Urină: %1$d</string>
+    <string name="quick_pukes">Vărsături: %1$d</string>
+
+    <!-- Timeline -->
+    <string name="timeline_food_amount">%1$d ml</string>
+    <string name="cd_poop">Scaun</string>
+    <string name="cd_pee">Urină</string>
+    <string name="cd_puke">Vărsătură</string>
+    <string name="cd_vitamin">Vitamine</string>
+    <string name="no_entries_today">Nicio înregistrare pentru această zi încă</string>
+
+    <!-- Expandable FAB -->
+    <string name="fab_add_weight">Adaugă creștere</string>
+    <string name="fab_add_entry">Adaugă înregistrare</string>
+    <string name="cd_fab_close_menu">Închide meniul</string>
+    <string name="cd_fab_add">Adaugă</string>
+
+    <!-- Add / edit entry dialog -->
+    <string name="add_entry_title">Adaugă înregistrare</string>
+    <string name="edit_entry_title">Editează înregistrarea</string>
+    <string name="food_amount_label">Cantitate hrană (ml)</string>
+    <string name="checkbox_poop">Scaun</string>
+    <string name="checkbox_pee">Urină</string>
+    <string name="checkbox_puke">Vărsătură</string>
+    <string name="checkbox_vitamins">Vitamine</string>
+    <string name="checkbox_breastfed">Alăptat</string>
+    <string name="observations_label">Observații</string>
+
+    <!-- Add weight dialog -->
+    <string name="add_weight_title">Adaugă creștere</string>
+    <string name="add_weight_hint">Introdu greutatea și/sau înălțimea</string>
+    <string name="weight_kg_label">Greutate (kg)</string>
+    <string name="height_cm_label">Înălțime (cm)</string>
+
+    <!-- Growth timeline -->
+    <string name="growth_title">Creștere</string>
+    <string name="growth_add_cd">Adaugă înregistrare de creștere</string>
+    <string name="growth_no_records">Nicio greutate sau înălțime înregistrată încă</string>
+    <string name="growth_add_title">Adaugă înregistrare de creștere</string>
+    <string name="growth_edit_title">Editează înregistrarea de creștere</string>
+    <string name="growth_date_label">Data</string>
+    <string name="growth_weight_value">%.2f kg</string>
+    <string name="growth_height_value">%.1f cm</string>
+    <string name="growth_current_weight">Greutate curentă: %.2f kg</string>
+    <string name="growth_current_weight_insufficient">Greutate curentă: date insuficiente</string>
+    <string name="growth_current_height">Înălțime curentă: %.1f cm</string>
+    <string name="growth_current_height_insufficient">Înălțime curentă: date insuficiente</string>
+    <string name="growth_change_increase_kg">(creștere de %.2f kg)</string>
+    <string name="growth_change_decrease_kg">(scădere de %.2f kg)</string>
+    <string name="growth_change_increase_cm">(creștere de %.1f cm)</string>
+    <string name="growth_change_decrease_cm">(scădere de %.1f cm)</string>
+    <string name="growth_no_records_month">Nicio greutate sau înălțime înregistrată în această lună</string>
+    <string name="growth_select_month_title">Selectează luna</string>
+    <string name="growth_previous_year_cd">Anul anterior</string>
+    <string name="growth_next_year_cd">Anul următor</string>
+
+    <!-- Tummy time -->
+    <string name="tummy_time_total_today">Timp total pe burtică: %1$dm %2$ds</string>
+    <string name="tummy_time_start">Start</string>
+    <string name="tummy_time_stop">Stop</string>
+    <string name="tummy_time_no_entries">Nicio înregistrare de timp pe burtică pentru această zi încă</string>
+    <string name="tummy_time_duration_format">%1$dm %2$ds</string>
+    <string name="tummy_time_add_manual_cd">Adaugă manual timp pe burtică</string>
+    <string name="tummy_time_add_title">Adaugă timp pe burtică</string>
+    <string name="tummy_time_edit_title">Editează timpul pe burtică</string>
+    <string name="tummy_time_duration_minutes_label">Minute</string>
+    <string name="tummy_time_duration_seconds_label">Secunde</string>
+
+    <!-- Tummy time notification -->
+    <string name="tummy_time_notification_channel_name">Cronometru timp pe burtică</string>
+    <string name="tummy_time_notification_title">Timp pe burtică în curs</string>
+    <string name="tummy_time_notification_text">Timp: %1$s</string>
+    <string name="tummy_time_notification_action_stop">Stop</string>
+
+    <!-- Sleep -->
+    <string name="sleep_total_today">Somn total: %1$dh %2$dm</string>
+    <string name="sleep_no_entries">Niciun somn înregistrat pentru această zi încă</string>
+    <string name="sleep_duration_format">%1$dh %2$dm</string>
+    <string name="sleep_add_manual_cd">Adaugă somn</string>
+    <string name="sleep_add_title">Adaugă somn</string>
+    <string name="sleep_edit_title">Editează somnul</string>
+    <string name="sleep_start_time_label">Ora la care a adormit</string>
+    <string name="sleep_end_time_label">Ora la care s-a trezit</string>
+    <string name="sleep_ended_label">Somn finalizat</string>
+    <string name="sleep_ongoing">În desfășurare</string>
+    <string name="sleep_duration_preview">Durată: %1$dh %2$dm</string>
+
+    <!-- Chart -->
+    <string name="statistics_title">Statistici</string>
+    <string name="chart_no_data">Nu există date încă</string>
+    <string name="chart_growth_title">Creștere</string>
+    <string name="chart_no_weight_data">Nu există date despre greutate încă</string>
+    <string name="chart_no_height_data">Nu există date despre înălțime încă</string>
+    <string name="chart_no_food_data">Nu există date despre hrană încă</string>
+    <string name="chart_no_tummy_time_data">Nu există date despre timpul pe burtică încă</string>
+    <string name="chart_food_title">Hrană</string>
+    <string name="chart_tummy_time_title">Timp pe burtică</string>
+    <string name="chart_legend_weight_kg">Greutate (kg)</string>
+    <string name="chart_legend_height_cm">Înălțime (cm)</string>
+    <string name="chart_legend_total_food_ml">Hrană totală (ml)</string>
+    <string name="chart_legend_tummy_time">Timp pe burtică</string>
+    <string name="chart_axis_suffix_kg"> kg</string>
+    <string name="chart_axis_suffix_cm"> cm</string>
+    <string name="chart_axis_suffix_ml"> ml</string>
+    <string name="chart_filter_current_month">Luna aceasta</string>
+    <string name="chart_filter_previous_month">Luna trecută</string>
+    <string name="chart_filter_all_time">Tot timpul</string>
+
+    <!-- Navigation drawer -->
+    <string name="cd_open_menu">Deschide meniul</string>
+    <string name="drawer_title">Meniu</string>
+    <string name="drawer_main_app">Pagina principală</string>
+    <string name="drawer_tummy_time">Timp pe burtică</string>
+    <string name="drawer_sleep">Somn</string>
+    <string name="drawer_growth">Creștere</string>
+    <string name="drawer_statistics">Statistici</string>
+    <string name="drawer_baby_profile">Profil bebeluș</string>
+    <string name="drawer_import_export">Import / export date</string>
+    <string name="drawer_about">Despre</string>
+
+    <!-- Date picker -->
+    <string name="birth_date_optional_label">Data nașterii (opțional)</string>
+    <string name="action_ok">OK</string>
+
+    <!-- Baby profile screen -->
+    <string name="profile_title">Profil bebeluș</string>
+    <string name="profile_birth_date_label">Data nașterii: %1$s</string>
+    <string name="profile_birth_date_not_set">Nesetată</string>
+    <string name="profile_set_birth_date">Setează data nașterii</string>
+    <string name="profile_edit_birth_date">Editează data nașterii</string>
+    <string name="profile_age_label">Vârstă: %1$s</string>
+    <string name="profile_growth">Creștere</string>
+    <string name="profile_latest_height">Înălțime: %1$s cm</string>
+    <string name="profile_latest_weight">Greutate: %1$s kg</string>
+    <string name="profile_food">Hrană</string>
+    <string name="profile_avg_food_7d">Medie (ultimele 7 zile): %1$s ml/zi</string>
+    <string name="profile_min_food_7d">Min. (ultimele 7 zile): %1$s ml/zi</string>
+    <string name="profile_max_food_7d">Max. (ultimele 7 zile): %1$s ml/zi</string>
+    <string name="profile_no_data">Nu sunt suficiente date încă</string>
+    <string name="profile_theme_label">Temă</string>
+    <string name="profile_theme_automatic">Automată (în funcție de gen)</string>
+    <string name="profile_theme_default">Implicită</string>
+    <string name="profile_theme_blue">Albastru</string>
+    <string name="profile_theme_pink">Roz</string>
+    <string name="profile_delete_baby_title">Ștergi profilul bebelușului?</string>
+    <string name="profile_delete_baby_message">Aceasta va șterge definitiv profilul lui %1$s, împreună cu toate înregistrările asociate. Această acțiune nu poate fi anulată.</string>
+
+    <!-- Import / export screen -->
+    <string name="import_export_title">Import / export date</string>
+    <string name="import_section_title">Import</string>
+    <string name="import_description">Importă un fișier JSON Baby Log. Dacă bebelușul nu există încă, se creează un profil nou; altfel vei fi întrebat dacă vrei să înlocuiești datele existente sau să le adaugi la ele.</string>
+    <string name="action_choose_file">Alege fișier</string>
+    <string name="import_success">Import reușit pentru \"%1$s\" (%2$s)</string>
+    <string name="import_error">Import eșuat: %1$s</string>
+    <string name="import_existing_baby_title">Bebelușul există deja</string>
+    <string name="import_existing_baby_message">Un bebeluș numit \"%1$s\" există deja. Înlocuiești datele existente sau adaugi datele importate la ele?</string>
+    <string name="action_replace">Înlocuiește</string>
+    <string name="action_insert_update">Inserează/actualizează</string>
+    <string name="error_could_not_read_file">Fișierul selectat nu a putut fi citit</string>
+    <string name="error_could_not_write_file">Nu s-a putut scrie în fișierul selectat</string>
+    <string name="export_section_title">Export</string>
+    <string name="export_description">Exportă datele bebelușului selectat într-un fișier JSON.</string>
+    <string name="export_choose_baby_label">Bebeluș de exportat</string>
+    <string name="action_export">Exportă</string>
+    <string name="export_success">Export reușit</string>
+    <string name="export_error">Export eșuat: %1$s</string>
+    <string name="export_no_baby">Niciun bebeluș selectat</string>
+
+    <!-- About screen -->
+    <string name="about_title">Despre</string>
+    <string name="about_app_description">Baby Log te ajută să urmărești mesele, scutecele, vitaminele și creșterea bebelușului tău — toate stocate local pe dispozitivul tău.</string>
+    <string name="about_version_label">Versiunea %1$s</string>
+    <string name="about_tech_stack">Totul este local, fără urmărire și spyware.</string>
+
+    <!-- Notifications -->
+    <string name="notification_settings_title">Setări notificări</string>
+    <string name="notification_enabled_label">Memento hrănire</string>
+    <string name="notification_avg_days_label">Interval istoric</string>
+    <string name="notification_avg_days_value">%1$d zile</string>
+    <string name="notification_offset_label">Devansare memento</string>
+    <string name="notification_offset_value">%1$d min</string>
+    <string name="feeding_reminder_channel_name">Memento Hrănire</string>
+    <string name="feeding_reminder_title">Memento Hrănire</string>
+    <string name="feeding_reminder_text">Aproape că a venit timpul pentru următoarea masă.</string>
+    <string name="notification_next_reminder_label">Următorul memento: %1$s (peste %2$s)</string>
+    <string name="battery_optimization_label">Notificări fiabile</string>
+    <string name="battery_optimization_unrestricted">Nerestricționat</string>
+    <string name="battery_optimization_restricted">Optimizare baterie activă — atinge pentru a rezolva</string>
+</resources>

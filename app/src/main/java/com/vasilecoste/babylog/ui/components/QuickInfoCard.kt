@@ -1,0 +1,102 @@
+package com.vasilecoste.babylog.ui.components
+
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Sick
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.dp
+import com.vasilecoste.babylog.R
+import com.vasilecoste.babylog.ui.main.QuickStats
+
+@Composable
+fun QuickInfoCard(stats: QuickStats, modifier: Modifier = Modifier) {
+    Card(
+        modifier = modifier.fillMaxWidth().padding(16.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+    ) {
+        Column(modifier = Modifier.padding(6.dp), verticalArrangement = Arrangement.spacedBy(3.dp)) {
+            QuickStatCard(
+                painter = painterResource(R.drawable.id_feed),
+                text = stringResource(R.string.quick_total_food, stats.totalFoodMl),
+                textStyle = MaterialTheme.typography.titleMedium
+            )
+        }
+        Row(
+            modifier = modifier
+                .fillMaxWidth()
+                .horizontalScroll(rememberScrollState())
+                .padding(horizontal = 6.dp, vertical = 3.dp),
+            horizontalArrangement = Arrangement.spacedBy(3.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            QuickStatCard(
+                painter = painterResource(R.drawable.id_vitamins),
+                text = stringResource(
+                    R.string.quick_vitamin,
+                    stringResource(if (stats.vitaminTaken) R.string.label_yes else R.string.label_no),
+                ),
+                tint = if (stats.vitaminTaken) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline
+            )
+
+            QuickStatCard(
+                painter = painterResource(R.drawable.id_poop),
+                text = stringResource(R.string.quick_poops, stats.poopCount)
+            )
+
+            QuickStatCard(
+                painter = painterResource(R.drawable.id_pee),
+                text = stringResource(R.string.quick_pees, stats.peeCount)
+            )
+
+            QuickStatCard(
+                painter = rememberVectorPainter(Icons.Outlined.Sick),
+                text = stringResource(R.string.quick_pukes, stats.pukeCount),
+                tint = if (stats.pukeCount == 0) Color(0xFF2E7D32) else MaterialTheme.colorScheme.error
+            )
+        }
+    }
+}
+
+@Composable
+private fun QuickStatCard(
+    painter: Painter,
+    text: String,
+    tint: Color = MaterialTheme.colorScheme.onSurfaceVariant,
+    textStyle: TextStyle = MaterialTheme.typography.bodyMedium
+) {
+    Card(
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+        )
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Icon(painter, contentDescription = null, tint = tint)
+            Text(text, style = textStyle)
+        }
+    }
+}

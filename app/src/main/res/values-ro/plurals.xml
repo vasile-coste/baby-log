@@ -1,0 +1,22 @@
+<resources>
+    <plurals name="plural_years">
+        <item quantity="one">%d an</item>
+        <item quantity="few">%d ani</item>
+        <item quantity="other">%d de ani</item>
+    </plurals>
+    <plurals name="plural_months">
+        <item quantity="one">%d lună</item>
+        <item quantity="few">%d luni</item>
+        <item quantity="other">%d de luni</item>
+    </plurals>
+    <plurals name="plural_days">
+        <item quantity="one">%d zi</item>
+        <item quantity="few">%d zile</item>
+        <item quantity="other">%d de zile</item>
+    </plurals>
+    <plurals name="plural_entries">
+        <item quantity="one">%d intrare</item>
+        <item quantity="few">%d intrări</item>
+        <item quantity="other">%d de intrări</item>
+    </plurals>
+</resources>

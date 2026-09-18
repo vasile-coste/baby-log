@@ -1,0 +1,229 @@
+<resources>
+    <string name="app_name">Baby Log</string>
+
+    <!-- Common actions -->
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_add">Add</string>
+    <string name="action_close">Close</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_share">Share</string>
+    <string name="label_yes">Yes</string>
+    <string name="label_no">No</string>
+    <string name="sort">Sort entries</string>
+
+    <!-- Empty state -->
+    <string name="empty_state_message">Add your baby\'s profile to get started</string>
+    <string name="action_add_baby">Add baby</string>
+
+    <!-- Baby profile switcher -->
+    <string name="switch_baby_title">Switch baby</string>
+    <string name="add_baby_profile_title">Add baby profile</string>
+    <string name="edit_baby_profile_title">Edit baby profile</string>
+    <string name="baby_name_label">Name</string>
+    <string name="gender_label">Gender</string>
+    <string name="gender_unspecified">Unspecified</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+
+    <!-- Header -->
+    <string name="day_today">Today</string>
+    <string name="day_yesterday">Yesterday</string>
+
+    <!-- Day picker -->
+    <string name="day_picker_title">Select a day</string>
+
+    <!-- Quick info card -->
+    <string name="quick_total_food">Total food: %1$d ml</string>
+    <string name="quick_vitamin">Vitamin: %1$s</string>
+    <string name="quick_poops">Poops: %1$d</string>
+    <string name="quick_pees">Pees: %1$d</string>
+    <string name="quick_pukes">Pukes: %1$d</string>
+
+    <!-- Timeline -->
+    <string name="timeline_food_amount">%1$d ml</string>
+    <string name="cd_poop">Poop</string>
+    <string name="cd_pee">Pee</string>
+    <string name="cd_puke">Puke</string>
+    <string name="cd_vitamin">Vitamin</string>
+    <string name="no_entries_today">No entries for this day yet</string>
+
+    <!-- Expandable FAB -->
+    <string name="fab_add_weight">Add growth</string>
+    <string name="fab_add_entry">Add entry</string>
+    <string name="cd_fab_close_menu">Close menu</string>
+    <string name="cd_fab_add">Add</string>
+
+    <!-- Add / edit entry dialog -->
+    <string name="add_entry_title">Add entry</string>
+    <string name="edit_entry_title">Edit entry</string>
+    <string name="food_amount_label">Food amount (ml)</string>
+    <string name="checkbox_poop">Poop</string>
+    <string name="checkbox_pee">Pee</string>
+    <string name="checkbox_puke">Puke</string>
+    <string name="checkbox_vitamins">Vitamins</string>
+    <string name="checkbox_breastfed">Breastfed</string>
+    <string name="observations_label">Observations</string>
+
+    <!-- Add weight dialog -->
+    <string name="add_weight_title">Add growth</string>
+    <string name="add_weight_hint">Enter weight and/or height</string>
+    <string name="weight_kg_label">Weight (kg)</string>
+    <string name="height_cm_label">Height (cm)</string>
+
+    <!-- Growth timeline -->
+    <string name="growth_title">Growth</string>
+    <string name="growth_add_cd">Add growth record</string>
+    <string name="growth_no_records">No weight or height logged yet</string>
+    <string name="growth_add_title">Add growth record</string>
+    <string name="growth_edit_title">Edit growth record</string>
+    <string name="growth_date_label">Date</string>
+    <string name="growth_weight_value">%.2f kg</string>
+    <string name="growth_height_value">%.1f cm</string>
+    <string name="growth_current_weight">Current weight: %.2f kg</string>
+    <string name="growth_current_weight_insufficient">Current weight: Insufficient data</string>
+    <string name="growth_current_height">Current height: %.1f cm</string>
+    <string name="growth_current_height_insufficient">Current height: Insufficient data</string>
+    <string name="growth_change_increase_kg">(%.2f kg increase)</string>
+    <string name="growth_change_decrease_kg">(%.2f kg decrease)</string>
+    <string name="growth_change_increase_cm">(%.1f cm increase)</string>
+    <string name="growth_change_decrease_cm">(%.1f cm decrease)</string>
+    <string name="growth_no_records_month">No weight or height logged this month</string>
+    <string name="growth_select_month_title">Select month</string>
+    <string name="growth_previous_year_cd">Previous year</string>
+    <string name="growth_next_year_cd">Next year</string>
+
+    <!-- Tummy time -->
+    <string name="tummy_time_total_today">Total tummy time: %1$dm %2$ds</string>
+    <string name="tummy_time_start">Start</string>
+    <string name="tummy_time_stop">Stop</string>
+    <string name="tummy_time_no_entries">No tummy time logged for this day yet</string>
+    <string name="tummy_time_duration_format">%1$dm %2$ds</string>
+    <string name="tummy_time_add_manual_cd">Add tummy time manually</string>
+    <string name="tummy_time_add_title">Add tummy time</string>
+    <string name="tummy_time_edit_title">Edit tummy time</string>
+    <string name="tummy_time_duration_minutes_label">Minutes</string>
+    <string name="tummy_time_duration_seconds_label">Seconds</string>
+
+    <!-- Tummy time notification -->
+    <string name="tummy_time_notification_channel_name">Tummy Time Timer</string>
+    <string name="tummy_time_notification_title">Tummy time in progress</string>
+    <string name="tummy_time_notification_text">Time: %1$s</string>
+    <string name="tummy_time_notification_action_stop">Stop</string>
+
+    <!-- Sleep -->
+    <string name="sleep_total_today">Total sleep: %1$dh %2$dm</string>
+    <string name="sleep_no_entries">No sleep logged for this day yet</string>
+    <string name="sleep_duration_format">%1$dh %2$dm</string>
+    <string name="sleep_add_manual_cd">Add sleep</string>
+    <string name="sleep_add_title">Add sleep</string>
+    <string name="sleep_edit_title">Edit sleep</string>
+    <string name="sleep_start_time_label">Time went to sleep</string>
+    <string name="sleep_end_time_label">Time woke up</string>
+    <string name="sleep_ended_label">Sleep ended</string>
+    <string name="sleep_ongoing">Ongoing</string>
+    <string name="sleep_duration_preview">Duration: %1$dh %2$dm</string>
+
+    <!-- Chart -->
+    <string name="statistics_title">Statistics</string>
+    <string name="chart_no_data">No data yet</string>
+    <string name="chart_growth_title">Growth</string>
+    <string name="chart_no_weight_data">No weight data yet</string>
+    <string name="chart_no_height_data">No height data yet</string>
+    <string name="chart_no_food_data">No food data yet</string>
+    <string name="chart_no_tummy_time_data">No tummy time data yet</string>
+    <string name="chart_food_title">Food</string>
+    <string name="chart_tummy_time_title">Tummy time</string>
+    <string name="chart_legend_weight_kg">Weight (kg)</string>
+    <string name="chart_legend_height_cm">Height (cm)</string>
+    <string name="chart_legend_total_food_ml">Total food (ml)</string>
+    <string name="chart_legend_tummy_time">Tummy time</string>
+    <string name="chart_axis_suffix_kg"> kg</string>
+    <string name="chart_axis_suffix_cm"> cm</string>
+    <string name="chart_axis_suffix_ml"> ml</string>
+    <string name="chart_filter_current_month">This month</string>
+    <string name="chart_filter_previous_month">Last month</string>
+    <string name="chart_filter_all_time">All time</string>
+
+    <!-- Navigation drawer -->
+    <string name="cd_open_menu">Open menu</string>
+    <string name="drawer_title">Menu</string>
+    <string name="drawer_main_app">Main page</string>
+    <string name="drawer_tummy_time">Tummy time</string>
+    <string name="drawer_sleep">Sleep</string>
+    <string name="drawer_growth">Growth</string>
+    <string name="drawer_statistics">Statistics</string>
+    <string name="drawer_baby_profile">Baby profile</string>
+    <string name="drawer_import_export">Import / export data</string>
+    <string name="drawer_about">About</string>
+
+    <!-- Date picker -->
+    <string name="birth_date_optional_label">Birth date (optional)</string>
+    <string name="action_ok">OK</string>
+
+    <!-- Baby profile screen -->
+    <string name="profile_title">Baby profile</string>
+    <string name="profile_birth_date_label">Birth date: %1$s</string>
+    <string name="profile_birth_date_not_set">Not set</string>
+    <string name="profile_set_birth_date">Set birth date</string>
+    <string name="profile_edit_birth_date">Edit birth date</string>
+    <string name="profile_age_label">Age: %1$s</string>
+    <string name="profile_growth">Growth</string>
+    <string name="profile_latest_height">Height: %1$s cm</string>
+    <string name="profile_latest_weight">Weight: %1$s kg</string>
+    <string name="profile_food">Food</string>
+    <string name="profile_avg_food_7d">Avg. (last 7 days): %1$s ml/day</string>
+    <string name="profile_min_food_7d">Min. (last 7 days): %1$s ml/day</string>
+    <string name="profile_max_food_7d">Max. (last 7 days): %1$s ml/day</string>
+    <string name="profile_no_data">Not enough data yet</string>
+    <string name="profile_theme_label">Theme</string>
+    <string name="profile_theme_automatic">Automatic (based on gender)</string>
+    <string name="profile_theme_default">Default</string>
+    <string name="profile_theme_blue">Blue</string>
+    <string name="profile_theme_pink">Pink</string>
+    <string name="profile_delete_baby_title">Delete baby profile?</string>
+    <string name="profile_delete_baby_message">This will permanently delete %1$s\'s profile along with all associated data. This cannot be undone.</string>
+
+    <!-- Import / export screen -->
+    <string name="import_export_title">Import / export data</string>
+    <string name="import_section_title">Import</string>
+    <string name="import_description">Import a Baby Log JSON file. If the baby doesn\'t exist yet, a new profile is created; otherwise you\'ll be asked whether to replace or add to its existing data.</string>
+    <string name="action_choose_file">Choose file</string>
+    <string name="import_success">Imported \"%1$s\" successfully (%2$s)</string>
+    <string name="import_error">Import failed: %1$s</string>
+    <string name="import_existing_baby_title">Baby already exists</string>
+    <string name="import_existing_baby_message">A baby named \"%1$s\" already exists. Replace its existing data, or add the imported data to it?</string>
+    <string name="action_replace">Replace</string>
+    <string name="action_insert_update">Insert/update</string>
+    <string name="error_could_not_read_file">Could not read the selected file</string>
+    <string name="error_could_not_write_file">Could not write to the selected file</string>
+    <string name="export_section_title">Export</string>
+    <string name="export_description">Export the selected baby\'s data to a JSON file.</string>
+    <string name="export_choose_baby_label">Baby to export</string>
+    <string name="action_export">Export</string>
+    <string name="export_success">Exported successfully</string>
+    <string name="export_error">Export failed: %1$s</string>
+    <string name="export_no_baby">No baby selected</string>
+
+    <!-- About screen -->
+    <string name="about_title">About</string>
+    <string name="about_app_description">Baby Log helps you track your baby\'s feedings, diapers, vitamins, and growth — all stored locally on your device.</string>
+    <string name="about_version_label">Version %1$s</string>
+    <string name="about_tech_stack">Everything is local, no tracking and spyware.</string>
+
+    <!-- Notifications -->
+    <string name="notification_settings_title">Notification settings</string>
+    <string name="notification_enabled_label">Feeding reminders</string>
+    <string name="notification_avg_days_label">History range</string>
+    <string name="notification_avg_days_value">%1$d days</string>
+    <string name="notification_offset_label">Reminder offset</string>
+    <string name="notification_offset_value">%1$d min</string>
+    <string name="feeding_reminder_channel_name">Feeding Reminders</string>
+    <string name="feeding_reminder_title">Feeding Reminder</string>
+    <string name="feeding_reminder_text">It\'s almost time for the next meal.</string>
+    <string name="notification_next_reminder_label">Next reminder: %1$s (%2$s left)</string>
+    <string name="battery_optimization_label">Reliable notifications</string>
+    <string name="battery_optimization_unrestricted">Unrestricted</string>
+    <string name="battery_optimization_restricted">Battery optimized — tap to fix</string>
+</resources>
