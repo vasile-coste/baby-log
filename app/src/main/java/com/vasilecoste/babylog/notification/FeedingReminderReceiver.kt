@@ -49,7 +49,6 @@ class FeedingReminderReceiver : BroadcastReceiver() {
 
     private fun showNotification(context: Context, babyId: Long, babyName: String) {
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        createNotificationChannel(context, notificationManager)
 
         val mainIntent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
@@ -81,17 +80,6 @@ class FeedingReminderReceiver : BroadcastReceiver() {
         notificationManager.notify(NOTIFICATION_ID_OFFSET + babyId.toInt(), notification)
     }
 
-    private fun createNotificationChannel(context: Context, notificationManager: NotificationManager) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = context.getString(R.string.feeding_reminder_channel_name)
-            val importance = NotificationManager.IMPORTANCE_HIGH
-            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
-                enableVibration(true)
-            }
-            notificationManager.createNotificationChannel(channel)
-        }
-    }
-
     private fun vibrate(context: Context) {
         val vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
@@ -115,5 +103,21 @@ class FeedingReminderReceiver : BroadcastReceiver() {
     companion object {
         const val CHANNEL_ID = "feeding_reminders"
         const val NOTIFICATION_ID_OFFSET = 2000
+
+        /**
+         * Created eagerly from [BabyLogApplication.onCreate] so the channel exists before the
+         * first alarm ever fires, including in the minimal process Android spins up just to
+         * deliver the broadcast when the app isn't otherwise running.
+         */
+        fun createNotificationChannel(context: Context) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                val name = context.getString(R.string.feeding_reminder_channel_name)
+                val channel = NotificationChannel(CHANNEL_ID, name, NotificationManager.IMPORTANCE_HIGH).apply {
+                    enableVibration(true)
+                }
+                notificationManager.createNotificationChannel(channel)
+            }
+        }
     }
 }
