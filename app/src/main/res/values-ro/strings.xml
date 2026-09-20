@@ -64,7 +64,6 @@
     <string name="checkbox_puke">Vărsătură</string>
     <string name="checkbox_vitamins">Vitamine</string>
     <string name="checkbox_breastfed">Alăptat</string>
-    <string name="observations_label">Observații</string>
 
     <!-- Add weight dialog -->
     <string name="add_weight_title">Adaugă creștere</string>

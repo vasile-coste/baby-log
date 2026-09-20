@@ -31,7 +31,7 @@ import com.vasilecoste.babylog.data.db.entity.WeightRecord
         SleepEntry::class,
         BabyNotificationPreference::class,
     ],
-    version = 10,
+    version = 9,
     exportSchema = true,
 )
 @TypeConverters(Converters::class)

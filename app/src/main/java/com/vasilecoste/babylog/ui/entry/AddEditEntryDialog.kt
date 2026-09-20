@@ -43,7 +43,7 @@ import java.time.LocalTime
 fun AddEditEntryDialog(
     entry: Entry?,
     showVitaminOption: Boolean,
-    onSave: (time: LocalTime, foodMl: Int?, poop: Boolean, pee: Boolean, puke: Boolean, vitamin: Boolean, breastfed: Boolean, observations: String?) -> Unit,
+    onSave: (time: LocalTime, foodMl: Int?, poop: Boolean, pee: Boolean, puke: Boolean, vitamin: Boolean, breastfed: Boolean) -> Unit,
     onDelete: (() -> Unit)? = null,
     onDismiss: () -> Unit,
 ) {
@@ -59,7 +59,6 @@ fun AddEditEntryDialog(
     var puke by remember { mutableStateOf(entry?.puke ?: false) }
     var vitamin by remember { mutableStateOf(entry?.vitamin ?: false) }
     var breastfed by remember { mutableStateOf(entry?.breastfed ?: false) }
-    var observationsText by remember { mutableStateOf(entry?.observations.orEmpty()) }
 
     Dialog(onDismissRequest = onDismiss) {
         Surface(shape = MaterialTheme.shapes.extraLarge) {
@@ -118,15 +117,6 @@ fun AddEditEntryDialog(
                     )
                 }
 
-                OutlinedTextField(
-                    value = observationsText,
-                    onValueChange = { observationsText = it },
-                    label = { Text(stringResource(R.string.observations_label)) },
-                    minLines = 3,
-                    maxLines = 5,
-                    modifier = Modifier.fillMaxWidth(),
-                )
-
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -148,7 +138,6 @@ fun AddEditEntryDialog(
                                     puke,
                                     vitamin,
                                     breastfed,
-                                    observationsText.trim().takeIf { it.isNotEmpty() },
                                 )
                             },
                         ) { Text(stringResource(R.string.action_save)) }

@@ -36,7 +36,6 @@ object BabyDataJson {
                 puke = obj.optBoolean("puke", false),
                 vitamin = obj.optBoolean("vitamin", false),
                 breastfed = obj.optBoolean("breastfed", false),
-                observations = obj.optString("observations").takeIf { it.isNotBlank() },
             )
         }
 
@@ -140,7 +139,6 @@ object BabyDataJson {
                         .put("puke", e.puke)
                         .put("vitamin", e.vitamin)
                         .put("breastfed", e.breastfed)
-                        .put("observations", e.observations)
                 },
             ),
         )

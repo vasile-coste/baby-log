@@ -18,7 +18,6 @@ data class ImportedEntry(
     val puke: Boolean,
     val vitamin: Boolean,
     val breastfed: Boolean,
-    val observations: String? = null,
 )
 
 data class ImportedWeight(val date: LocalDate, val weightKg: Double?, val heightCm: Double?)

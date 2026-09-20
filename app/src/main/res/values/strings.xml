@@ -64,7 +64,6 @@
     <string name="checkbox_puke">Puke</string>
     <string name="checkbox_vitamins">Vitamins</string>
     <string name="checkbox_breastfed">Breastfed</string>
-    <string name="observations_label">Observations</string>
 
     <!-- Add weight dialog -->
     <string name="add_weight_title">Add growth</string>

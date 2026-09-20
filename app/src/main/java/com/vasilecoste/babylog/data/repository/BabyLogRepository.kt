@@ -106,7 +106,6 @@ class BabyLogRepository(
         puke: Boolean,
         vitamin: Boolean,
         breastfed: Boolean,
-        observations: String? = null,
     ) {
         entryDao.insert(
             Entry(
@@ -119,7 +118,6 @@ class BabyLogRepository(
                 puke = puke,
                 vitamin = vitamin,
                 breastfed = breastfed,
-                observations = observations,
             ),
         )
     }
@@ -226,7 +224,6 @@ class BabyLogRepository(
                     puke = e.puke,
                     vitamin = e.vitamin,
                     breastfed = e.breastfed,
-                    observations = e.observations,
                 )
             },
         )

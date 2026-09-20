@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Notes
 import androidx.compose.material.icons.outlined.Sick
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -71,9 +70,6 @@ fun TimelineItem(entry: Entry, onLongPress: () -> Unit, modifier: Modifier = Mod
             }
             if (entry.breastfed) {
                 Icon(painterResource(R.drawable.id_breastfeed), contentDescription = stringResource(R.string.checkbox_breastfed))
-            }
-            if (!entry.observations.isNullOrBlank()) {
-                Icon(Icons.Outlined.Notes, contentDescription = entry.observations)
             }
         }
     }

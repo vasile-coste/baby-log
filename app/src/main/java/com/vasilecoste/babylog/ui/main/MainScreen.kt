@@ -149,8 +149,8 @@ fun MainScreen(
         AddEditEntryDialog(
             entry = null,
             showVitaminOption = !hasVitaminToday,
-            onSave = { time, foodMl, poop, pee, puke, vitamin, breastfed, observations ->
-                viewModel.addEntry(time, foodMl, poop, pee, puke, vitamin, breastfed, observations)
+            onSave = { time, foodMl, poop, pee, puke, vitamin, breastfed ->
+                viewModel.addEntry(time, foodMl, poop, pee, puke, vitamin, breastfed)
                 showAddEntry = false
             },
             onDismiss = { showAddEntry = false },
@@ -161,7 +161,7 @@ fun MainScreen(
         AddEditEntryDialog(
             entry = entry,
             showVitaminOption = true,
-            onSave = { time, foodMl, poop, pee, puke, vitamin, breastfed, observations ->
+            onSave = { time, foodMl, poop, pee, puke, vitamin, breastfed ->
                 viewModel.updateEntry(
                     entry.copy(
                         time = time,
@@ -171,7 +171,6 @@ fun MainScreen(
                         puke = puke,
                         vitamin = vitamin,
                         breastfed = breastfed,
-                        observations = observations,
                     ),
                 )
                 editingEntry = null

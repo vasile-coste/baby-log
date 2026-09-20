@@ -30,5 +30,4 @@ data class Entry(
     val puke: Boolean = false,
     val vitamin: Boolean = false,
     val breastfed: Boolean = false,
-    val observations: String? = null,
 )

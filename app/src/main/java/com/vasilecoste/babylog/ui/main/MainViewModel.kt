@@ -229,10 +229,10 @@ class MainViewModel(
         viewModelScope.launch { repository.deleteBabyProfile(baby) }
     }
 
-    fun addEntry(time: LocalTime, foodMl: Int?, poop: Boolean, pee: Boolean, puke: Boolean, vitamin: Boolean, breastfed: Boolean, observations: String? = null) {
+    fun addEntry(time: LocalTime, foodMl: Int?, poop: Boolean, pee: Boolean, puke: Boolean, vitamin: Boolean, breastfed: Boolean) {
         val babyId = selectedBabyId.value ?: return
         viewModelScope.launch {
-            repository.addEntry(babyId, selectedDate.value, time, foodMl, poop, pee, puke, vitamin, breastfed, observations)
+            repository.addEntry(babyId, selectedDate.value, time, foodMl, poop, pee, puke, vitamin, breastfed)
             feedingReminderScheduler.scheduleNextReminder(babyId)
         }
     }
